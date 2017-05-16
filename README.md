@@ -1,8 +1,8 @@
 Dockerfiles for Monasca
 =======================
 
-This repository contains resources for building and deploying a full Monasca
-stack in Docker and Kubernetes environments.
+This repository contains resources for building and deploying a full
+Monasca Log API - ELK stack in Docker.
 
 Quick Start
 -----------
@@ -16,9 +16,9 @@ machine:
 
  * keystone on ports 5000 and 35357
   * see [`preload.yml`][2] for full account info
- * monasca-api on port 8070
- * grafana on port 3000
-  * log in with `mini-mon` and `password` (or any valid keystone account)
+ * monasca-log-api on port 8090
+ * elasticsearch on ports 9200 and 9300
+ * kibana on port 5601
 
 If needed, `docker-compose rm` can be used to completely clean the environment
 between runs.
@@ -26,18 +26,20 @@ between runs.
 Repository Layout
 -----------------
 
- * `k8s/`: contains Kubernetes configuration files and deployment scripts
- * `monasca-api-python/`: Dockerfile for monasca-api (python version)
- * `monasca-persister-python/`: Dockerfile for monasca-persister (python
-   version)
- * `monasca-notification/`: Dockerfile for the notification engine
- 
+ * `elasticsearch/` Dockerfile for Elasticsearch
+ * `kibana/`: Dockerfile for kibana
+ * `logstash-transformer/`: Dockerfile for logstash-transformer
+ * `logstash-persister/`: Dockerfile for logstash-persister
+ * `monasca-log-api/`: Dockerfile for Monasca Log API
+ * `scripts/`: useful bash scripts
+ * `syslogVM/`: Dockerfile and logstash.conf for remote syslog server
+ * `templates/`: document templates for Elasticsearch (to be created and deleted using the scripts)
+
 
 A number of custom dependency containers are also here:
 
- * `grafana/`: Dockerfile for Grafana with Keystone auth and Monasca plugins
- * `keystone/`: Dockerfile for dev keystone
  * `kafka/`: Dockerfile for k8s-compatible kafka
+ * `keystone/`: Dockerfile for dev keystone
 
 [1]: https://docs.docker.com/compose/
-[2]: https://github.com/hpcloud-mon/monasca-docker/blob/master/keystone/preload.yml
+[2]: https://github.com/martel-innovate/deep-log-monasca-elk/blob/master/keystone/preload.yml
