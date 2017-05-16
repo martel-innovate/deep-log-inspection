@@ -15,6 +15,14 @@ curl -H "Content-Type: application/json" \
     -XPUT localhost:9200/_template/os-nova-api-metadata \
     --data @os-nova-api-metadata.json && \
 
+curl -H "Content-Type: application-json" \
+    -XPUT localhost:9200/_template/os-nova-compute-short \
+    --data @os-nova-compute-short.json && \
+
+curl -H "Content-Type: application-json" \
+    -XPUT localhost:9200/_template/os-nova-compute-long \
+    --data @os-nova-compute-long.json && \
+
 curl -H "Content-Type: application/json" \
     -XPUT localhost:9200/_template/os-neutron-api \
     --data @os-neutron-api.json && \

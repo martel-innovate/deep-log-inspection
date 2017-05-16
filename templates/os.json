@@ -6,9 +6,9 @@
             "_all" : { "enabled" : true },
             "_source" : { "enabled" : false },
             "properties" : {
-                "node_ip" : { "type" : "ip" },
+                "host_ip" : { "type" : "ip" },
                 "node_service" : { "type" : "keyword" },
-                "node_source" : { "type" : "text" },
+                "node_source" : { "type" : "keyword" },
                 "log_date" : { "type" : "date" },
                 "log_pid" : { "type" : "keyword" },
                 "log_level" : { "type" : "keyword" },

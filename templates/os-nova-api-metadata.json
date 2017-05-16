@@ -7,8 +7,8 @@
             "_source" : { "enabled" : false },
             "properties" : {
                 "msg_request_id" : { "type" : "keyword" },
-                "msg_request_ip_global" : { "type" : "ip" },
-                "msg_request_ip_local" : { "type" : "ip" },
+                "msg_node_ip" : { "type" : "ip" },
+                "msg_node_ip_2" : { "type" : "ip" },
                 "msg_method" : { "type" : "keyword" },
                 "msg_url" : { "type" : "text" },
                 "msg_http_ver" : { "type" : "keyword" },

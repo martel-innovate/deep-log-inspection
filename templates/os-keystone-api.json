@@ -6,8 +6,8 @@
             "_all" : { "enabled" : true },
             "_source" : { "enabled" : false },
             "properties" : {
-                "msg_request_ip_global" : { "type" : "ip" },
-                "msg_request_ip_local" : { "type" : "ip" },
+                "msg_node_ip" : { "type" : "ip" },
+                "msg_node_ip_2" : { "type" : "ip" },
                 "msg_request_date" : { "type" : "text" },
                 "msg_method" : { "type" : "keyword" },
                 "msg_url" : { "type" : "text" },
