@@ -15,3 +15,6 @@ monasca-notification/
 monasca-perf/
 monasca-persister-python/
 webapp_demo/
+
+logstash-persister/logs/persisted.log
+logstash-transformer/logs/transformed.log
