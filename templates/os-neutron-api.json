@@ -1,0 +1,21 @@
+{
+    "template" : "os-neutron-api-*",
+    "order" : 1,
+    "mappings" : {
+        "oslo" : {
+            "_all" : { "enabled" : true },
+            "_source" : { "enabled" : false },
+            "properties" : {
+                "msg_request_id" : { "type" : "keyword" },
+                "msg_request_ip" : { "type" : "ip" },
+                "msg_request_date" : { "type" : "text" },
+                "msg_method" : { "type" : "keyword" },
+                "msg_url" : { "type" : "text" },
+                "msg_http_ver" : { "type" : "keyword" },
+                "msg_response_status" : { "type" : "keyword" },
+                "msg_bytes" : { "type" : "short" },
+                "msg_time_sec" : { "type" : "float" }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+*/host_vars/localhost
+*.pyc
+api/truststore.jks
+jenkins_jobs.ini
+ci/jobs/jjb
+
+.DS_STORE
+grafana*/
+influxdb-init/
+k8s/
+logstash-agent-old/
+monasca-agent/
+monasca-api-python/
+monasca-notification/
+monasca-perf/
+monasca-persister-python/
+webapp_demo/

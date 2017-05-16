@@ -1,0 +1,21 @@
+{
+    "template" : "os-keystone-api-*",
+    "order" : 1,
+    "mappings" : {
+        "oslo" : {
+            "_all" : { "enabled" : true },
+            "_source" : { "enabled" : false },
+            "properties" : {
+                "msg_request_ip_global" : { "type" : "ip" },
+                "msg_request_ip_local" : { "type" : "ip" },
+                "msg_request_date" : { "type" : "text" },
+                "msg_method" : { "type" : "keyword" },
+                "msg_url" : { "type" : "text" },
+                "msg_http_ver" : { "type" : "keyword" },
+                "msg_response_status" : { "type" : "keyword" },
+                "msg_bytes" : { "type" : "short" },
+                "msg_time_sec" : { "type" : "float" }
+            }
+        }
+    }
+}

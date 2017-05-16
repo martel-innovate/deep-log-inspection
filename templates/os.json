@@ -1,0 +1,20 @@
+{
+"template" : "os-*",
+    "order" : 0,
+    "mappings" : {
+        "oslo" : {
+            "_all" : { "enabled" : true },
+            "_source" : { "enabled" : false },
+            "properties" : {
+                "node_ip" : { "type" : "ip" },
+                "node_service" : { "type" : "keyword" },
+                "node_source" : { "type" : "text" },
+                "log_date" : { "type" : "date" },
+                "log_pid" : { "type" : "keyword" },
+                "log_level" : { "type" : "keyword" },
+                "log_module" : { "type" : "keyword" },
+                "msg" : { "type" : "text" }
+            }
+        }
+    }
+}

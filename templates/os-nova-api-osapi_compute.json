@@ -1,0 +1,22 @@
+{
+    "template" : "os-nova-api-osapi_compute-*",
+    "order" : 1,
+    "mappings" : {
+        "oslo" : {
+            "_all" : { "enabled" : true },
+            "_source" : { "enabled" : false },
+            "properties" : {
+                "msg_request_id" : { "type" : "keyword" },
+                "msg_uid" : { "type" : "keyword" },
+                "msg_tenant" : { "type" : "keyword" },
+                "msg_request_ip" : { "type" : "ip" },
+                "msg_method" : { "type" : "keyword" },
+                "msg_url" : { "type" : "text" },
+                "msg_http_ver" : { "type" : "keyword" },
+                "msg_response_status" : { "type" : "keyword" },
+                "msg_bytes" : { "type" : "short" },
+                "msg_time_sec" : { "type" : "float" }
+            }
+        }
+    }
+}
