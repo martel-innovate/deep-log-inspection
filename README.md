@@ -4,8 +4,9 @@ Dockerfiles for Monasca Log API - ELK stack
 This repository contains resources for building and deploying a full
 Monasca Log API - ELK stack in Docker.
 
+The projects [monasca-docker][2] and [docker-elk][3] served as a basis for the current project.
+
 The project is part of [FIWARE][1].
-[monasca-docker][2] and [docker-elk][3] served as a basis for the current project.
 
 Quick Start
 -----------
