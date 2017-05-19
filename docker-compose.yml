@@ -1,101 +1,116 @@
 version: '2'
 services:
 
-  zookeeper:
-    image: zookeeper:3.3
+    zookeeper:
+        image: zookeeper:3.3
 
-  kafka:
-    image: monasca/kafka:0.9.0.1-2.11
-    environment:
-      ZOOKEEPER_CONNECTION_STRING: "zookeeper:2181"
-      KAFKA_AUTO_CREATE_TOPICS: "false"
-      KAFKA_DELETE_TOPIC_ENABLE: "true"
-      KAFKA_CREATE_TOPICS: "\
-        monasca-log:12:1,kafka-health:12:1,\
-        logstash-log:1:1"
-    depends_on:
-      - zookeeper
+    kafka:
+        image: monasca/kafka:0.9.0.1-2.11
+        environment:
+            ZOOKEEPER_CONNECTION_STRING: "zookeeper:2181"
+            KAFKA_AUTO_CREATE_TOPICS: "false"
+            KAFKA_DELETE_TOPIC_ENABLE: "true"
+            KAFKA_CREATE_TOPICS: "\
+                monasca-log:12:1,kafka-health:12:1,\
+                logstash-log:1:1"
+        depends_on:
+            - zookeeper
 
-        # metrics:64:1,alarm-state-transitions:12:1,\
-        # alarm-notifications:12:1,retry-notifications:3:1,\
-        # events:12:1,60-seconds-notifications:3:1,\
+            # metrics:64:1,alarm-state-transitions:12:1,\
+            # alarm-notifications:12:1,retry-notifications:3:1,\
+            # events:12:1,60-seconds-notifications:3:1,\
 
-  mysql:
-    image: mysql:5.5
-    environment:
-      MYSQL_ROOT_PASSWORD: secretmysql
+    mysql:
+        image: mysql:5.5
+        environment:
+            MYSQL_ROOT_PASSWORD: secretmysql
 
-  mysql-init:
-    image: monasca/mysql-init:1.0.0
-    environment:
-      MYSQL_INIT_DISABLE_REMOTE_ROOT: "true"
-      MYSQL_INIT_RANDOM_PASSWORD: "true"
+    mysql-init:
+        image: monasca/mysql-init:1.0.0
+        environment:
+            MYSQL_INIT_DISABLE_REMOTE_ROOT: "true"
+            MYSQL_INIT_RANDOM_PASSWORD: "true"
 
-  keystone:
-    image: monasca/keystone:1.0.6
-    environment:
-      KEYSTONE_HOST: keystone
-      KEYSTONE_PASSWORD: secretadmin
-      KEYSTONE_DATABASE_BACKEND: mysql
-      KEYSTONE_MYSQL_HOST: mysql
-      KEYSTONE_MYSQL_USER: keystone
-      KEYSTONE_MYSQL_PASSWORD: keystone
-      KEYSTONE_MYSQL_DATABASE: keystone
-    volumes:
-      - ./keystone/preload.yml:/preload.yml
-    depends_on:
-      - mysql
-    ports:
-      - "5000:5000"
-      - "35357:35357"
-    restart: on-failure
+    keystone:
+        image: monasca/keystone:1.0.6
+        environment:
+            KEYSTONE_HOST: keystone
+            KEYSTONE_PASSWORD: secretadmin
+            KEYSTONE_DATABASE_BACKEND: mysql
+            KEYSTONE_MYSQL_HOST: mysql
+            KEYSTONE_MYSQL_USER: keystone
+            KEYSTONE_MYSQL_PASSWORD: keystone
+            KEYSTONE_MYSQL_DATABASE: keystone
+        volumes:
+            - ./keystone/preload.yml:/preload.yml
+        depends_on:
+            - mysql
+        ports:
+            - "5000:5000"
+            - "35357:35357"
+        restart: on-failure
 
-  monasca-log-api:
-    build: monasca-log-api/
-    image: monasca/log-api
-    depends_on:
-      - keystone
-      - kafka
-    ports:
-      - "8090:8090"
-    restart: on-failure
+    monasca-log-api:
+        build: monasca-log-api/
+        image: monasca/log-api
+        depends_on:
+            - keystone
+            - kafka
+        ports:
+            - "8090:8090"
+        restart: on-failure
 
-  logstash-transformer:
-    build: logstash-transformer/
-    image: monasca/logstash-transformer
-    command: -f /etc/logstash/conf.d/
-    volumes:
-      - ./logstash-transformer/config:/etc/logstash/conf.d
-      - ./logstash-transformer/logs:/logs
-    depends_on:
-      - kafka
+    logstash-transformer:
+        build: logstash-transformer/
+        image: monasca/logstash-transformer
+        volumes:
+            - ./logstash-transformer/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+            - ./logstash-transformer/pipeline:/usr/share/logstash/pipeline
+            - ./logstash-transformer/logs:/logs
+        ports:
+            - "5500:5500"
+        environment:
+            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+        depends_on:
+          - kafka
 
-  logstash-persister:
-    build: logstash-persister/
-    image: monasca/logstash-persister
-    command: -f /etc/logstash/conf.d/
-    volumes:
-      - ./logstash-persister/config:/etc/logstash/conf.d
-      - ./logstash-persister/logs:/logs
-    depends_on:
-      - kafka
-      - elasticsearch
+    logstash-persister:
+        build: logstash-persister/
+        image: monasca/logstash-persister
+        volumes:
+            - ./logstash-persister/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+            - ./logstash-persister/pipeline:/usr/share/logstash/pipeline
+            - ./logstash-persister/logs:/logs
+        ports:
+            - "5555:5555"
+        environment:
+            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+        depends_on:
+            - kafka
+            - elasticsearch
 
-  elasticsearch:
-    build: elasticsearch/
-    image: monasca/elasticsearch
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    environment:
-      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+    elasticsearch:
+        build: elasticsearch/
+        image: monasca/elasticsearch
+        volumes:
+            - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+            - esdata1:/usr/share/elasticsearch/data
+        ports:
+          - "9200:9200"
+          - "9300:9300"
+        environment:
+          ES_JAVA_OPTS: "-Xmx256m -Xms256m"
 
-  kibana:
-    build: kibana/
-    image: monasca/kibana
-    volumes:
-      - ./kibana/config/:/etc/kibana/
-    ports:
-      - "5601:5601"
-    depends_on:
-      - elasticsearch
+    kibana:
+        build: kibana/
+        image: monasca/kibana
+        volumes:
+          - ./kibana/config/:/usr/share/kibana/config
+        ports:
+          - "5601:5601"
+        depends_on:
+          - elasticsearch
+
+volumes:
+    esdata1:
+        driver: local

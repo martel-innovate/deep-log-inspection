@@ -5,6 +5,8 @@ jenkins_jobs.ini
 ci/jobs/jjb
 
 .DS_STORE
+*.log
+
 grafana*/
 influxdb-init/
 k8s/
@@ -15,6 +17,3 @@ monasca-notification/
 monasca-perf/
 monasca-persister-python/
 webapp_demo/
-
-logstash-persister/logs/persisted.log
-logstash-transformer/logs/transformed.log

@@ -7,6 +7,11 @@
             "_source" : { "enabled" : false },
             "properties" : {
                 "msg_request_id" : { "type" : "keyword" },
+                "resource_name" : { "type" : "keyword" },
+                "resource_physical_ram" : { "type" : "integer" },
+                "resource_used_ram" : { "type" : "integer" },
+                "resource_physical_disk" : { "type" : "integer" },
+                "resource_used_disk" : { "type" : "integer" },
                 "resource_total_vcpus" : { "type" : "integer" },
                 "resource_used_vcpus" : { "type" : "integer" }
             }
