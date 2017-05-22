@@ -15,9 +15,9 @@
                 "msg_method" : { "type" : "keyword" },
                 "msg_url" : { "type" : "text" },
                 "msg_http_ver" : { "type" : "keyword" },
-                "msg_response_status" : { "type" : "keyword" },
                 "msg_bytes" : { "type" : "short" },
-                "msg_time_sec" : { "type" : "float" }
+                "msg_response_status" : { "type" : "keyword" },
+                "msg_response_time" : { "type" : "float" }
             }
         }
     }

@@ -3,9 +3,9 @@ Table of Contents
 
 * User Manual
     * Introduction
-    * Elasticsearch relevant API features
+    * Elasticsearch API features
     * Displaying logs in Kibana
-    * Kibana analytics and visualization
+    * Visualizing in Kibana
 * Installation Manual
     * Introduction
     * Installing with docker-compose
