@@ -33,9 +33,7 @@ Search results can be filtered, using the following buttons
 
 to respectively filter for value, filter out value, toggle column view in the table, and filter for field present.
 
-However, the search bar is the best place for querying and filtering the logs, using the Lucene [query syntax][4] or the full JSON-based [Elasticsearch Query DSL][5].
-
-For more details on searching the data, managing searches, and more, visit [this page][6].
+However, the search bar is the best place for querying and filtering the logs, using the Lucene [query syntax][4] or the full JSON-based [Elasticsearch Query DSL][5]. For more details on searching the data, managing searches, and more, visit [this page][6].
 
 [1]:https://www.elastic.co/guide/en/kibana/5.x/introduction.html
 [2]:https://www.elastic.co/guide/en/kibana/5.x/index.html

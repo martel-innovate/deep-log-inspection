@@ -16,7 +16,7 @@ Now select `os-nova-api-osapi_compute-*` as index pattern (if it does not exist,
 
 ![new visualization](../images/visual-new.png)
 
-In the `metrics` section, select the button that contains a small triangle to expand the `Y-Axis` configuration:
+In the `metrics` section, expand the `Y-Axis` configuration:
 
 ![Y Axis](../images/visual-y-axis.png)
 
