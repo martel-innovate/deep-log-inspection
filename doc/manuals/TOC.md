@@ -3,11 +3,11 @@ Table of Contents
 
 * User Manual
     1. Introduction
-    * Quick start guide
+    * Quick start
     * Advance usage
-        * Elasticsearch API features
-        * Displaying logs in Kibana
-        * Creating custom visualizations in Kibana
+        1. Elasticsearch API queries
+        * Searching logs in Kibana
+        * Custom visualizations in Kibana
 * Installation Manual
     * Deep Log Inspection server
         1. Introduction

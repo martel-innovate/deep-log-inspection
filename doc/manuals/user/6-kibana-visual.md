@@ -1,4 +1,4 @@
-## Visualizing in Kibana
+## Custom visualizations in Kibana
 Kibana allows the user to [visualize][1] the data in the Elasticsearch indices with a variety of charts, tables and maps.
 
 To [create a visualization][2], select `Visualize` from the left pane menu, then `+` or `Create a visualization`, and choose the visualization type that better serves your purpose (e.g. line chart).

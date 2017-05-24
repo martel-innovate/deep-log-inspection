@@ -1,4 +1,4 @@
-## Displaying logs in Kibana
+## Searching logs in Kibana
 Kibana provides a front-end to Elasticsearch. Quoting the [introduction][1] from [Kibana's User Guide][2],
 
 > Kibana allows to search, view and interact with the logs, as well as perform data analysis and visualize the logs in a variety of charts, tables and maps.
