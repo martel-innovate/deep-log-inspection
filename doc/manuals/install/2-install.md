@@ -9,4 +9,4 @@ To install and run the system, you can start from [the README][3].
 
 [1]:https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 [2]:https://www.docker.com/
-[3]:(../../../README.md)
+[3]:(README.md)
