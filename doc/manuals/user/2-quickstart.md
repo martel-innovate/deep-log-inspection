@@ -1,4 +1,5 @@
-## Quick start
+## Quick Start User Guide
+
 #### Searching the logs
 Open Kibana at `localhost:9200`. Select the `Discover` section in the left pane menu.
 

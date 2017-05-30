@@ -1,8 +1,7 @@
-Dockerfiles for Monasca Log API - ELK stack
+Dockerfiles for Deep Log Inspection
 ===========================================
 
-This repository contains resources for building and deploying a full
-Monasca Log API - ELK stack in Docker.
+This repository contains resources for building and deploying the Deep Log Inspection system in Docker.
 
 The project is part of [FIWARE][1].
 Credits for the current project go to [monasca-docker][2] and [docker-elk][3].
@@ -10,7 +9,7 @@ Credits for the current project go to [monasca-docker][2] and [docker-elk][3].
 Quick Start
 -----------
 
-To quickly get a Monasca environment running, you can use [docker-compose][4]:
+To quickly get the Deep Log Inspection system running, you can use [docker-compose][4]:
 
     docker-compose up
 
