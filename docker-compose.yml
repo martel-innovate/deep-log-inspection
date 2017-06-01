@@ -15,6 +15,7 @@ services:
                 logstash-log:1:1"
         depends_on:
             - zookeeper
+        restart: on-failure
 
             # metrics:64:1,alarm-state-transitions:12:1,\
             # alarm-notifications:12:1,retry-notifications:3:1,\
