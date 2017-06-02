@@ -11,15 +11,11 @@ services:
             KAFKA_AUTO_CREATE_TOPICS: "false"
             KAFKA_DELETE_TOPIC_ENABLE: "true"
             KAFKA_CREATE_TOPICS: "\
-                monasca-log:12:1,kafka-health:12:1,\
-                logstash-log:1:1"
+                monasca-log:16:1,logstash-log:16:1,\
+                kafka-health:12:1"
         depends_on:
             - zookeeper
         restart: on-failure
-
-            # metrics:64:1,alarm-state-transitions:12:1,\
-            # alarm-notifications:12:1,retry-notifications:3:1,\
-            # events:12:1,60-seconds-notifications:3:1,\
 
     mysql:
         image: mysql:5.5
