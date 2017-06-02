@@ -35,4 +35,4 @@ Similarly, the Log parser must publish to the `logstash-log` topic and the Log P
 
 [1]:http://kafka.apache.org/
 [2]:https://github.com/martel-innovate/deep-log-monasca-elk/blob/master/kafka/README.md
-[3]:https://github.com/martel-innovate/deep-log-monasca-elk/blob/master/architecture.md
+[3]:https://github.com/martel-innovate/deep-log-monasca-elk/blob/master/doc/manuals/architecture.md
