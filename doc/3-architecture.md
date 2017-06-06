@@ -1,4 +1,4 @@
-## Architecture
+## Architecture of Deep Log Inspection
 The architecture of the system can be depicted as follows:
 ![system architecture](img/monasca_log_api.jpg)
 
