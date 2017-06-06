@@ -1,5 +1,7 @@
-Table of Contents
-=================
+Welcome to the documentation for Deep Log Inspection
+====================================================
+
+## Table of Contents
 
 * Table of Contents
 * System Architecture
