@@ -1,8 +1,7 @@
 site_name: Deep Log Inspection
-site_url: http://deep-log-inspection.readthedocs.io
 repo_url: https://github.com/martel-innovate/deep-log-monasca-elk.git
 site_description: Deep Log Inspection documentation
-docs_dir: doc
+docs_dir: 'doc'
 theme: readthedocs
 pages:
     - 'Home': 'TOC.md'
