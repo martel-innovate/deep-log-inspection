@@ -1,5 +1,5 @@
 Dockerfiles for Deep Log Inspection
-===========================================
+===================================
 
 This repository contains resources for building and deploying the Deep Log Inspection system in Docker.
 
