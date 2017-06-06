@@ -1,7 +1,7 @@
 Quick Start
 -----------
 
-To quickly get the Deep Log Inspection system running, you can use [docker-compose][4]:
+To quickly get the Deep Log Inspection system running, you can use [docker-compose][1]:
 
     docker-compose up
 
@@ -16,3 +16,5 @@ machine:
 
 If needed, `docker-compose rm` can be used to completely clean the environment
 between runs.
+
+[1]: https://docs.docker.com/compose/
