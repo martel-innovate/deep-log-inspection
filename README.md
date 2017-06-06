@@ -21,8 +21,7 @@ machine:
  * elasticsearch on ports 9200 and 9300
  * kibana on port 5601
 
-If needed, `docker-compose rm` can be used to completely clean the environment
-between runs.
+If needed, `docker-compose rm` can be used to completely clean the environment between runs.
 
 Repository Layout
 -----------------
