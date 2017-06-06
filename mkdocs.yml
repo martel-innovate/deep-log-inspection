@@ -24,5 +24,3 @@ pages:
             - 'Configuring Kafka': 'install/4-kafka.md'
         - 'Monasca Log Agent':
             - 'Installing & Deploying': 'install/5-log-agent.md'
-
-google_analytics: ['UA-36723568-3', 'mkdocs.org']
