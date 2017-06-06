@@ -6,3 +6,20 @@ docs_dir: .
 theme: readthedocs
 pages:
     - Home: 'TOC.md'
+    - Architecture: 'architecture.md'
+    - User Manual:
+        - Introduction: 'user/1-intro.md'
+        - Quick start: 'user/2-quickstart.md'
+        - Advanced usage:
+            - Introduction: 'user/3-advanced.md'
+            - Elasticsearch API queries: 'user/4-elasticsearch.md'
+            - Searching logs in Kibana: 'user/5-kibana-logs.md'
+            - Custom visualizations in Kibana: 'user/6-kibana-visual.md'
+    - Installation & Administration Manual:
+        - Deep Log Inspection server:
+            - Introduction: 'install/1-intro.md'
+            - Installing & Deploying: 'install/2-install.md'
+            - Configuring the Monasca Log API: 'install/3-monasca.md'
+            - Configuring Kafka: 'install/4-kafka.md'
+        - Monasca Log Agent:
+            - Installing & Deploying: 'install/5-log-agent.md'

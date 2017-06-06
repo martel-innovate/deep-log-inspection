@@ -8,10 +8,11 @@ Welcome to the documentation for Deep Log Inspection
 * User Manual
     1. Introduction
     2. Quick start
-    3. Advance usage
-        1. Elasticsearch API queries
-        2. Searching logs in Kibana
-        3. Custom visualizations in Kibana
+    3. Advanced usage
+        1. Introduction
+        2. Elasticsearch API queries
+        3. Searching logs in Kibana
+        4. Custom visualizations in Kibana
 * Installation & Administration Manual
     * Deep Log Inspection server
         1. Introduction
