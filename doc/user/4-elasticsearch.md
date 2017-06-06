@@ -9,7 +9,7 @@ Here follow a few example queries using `curl`. Elasticsearch's REST API should 
 
 For a newcomer that wants to retrieve documents from Elasticsearch, the first step should be querying the existing indices. This can be done with a `GET` request to the `cat indices` API endpoint:
 
-    curl localhost:9200/\_cat/indices
+    curl localhost:9200/_cat/indices
 
 Once the existing indices are known, documents matching an index can be queried via [search API][3]. Note that indices can be matched exactly, i.e. by name, or multiple indices can be queried using [wildcards][4].
 

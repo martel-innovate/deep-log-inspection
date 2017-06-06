@@ -5,14 +5,14 @@ To [create a visualization][2], select `Visualize` from the left pane menu, then
 
 In general, charts can be used to plot metric aggregations, e.g. count, average, sum, percentiles, etc., of a search, using some field's value, filters, ranges or whatever tool is more appropriate. For all details on charts and metrics, visit [this page][3].
 
-Kibana provides a rather large variety of options to visualize the data. Since this guide could not be more exaustive than [Kibana User's Guide][4], here it is more appropriate to show the main concepts and features of visualization with an example.
+Kibana provides a rather large variety of options to visualize data. Since this guide could not be more exaustive than [Kibana User's Guide][4], here it is more appropriate to show the main concepts and features of visualization with an example.
 
 #### Example: Nova API's average response time
 Select `Visualize` from the left pane menu, then `+` or `Create a visualization`, and choose `Line` to create a line chart. This should lead to a page like the following:
 
 ![from new search](../images/visual-index.png)
 
-Now select `os-nova-api-osapi_compute-*` as index pattern (if it does not exist, [create it][5] first, in the `Management` section).
+Now select `os-nova-api-osapi_compute-*` as index pattern (if it does not exist, [create it](5-kibana-logs.md) first, in the `Management` section).
 
 ![new visualization](../images/visual-new.png)
 
