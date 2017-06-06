@@ -51,8 +51,8 @@ A set of predefined visualizations is available:
 + `nova-compute resource vcpus`: a line chart to plot the number of used virtual CPUs against the total available on Nova Compute nodes
 + `openstack tenant activity top 5`: a vertical bar chart with a top 5 ranking of Openstack tenants' activity, i.e. production of logs
 
-Keep reading the guide to learn how to create custom visualizations.
+Keep reading the guide to learn how to create [custom visualizations][3].
 
 [1]:https://www.elastic.co/guide/en/elasticsearch/reference/5.x/multi-index.html
 [2]:https://www.elastic.co/guide/en/kibana/5.x/visualize.html
-[3]:6-kibana-visual.md
+[3]:(6-kibana-visual.md)
