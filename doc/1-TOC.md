@@ -3,7 +3,6 @@ Welcome to the documentation for Deep Log Inspection
 
 ## Table of Contents
 
-* [Table of Contents](1-TOC.md)
 * [Quick Start](2-quickstart.md)
 * [Architecture](3-architecture.md)
 * User Manual
