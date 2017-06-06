@@ -3,7 +3,7 @@
 #### Searching the logs
 Open Kibana at `localhost:9200`. Select the `Discover` section in the left pane menu.
 
-![discover logs](../images/discover-logs.png)
+![discover logs](../img/discover-logs.png)
 
 On the top left, just above the search bar, the number of log entries currently displayed is shown. As the system keeps running, that number is expected to grow, as more logs are received.
 

@@ -8,7 +8,7 @@ Welcome to the documentation for Deep Log Inspection
 * System Architecture
 * User Manual
     1. Introduction
-    2. Quick start
+    2. Quick Start
     3. Advanced usage
         1. Introduction
         2. Elasticsearch API queries

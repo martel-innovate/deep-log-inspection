@@ -10,27 +10,27 @@ Kibana provides a rather large variety of options to visualize data. Since this 
 #### Example: Nova API's average response time
 Select `Visualize` from the left pane menu, then `+` or `Create a visualization`, and choose `Line` to create a line chart. This should lead to a page like the following:
 
-![from new search](../images/visual-index.png)
+![from new search](../img/visual-index.png)
 
 Now select `os-nova-api-osapi_compute-*` as index pattern (if it does not exist, [create it](5-kibana-logs.md) first, in the `Management` section).
 
-![new visualization](../images/visual-new.png)
+![new visualization](../img/visual-new.png)
 
 In the `metrics` section, expand the `Y-Axis` configuration menu:
 
-![Y Axis](../images/visual-y-axis.png)
+![Y Axis](../img/visual-y-axis.png)
 
 In the `Aggregation` select menu, choose `Average`. Then select `msg_response_time` as field.
 
 Now, in order to display timestamps on the x-axis, click `X-Axis` in the `buckets` section:
 
-![X Axis](../images/visual-x-axis.png)
+![X Axis](../img/visual-x-axis.png)
 
 Select `Date Histogram` as aggregation, `@timestamp` as field, and `Second` as interval. Optionally, the axes can be labelled so as to visualize custom names for the axes in the chart.
 
 Now that the required parameters are set, click the `Apply changes` button on the top right of the pane. The resulting chart will be rendered on the right:
 
-![plot visualization](../images/visual-plot.png)
+![plot visualization](../img/visual-plot.png)
 
 Now that the visualization has been created, it can be saved. Click `save` on the top right of the page, give the visualization a name and click `Save` again.
 
