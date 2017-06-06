@@ -4,6 +4,7 @@ Welcome to the documentation for Deep Log Inspection
 ## Table of Contents
 
 * Table of Contents
+* Quick Start
 * System Architecture
 * User Manual
     1. Introduction
