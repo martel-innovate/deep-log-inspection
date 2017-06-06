@@ -16,11 +16,11 @@ Now select `os-nova-api-osapi_compute-*` as index pattern (if it does not exist,
 
 ![new visualization](../images/visual-new.png)
 
-In the `metrics` section, expand the `Y-Axis` configuration:
+In the `metrics` section, expand the `Y-Axis` configuration menu:
 
 ![Y Axis](../images/visual-y-axis.png)
 
-In the `Aggregation` selection menu, choose `Average`. Then select `msg_response_time` as field.
+In the `Aggregation` select menu, choose `Average`. Then select `msg_response_time` as field.
 
 Now, in order to display timestamps on the x-axis, click `X-Axis` in the `buckets` section:
 
@@ -37,11 +37,10 @@ Now that the visualization has been created, it can be saved. Click `save` on th
 Saving visualizations allows to reopen them later. Any changes in the dataset will be reflected automatically in the chart as it is reopened or rendered again using the `Apply changes` button.
 
 #### Dashboards
-Saved visualizations can also be grouped and viewed together in a [dashboard][6]. Elements in a dashboard can be resized and rearranged at will. Like visualizations, dashboards can be saved for later use.
+Saved visualizations can also be grouped and viewed together in a [dashboard][5]. Elements in a dashboard can be resized and rearranged at will. Like visualizations, dashboards can be saved for later use.
 
 [1]:https://www.elastic.co/guide/en/kibana/5.x/visualize.html
 [2]:https://www.elastic.co/guide/en/kibana/5.x/createvis.html
 [3]:https://www.elastic.co/guide/en/kibana/5.x/xy-chart.html
 [4]:https://www.elastic.co/guide/en/kibana/5.x/index.html
-[5]:https://www.elastic.co/guide/en/kibana/5.x/tutorial-define-index.html
-[6]:https://www.elastic.co/guide/en/kibana/5.x/dashboard.html
+[5]:https://www.elastic.co/guide/en/kibana/5.x/dashboard.html
