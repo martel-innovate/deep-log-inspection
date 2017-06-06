@@ -16,7 +16,7 @@ Assuming all goes well, the following services should be exposed on your host
 machine:
 
  * keystone on ports 5000 and 35357
-  * see [`preload.yml`][5] for full account info
+  * see [`preload.yml`](keystone/preload.yml) for full account info
  * monasca-log-api on port 8090
  * elasticsearch on ports 9200 and 9300
  * kibana on port 5601
@@ -46,4 +46,3 @@ A number of custom dependency containers are also here:
 [2]: https://github.com/monasca/monasca-docker
 [3]: https://github.com/deviantony/docker-elk
 [4]: https://docs.docker.com/compose/
-[5]: https://github.com/martel-innovate/deep-log-monasca-elk/blob/master/keystone/preload.yml
