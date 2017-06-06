@@ -6,4 +6,3 @@ To install the Log Agent, copy the [syslogVM/syslog-server](../../syslogVM/syslo
 The *monasca_log_api* output plugin must authenticate to Keystone, so make sure it authenticates to the same instance as the Monasca Log API. Please refer to the Monasca Log API [configuration guide](3-monasca.md) for more details.
 
 [1]:https://www.docker.com/
-[4]:https://github.com/martel-innovate/deep-log-monasca-elk/blob/master/doc/manuals/install/3-monasca.md
