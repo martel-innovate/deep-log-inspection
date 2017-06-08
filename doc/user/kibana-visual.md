@@ -12,7 +12,7 @@ Select `Visualize` from the left pane menu, then `+` or `Create a visualization`
 
 ![from new search](../img/visual-index.png)
 
-Now select `os-nova-api-osapi_compute-*` as index pattern (if it does not exist, [create it](5-kibana-logs.md) first, in the `Management` section).
+Now select `os-nova-api-osapi_compute-*` as index pattern (if it does not exist, [create it](kibana-logs.md) first, in the `Management` section).
 
 ![new visualization](../img/visual-new.png)
 

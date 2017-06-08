@@ -5,21 +5,21 @@ docs_dir: 'doc'
 theme: readthedocs
 pages:
     - Home: 'index.md'
-    - Quick Start: '2-quickstart.md'
-    - System Architecture: '3-architecture.md'
+    - Quick Start: 'quickstart.md'
+    - System Architecture: 'architecture.md'
     - User Manual:
-        - 'Introduction': 'user/1-intro.md'
-        - 'Quick Start': 'user/2-quickstart.md'
+        - 'Introduction': 'user/introduction.md'
+        - 'Quick Start': 'user/quickstart.md'
         - 'Advanced usage':
-            - 'Introduction': 'user/3-advanced.md'
-            - 'Elasticsearch API queries': 'user/4-elasticsearch.md'
-            - 'Searching logs in Kibana': 'user/5-kibana-logs.md'
-            - 'Custom visualizations in Kibana': 'user/6-kibana-visual.md'
+            - 'Introduction': 'user/advanced.md'
+            - 'Elasticsearch API queries': 'user/elasticsearch.md'
+            - 'Searching logs in Kibana': 'user/kibana-logs.md'
+            - 'Custom visualizations in Kibana': 'user/kibana-visual.md'
     - Installation & Administration Manual:
         - 'Deep Log Inspection':
-            - 'Introduction': 'install/1-intro.md'
-            - 'Installing & Deploying': 'install/2-install.md'
-            - 'Configuring the Monasca Log API': 'install/3-monasca.md'
-            - 'Configuring Kafka': 'install/4-kafka.md'
+            - 'Introduction': 'install/introduction.md'
+            - 'Installing & Deploying': 'install/install.md'
+            - 'Configuring the Monasca Log API': 'install/monasca-log-api.md'
+            - 'Configuring Kafka': 'install/kafka.md'
         - 'Monasca Log Agent':
-            - 'Installing & Deploying': 'install/5-log-agent.md'
+            - 'Installing & Deploying': 'install/monasca-log-agent.md'

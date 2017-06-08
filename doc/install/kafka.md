@@ -1,7 +1,7 @@
 ## Configuring Kafka
 In this section we will cover only the minimal configuration aspects required for the publish-subscribe system to work properly. For more advanced settings, like the number of brokers and partitions, please refer to the [Kafka documentation][1].
 
-As described in the [architecture outline](../3-architecture.md), two Kafka topics are required: `monasca-log` and `logstash-log`. The first one for sending logs from the Monasca Log API to the Log Parser, and the second one for sending transformed logs from the Log Parser to the Log Persister. The topics are set using the `KAFKA_CREATE_TOPICS` environment variable in the [compose file](../../docker-compose.yml) (`kafka` service). The numbers that follow, separated by commas, are the partitions and replicas to be used for the log messages.
+As described in the [architecture outline](../architecture.md), two Kafka topics are required: `monasca-log` and `logstash-log`. The first one for sending logs from the Monasca Log API to the Log Parser, and the second one for sending transformed logs from the Log Parser to the Log Persister. The topics are set using the `KAFKA_CREATE_TOPICS` environment variable in the [compose file](../../docker-compose.yml) (`kafka` service). The numbers that follow, separated by commas, are the partitions and replicas to be used for the log messages.
 
 In order for the system to work properly, the Monasca Log API must publish the logs to the `monasca-log` topic, and the Log Parser must subscribe to the same topic. See the input section in [logstash-transformer/pipeline/logstash.conf](../../logstash-transformer/pipeline/logstash.conf):
 

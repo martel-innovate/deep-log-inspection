@@ -5,7 +5,7 @@ Open your system's command line and `cd` to the folder where the project will be
 
     git clone https://github.com/martel-innovate/deep-log-monasca-elk.git
 
-To install and run the system, also refer to the [Quick Start guide](../2-quickstart.md). For your convenience, you might want to run the system in detached mode:
+To install and run the system, also refer to the [Quick Start guide](../quickstart.md). For your convenience, you might want to run the system in detached mode:
 
     docker-compose up -d
 
