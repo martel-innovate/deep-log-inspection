@@ -1,13 +1,13 @@
 site_name: Deep Log Inspection
-repo_url: https://github.com/martel-innovate/deep-log-inspection.git
+repo_url: https://github.com/martel-innovate/deep-log-inspection
 site_description: Deep Log Inspection documentation
 docs_dir: 'doc'
 theme: readthedocs
 pages:
-    - 'Home': 'index.md'
-    - 'Quick Start': '2-quickstart.md'
-    - 'System Architecture': '3-architecture.md'
-    - 'User Manual':
+    - Home: '1-TOC.md'
+    - Quick Start: '2-quickstart.md'
+    - System Architecture: '3-architecture.md'
+    - User Manual:
         - 'Introduction': 'user/1-intro.md'
         - 'Quick Start': 'user/2-quickstart.md'
         - 'Advanced usage':
@@ -15,7 +15,7 @@ pages:
             - 'Elasticsearch API queries': 'user/4-elasticsearch.md'
             - 'Searching logs in Kibana': 'user/5-kibana-logs.md'
             - 'Custom visualizations in Kibana': 'user/6-kibana-visual.md'
-    - 'Installation & Administration Manual':
+    - Installation & Administration Manual:
         - 'Deep Log Inspection':
             - 'Introduction': 'install/1-intro.md'
             - 'Installing & Deploying': 'install/2-install.md'
