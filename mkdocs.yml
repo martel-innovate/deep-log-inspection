@@ -4,6 +4,7 @@ site_description: Deep Log Inspection documentation
 docs_dir: 'doc'
 theme: readthedocs
 pages:
+    - 'Home': 'index.md'
     - 'Quick Start': '2-quickstart.md'
     - 'System Architecture': '3-architecture.md'
     - 'User Manual':
