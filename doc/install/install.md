@@ -3,7 +3,7 @@ Installing and running the Deep Log Inspection system requires [git][1] and [doc
 
 Open your system's command line and `cd` to the folder where the project will be stored. Then, download the project by cloning the git repository:
 
-    git clone https://github.com/martel-innovate/deep-log-monasca-elk.git
+    git clone https://github.com/martel-innovate/deep-log-inspection.git
 
 To install and run the system, also refer to the [Quick Start guide](../quickstart.md). For your convenience, you might want to run the system in detached mode:
 

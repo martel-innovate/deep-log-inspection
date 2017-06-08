@@ -9,7 +9,7 @@ Assuming all goes well, the following services should be exposed on your host
 machine:
 
  * keystone on ports 5000 and 35357
-  * see [`preload.yml`](../keystone/preload.yml) for full account info
+  * see [`preload.yml`][2] for full account info
  * monasca-log-api on port 8090
  * elasticsearch on ports 9200 and 9300
  * kibana on port 5601
@@ -17,4 +17,5 @@ machine:
 If needed, `docker-compose rm` can be used to completely clean the environment
 between runs.
 
-[1]: https://docs.docker.com/compose/
+[1]:https://docs.docker.com/compose/
+[2]:https://github.com/martel-innovate/deep-log-inspection/blob/master/keystone/preload.yml

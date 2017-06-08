@@ -1,5 +1,5 @@
 site_name: Deep Log Inspection
-repo_url: https://github.com/martel-innovate/deep-log-inspection
+repo_url: https://github.com/martel-innovate/deep-log-inspection.git
 site_description: Deep Log Inspection documentation
 docs_dir: 'doc'
 theme: readthedocs
