@@ -20,4 +20,4 @@ Welcome to the documentation for Deep Log Inspection
         3. [Configuring the Monasca Log API](install/monasca-log-api.md)
         4. [Configuring Kafka](install/kafka.md)
     * Monasca Log Agent
-        + [Installing & Deploying](install/monasca-log-agent.md)
+        * [Installing & Deploying](install/monasca-log-agent.md)
