@@ -17,41 +17,10 @@ services:
             - zookeeper
         restart: on-failure
 
-    mysql:
-        image: mysql:5.5
-        environment:
-            MYSQL_ROOT_PASSWORD: secretmysql
-
-    mysql-init:
-        image: monasca/mysql-init:1.0.0
-        environment:
-            MYSQL_INIT_DISABLE_REMOTE_ROOT: "true"
-            MYSQL_INIT_RANDOM_PASSWORD: "true"
-
-    keystone:
-        image: monasca/keystone:1.0.6
-        environment:
-            KEYSTONE_HOST: keystone
-            KEYSTONE_PASSWORD: secretadmin
-            KEYSTONE_DATABASE_BACKEND: mysql
-            KEYSTONE_MYSQL_HOST: mysql
-            KEYSTONE_MYSQL_USER: keystone
-            KEYSTONE_MYSQL_PASSWORD: keystone
-            KEYSTONE_MYSQL_DATABASE: keystone
-        volumes:
-            - ./keystone/preload.yml:/preload.yml
-        depends_on:
-            - mysql
-        ports:
-            - "5000:5000"
-            - "35357:35357"
-        restart: on-failure
-
     monasca-log-api:
         build: monasca-log-api/
         image: monasca/log-api
         depends_on:
-            - keystone
             - kafka
         ports:
             - "8090:8090"
