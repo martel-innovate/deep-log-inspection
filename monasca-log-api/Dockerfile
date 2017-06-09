@@ -32,6 +32,6 @@ RUN apk add --no-cache python py2-pip py2-jinja2 && \
 	rm -rf /monasca-log-api && \
 	apk del build-dep
 
-COPY template.py start.sh /
+COPY template.py start.sh kafka_wait_for_topics.py /
 
 CMD ["/start.sh"]
