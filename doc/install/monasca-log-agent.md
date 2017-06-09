@@ -5,7 +5,27 @@ To install the Log Agent, copy the [syslogVM/syslog-server][2] directory to the 
 
 The *monasca_log_api* output plugin must authenticate to Keystone, so make sure it authenticates to the same instance as the Monasca Log API. Please refer to the Monasca Log API [configuration guide](monasca-log-api.md) for more details.
 
+## Region
+The Monasca Log Agent is responsible for submitting information about the region where the logs are generated. The region has to be added to the _dimensions_ array in the output section of [config/logstash.conf][4]:
+
+    output {
+        monasca_log_api {
+            monasca_log_api_url => "http://80.116.31.157:8090/v3.0"
+            keystone_api_url => "http://80.116.31.157:35357/v3"
+            project_name => "mini-mon"
+            username => "monasca-agent"
+            password => "password"
+            user_domain_name => "default"
+            project_domain_name => "default"
+            dimensions => [ "hostname:monasca-log-agent", "region:switzerland" ]
+        }
+    }
+
+For more details refer to the [configuration section][5] in the [documentation][6] of the *monasca_log_api* Logstash output plugin.
+
 [1]:https://www.docker.com/
 [2]:https://github.com/martel-innovate/deep-log-inspection/tree/master/syslogVM/syslog-server
 [3]:https://github.com/martel-innovate/deep-log-inspection/blob/master/syslogVM/syslog-server/Dockerfile
 [4]:https://github.com/martel-innovate/deep-log-inspection/blob/master/syslogVM/syslog-server/config/logstash.conf
+[5]:http://www.rubydoc.info/gems/logstash-output-monasca_log_api/0.5.1#Start_logstash_output_plugin
+[6]:http://www.rubydoc.info/gems/logstash-output-monasca_log_api/0.5.1
