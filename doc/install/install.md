@@ -9,7 +9,15 @@ To install and run the system, also refer to the [Quick Start guide](../quicksta
 
     docker-compose up -d
 
-After the first run, there's no more need to `docker-compose up` again, unless `docker-compose down` is invoked, destroying all services.
+In development/test environment, you might want to start also keystone:
+
+    docker-compose -f docker-compose.yml -f docker-compose-keystone.yml up -d
+
+N.B.: if the compose files options have been used to add keystone, the same options should be used in any further `docker-compose` command. For example, to stop all services, keystone included:
+
+    docker-compose -f docker-compose.yml -f docker-compose-keystone.yml stop
+
+After the first run, there's no more need to `docker-compose up` again, unless `docker-compose rm` or `docker-compose down` are invoked, destroying all services.
 
 Once the system is up and running, you can restart, stop and start:
 
@@ -17,7 +25,7 @@ Once the system is up and running, you can restart, stop and start:
     docker-compose stop
     docker-compose start
 
-In case of changes to some Dockerfiles, you might want to rebuild only the modified services:
+In case of changes to some Dockerfile, you might want to rebuild only the modified services:
 
     docker-compose up -d --build
 
