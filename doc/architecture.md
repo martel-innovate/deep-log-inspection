@@ -1,6 +1,6 @@
 ## Architecture of Deep Log Inspection
 The architecture of the system can be depicted as follows:
-![system architecture](img/monasca_log_api.jpg)
+![system architecture](img/monasca_log_api.png)
 
 The logs are sent to the system by the Monasca Log Agent, installed on a remote machine. The Log Agent collects logs from FIWARE Lab Nodes via syslog and sends them to the Monasca Log API. The logs are then published into the Kafka message queue.
 
