@@ -6,7 +6,7 @@ theme: readthedocs
 pages:
     - Home: 'index.md'
     - Quick Start: 'quickstart.md'
-    - System Architecture: 'architecture.md'
+    - Architecture: 'architecture.md'
     - User Manual:
         - 'Introduction': 'user/introduction.md'
         - 'Quick Start': 'user/quickstart.md'

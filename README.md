@@ -1,9 +1,10 @@
 Dockerfiles for Deep Log Inspection
 ===================================
+[![Documentation Status](https://readthedocs.org/projects/deep-log-inspection/badge/?version=latest)](http://deep-log-inspection.readthedocs.io/en/latest/?badge=latest)
 
 This repository contains resources for building and deploying the Deep Log Inspection system in Docker.
 
-The project is part of [FIWARE][1]. Credits go to [monasca-docker][2] and [docker-elk][3].
+This project is part of [FIWARE][1]. Credits to [monasca-docker][2] and [docker-elk][3].
 
 Quick Start
 -----------
@@ -15,8 +16,6 @@ To quickly get the Deep Log Inspection system running, you can use [docker-compo
 Assuming all goes well, the following services should be exposed on your host
 machine:
 
- * keystone on ports 5000 and 35357
-  * see [`preload.yml`](keystone/preload.yml) for full account info
  * monasca-log-api on port 8090
  * elasticsearch on ports 9200 and 9300
  * kibana on port 5601
@@ -45,3 +44,4 @@ A number of custom dependency containers are also here:
 [2]: https://github.com/monasca/monasca-docker
 [3]: https://github.com/deviantony/docker-elk
 [4]: https://docs.docker.com/compose/
+[5]:http://deep-log-inspection.readthedocs.io/
