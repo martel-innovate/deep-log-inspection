@@ -34,6 +34,6 @@ Similarly, the Log parser must publish to the `logstash-log` topic and the Log P
     }
 
 [1]:http://kafka.apache.org/
-[2]:https://github.com/martel-innovate/deep-log-inspection/blob/master/docker-compose.yml
-[3]:https://github.com/martel-innovate/deep-log-inspection/blob/master/logstash-transformer/pipeline/logstash.conf
-[4]:https://github.com/martel-innovate/deep-log-inspection/blob/master/logstash-persister/pipeline/logstash.conf
+[2]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose.yml
+[3]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/logstash-transformer/pipeline/logstash.conf
+[4]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/logstash-persister/pipeline/logstash.conf

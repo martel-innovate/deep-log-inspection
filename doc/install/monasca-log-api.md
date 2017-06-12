@@ -33,9 +33,9 @@ For local authentication, please consult the account information in [keystone/pr
 [1]:http://docs.gunicorn.org/en/stable/
 [2]:https://docs.docker.com/compose/compose-file/compose-file-v2/#restart
 [3]:http://docs.gunicorn.org/en/latest/settings.html
-[4]:https://github.com/martel-innovate/deep-log-inspection/blob/master/docker-compose.yml
-[5]:https://github.com/martel-innovate/deep-log-inspection/blob/master/monasca-log-api/Dockerfile
-[6]:https://github.com/martel-innovate/deep-log-inspection/blob/master/monasca-log-api/log-api-config.ini.j2
-[7]:https://github.com/martel-innovate/deep-log-inspection/blob/master/monasca-log-api/log-api-config.conf.j2
-[8]:https://github.com/martel-innovate/deep-log-inspection/blob/master/keystone/preload.yml
-[9]:https://github.com/martel-innovate/deep-log-inspection/blob/master/docker-compose-keystone.yml
+[4]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose.yml
+[5]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/monasca-log-api/Dockerfile
+[6]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/monasca-log-api/config/log-api-config.ini.j2
+[7]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/monasca-log-api/log-api-config.conf.j2
+[8]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/keystone/preload.yml
+[9]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose-keystone.yml

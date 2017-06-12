@@ -7,4 +7,6 @@ ci/jobs/jjb
 .DS_STORE
 log-client/logstash-agent-old/
 log-server/logstash-*/logs/
+log-server/monasca-log-api/config/*.ini
+log-server/monasca-log-api/config/*.conf
 site/
