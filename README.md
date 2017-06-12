@@ -9,7 +9,7 @@ This project is part of [FIWARE][1]. Credits to [monasca-docker][2] and [docker-
 Quick Start
 -----------
 
-To quickly get the Deep Log Inspection system running, you can use [docker-compose][4]:
+To quickly get the Deep Log Inspection server running, `cd` into `log-server` and use [docker-compose][4]:
 
     docker-compose up
 
@@ -25,20 +25,20 @@ If needed, `docker-compose rm` can be used to completely clean the environment b
 Repository Layout
 -----------------
 
- * `elasticsearch/` Dockerfile for Elasticsearch
- * `kibana/`: Dockerfile for kibana
- * `logstash-transformer/`: Dockerfile for logstash-transformer
- * `logstash-persister/`: Dockerfile for logstash-persister
- * `monasca-log-api/`: Dockerfile for Monasca Log API
- * `scripts/`: useful bash scripts
- * `syslogVM/`: Dockerfile and logstash.conf for remote syslog server
- * `templates/`: document templates for Elasticsearch (to be created and deleted using the scripts)
+ * `log-server/elasticsearch/` Dockerfile for Elasticsearch
+ * `log-server/kibana/`: Dockerfile for kibana
+ * `log-server/logstash-transformer/`: Dockerfile for logstash-transformer
+ * `log-server/logstash-persister/`: Dockerfile for logstash-persister
+ * `log-server/monasca-log-api/`: Dockerfile for Monasca Log API
+ * `log-server/scripts/`: useful bash scripts
+ * `log-server/templates/`: document templates for Elasticsearch (to be created and deleted using the scripts)
+ * `log-client/monasca-log-agent/`: Dockerfile and logstash.conf for remote Monasca Log Agent
 
 
 A number of custom dependency containers are also here:
 
- * `kafka/`: Dockerfile for k8s-compatible kafka
- * `keystone/`: Dockerfile for dev keystone
+ * `log-server/kafka/`: Dockerfile for k8s-compatible kafka
+ * `log-server/keystone/`: Dockerfile for development keystone
 
 [1]: https://www.fiware.org/
 [2]: https://github.com/monasca/monasca-docker

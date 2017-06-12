@@ -23,4 +23,4 @@ To bring keystone up along with the other services, use both compose files:
 If needed, `docker-compose rm` can be used to completely clean the environment between runs. Again, if keystone is used, include the compose files options in the command.
 
 [1]:https://docs.docker.com/compose/
-[2]:https://github.com/martel-innovate/deep-log-inspection/blob/master/keystone/preload.yml
+[2]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/keystone/preload.yml
