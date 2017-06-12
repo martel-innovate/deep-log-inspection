@@ -5,7 +5,6 @@ jenkins_jobs.ini
 ci/jobs/jjb
 
 .DS_STORE
-
-logstash-agent-old/
-logstash-*/logs/
+log-client/logstash-agent-old/
+log-server/logstash-*/logs/
 site/
