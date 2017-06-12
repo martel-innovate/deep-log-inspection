@@ -20,21 +20,13 @@ In *log-api-config.conf*, the relevant settings are: the `region` (in the `servi
 In *log-api-config.conf*, the `keystone_authtoken` section allows to set the address of the Keystone and the credentials for authentication. It might also be necessary to set the roles (`default_roles`, `agent_roles`) in the `roles_middleware` section.
 
 Authentication can be done to either the local (development/test) or the central Keystone (recommended).
-Here follow the environment settings to be inserted in the [Dockerfile][5] for authenticating to the local:
+Here follow the environment settings to be inserted in the [Dockerfile][5] for authenticating to the local Keystone:
 
     ENV KEYSTONE_IDENTITY_URI=http://keystone:35357 \
 	    KEYSTONE_AUTH_URI=http://keystone:5000 \
 	    KEYSTONE_ADMIN_USER=admin \
 	    KEYSTONE_ADMIN_PASSWORD=secretadmin \
 	    KEYSTONE_ADMIN_TENANT=admin
-
-and central Keystone:
-
-    ENV KEYSTONE_IDENTITY_URI=[TODO] \
-        KEYSTONE_AUTH_URI=[TODO] \
-        KEYSTONE_ADMIN_USER=[TODO] \
-        KEYSTONE_ADMIN_PASSWORD=[TODO] \
-        KEYSTONE_ADMIN_TENANT=[TODO]
 
 For local authentication, please consult the account information in [keystone/preload.yml][8]. For authentication to the central Keystone, please contact the FIWARE Lab administrators.
 
