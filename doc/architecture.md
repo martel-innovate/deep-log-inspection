@@ -4,10 +4,10 @@ The architecture of the system can be depicted as follows:
 
 The logs are sent using syslog from [FIWARE Lab][1] Nodes to the Monasca Log Agent, installed on a remote machine.
 
-Then, after authenticating to the FIWARE Lab Keystone, the Monasca Log Agent sends the logs to the Monasca Log API. The logs are then published into the Kafka message queue.
+The Monasca Log Agent sends the logs to the Monasca Log API. Both the Agent and the API must be authenticated to the FIWARE Lab Keystone to function properly.
 
-In Kafka, two topics for publishing logs are defined: `monasca-log` and `logstash-log`. The first topic is for logs that are published by the Monasca Log API and received by the Log Parser. The second topic is for logs that are transformed and published by the Log Parser and received by the Log Persister.
+The Monasca Log API publishes the logs into the Kafka message queue. In Kafka, two topics for publishing logs are created: `monasca-log` and `logstash-log`. The first topic is for logs that are published by the Monasca Log API and received by the Log Parser. The second topic is for logs that are transformed and published by the Log Parser and received by the Log Persister.
 
-Then, the Log Persister defines the indexing for each log message and sends them to Elasticsearch for storage. After the logs are stored, they can be searched and visualized in Kibana, a front-end application to Elasticsearch.
+The Log Persister defines the indexing for each log message and sends them to Elasticsearch for storage. After the logs are stored, they can be searched and visualized in Kibana, a front-end application for Elasticsearch.
 
 [1]:https://www.fiware.org/lab/
