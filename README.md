@@ -35,9 +35,8 @@ Repository Layout
  * `log-client/monasca-log-agent/`: Dockerfile and logstash.conf for remote Monasca Log Agent
 
 
-A number of custom dependency containers are also here:
+A custom dependency container is also here:
 
- * `log-server/kafka/`: Dockerfile for k8s-compatible kafka
  * `log-server/keystone/`: Dockerfile for development keystone
 
 [1]: https://www.fiware.org/

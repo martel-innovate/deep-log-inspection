@@ -20,7 +20,7 @@ max_log_size = 1048576
 # The roles that are allowed full access to the API.
 default_authorized_roles = user, domainuser, domainadmin, monasca-user
 
-# The roles that are allowed to only POST metrics to the API. This role would be used by the Monasca Agent.
+# The roles that are allowed to only POST metrics to the API. This role would be used by the Monasca Log Agent.
 agent_authorized_roles = monasca-agent
 
 # The roles that are allowed to only GET metrics from the API.
@@ -45,6 +45,9 @@ identity_uri = {{ KEYSTONE_IDENTITY_URI }}
 admin_user = {{ KEYSTONE_ADMIN_USER }}
 admin_password = {{ KEYSTONE_ADMIN_PASSWORD }}
 admin_tenant_name = {{ KEYSTONE_ADMIN_TENANT }}
+cafile =
+certfile =
+keyfile =
 insecure = false
 
 [kafka_healthcheck]

@@ -58,8 +58,7 @@ services:
             - elasticsearch
 
     elasticsearch:
-        build: elasticsearch/
-        image: monasca/elasticsearch
+        image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
         volumes:
             - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
             - esdata1:/usr/share/elasticsearch/data
@@ -70,8 +69,7 @@ services:
           ES_JAVA_OPTS: "-Xmx256m -Xms256m"
 
     kibana:
-        build: kibana/
-        image: monasca/kibana
+        image: docker.elastic.co/kibana/kibana:5.4.0
         volumes:
           - ./kibana/config/:/usr/share/kibana/config
         ports:
