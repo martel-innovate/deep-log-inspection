@@ -79,4 +79,5 @@ services:
 
 volumes:
     esdata1:
-        driver: local
+        external:
+            name: monascadocker_esdata1
