@@ -10,3 +10,4 @@ log-server/logstash-*/logs/
 log-server/monasca-log-api/config/*.ini
 log-server/monasca-log-api/config/*.conf
 site/
+ssl-cert/

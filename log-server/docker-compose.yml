@@ -17,6 +17,14 @@ services:
             - zookeeper
         restart: on-failure
 
+    certbot:
+        image: certbot/certbot
+        command: certbot certonly --standalone --preferred-challenges tls-sni -w /ssl-cert -d 160.85.2.211
+        volumes:
+            - ./ssl-cert:/ssl-cert
+        ports:
+            - "443:443"
+
     monasca-log-api:
         build: monasca-log-api/
         image: monasca/log-api
