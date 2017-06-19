@@ -26,10 +26,10 @@ In the URLs, replace `monasca-log-api` and `keystone` with valid addresses. For 
 
 ## Openstack syslog-rsyslog configuration
 In order to forward the logs from a FIWARE Lab Node to its own syslog server, Openstack Services must send logging information to syslog. This is done by editing the configuration files of the involved services, e.g.:
-* /etc/nova/nova.conf
-* /etc/glance/glance-api.conf
-* /etc/glance/glance-registry.conf
-* /etc/cinder/cinder.conf
++ /etc/nova/nova.conf
++ /etc/glance/glance-api.conf
++ /etc/glance/glance-registry.conf
++ /etc/cinder/cinder.conf
 
 In each file, add these lines:
 
