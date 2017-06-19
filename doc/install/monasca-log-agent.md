@@ -38,7 +38,7 @@ In each file, add these lines:
     use_syslog = True
     syslog_log_facility = LOG_LOCAL0
 
-You might want to configure a separate local facility (up to eight: LOCAL0, LOCAL1, ..., LOCAL7) for each service, as this provides better isolation and more flexibility. For more information, see the [syslog documentation][8].
+You might want to configure a separate local facility (up to eight: `LOCAL0, LOCAL1, ..., LOCAL7`) for each service, as this provides better isolation and more flexibility. For more information, see the [syslog documentation][8].
 
 Then rsyslog must be configured on every service node, e.g. for Nova, create on every compute node a file named `/etc/rsyslog.d/60-nova.conf` with the following content:
 
@@ -47,7 +47,7 @@ Then rsyslog must be configured on every service node, e.g. for Nova, create on 
     # include all log levels
     local0.*    @@syslog-server:1025
 
-Replace `syslog-server` with a valid address. For more details on the whole configuration, see [Openstack's official guide][7].
+Replace `syslog-server` with a valid address. For more details on the configuration illustrated in this section, refer to the [Openstack's official guide][7].
 
 [1]:https://www.docker.com/
 [2]:https://github.com/martel-innovate/deep-log-inspection/tree/master/log-client/monasca-log-agent
