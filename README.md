@@ -32,7 +32,7 @@ Repository Layout
  * `log-server/monasca-log-api/`: Dockerfile for Monasca Log API
  * `log-server/scripts/`: useful bash scripts
  * `log-server/templates/`: document templates for Elasticsearch (to be created and deleted using the scripts)
- * `log-client/monasca-log-agent/`: Dockerfile and logstash.conf for remote Monasca Log Agent
+ * `log-client/monasca-log-agent/`: logstash.conf for remote Monasca Log Agent
 
 
 A custom dependency container is also here:
