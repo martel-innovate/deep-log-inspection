@@ -5,14 +5,14 @@ The Monasca Log Agent is supposed to run on a remote (virtual) machine and acts 
 Copy the [log-client/monasca-log-agent][2] directory to the syslog server. Then, `cd` into it and, using [docker][1], pull the image from [Docker Hub][9] and run it in a container, as follows:
 
     docker pull martel/monasca-log-agent
-    docker run -d --name=monasca-log-agent -v /home/ubuntu/monasca-log-agent/config/logstash.conf:/etc/logstash/conf.d/logstash.conf -p 1025:1025/udp martel/monasca-log-agent
+    docker run -d --name=monasca-log-agent -v /home/ubuntu/monasca-log-agent/logstash.conf:/etc/logstash/conf.d/logstash.conf -p 1025:1025/udp martel/monasca-log-agent
 
-Logstash's syslog input plugin will be listening for logs on port 1025 and the monasca_log_api output plugin will send them to the [Monasca Log API](monasca-log-api.md). The Logstash pipeline can be found in [config/logstash.conf][4].
+Logstash's syslog input plugin will be listening for logs on port 1025 and the monasca_log_api output plugin will send them to the [Monasca Log API](monasca-log-api.md). The Logstash pipeline can be found in [logstash.conf][4].
 
 The monasca_log_api output plugin must authenticate to Keystone, so make sure it authenticates to the same instance as the Monasca Log API. Please refer to the Monasca Log API [configuration guide](monasca-log-api.md) for more details.
 
 ## Region
-The Monasca Log Agent is responsible for submitting information about the region where the logs are generated. The region has to be added to the _dimensions_ in the output section of `config/logstash.conf`:
+The Monasca Log Agent is responsible for submitting information about the region where the logs are generated. The region has to be added to the _dimensions_ in the output section of `logstash.conf`:
 
     output {
         monasca_log_api {
@@ -57,7 +57,7 @@ Replace `syslog-server` with the address of the machine where the Monasca Log Ag
 [1]:https://www.docker.com/
 [2]:https://github.com/martel-innovate/deep-log-inspection/tree/master/log-client/monasca-log-agent
 [3]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-client/monasca-log-agent/Dockerfile
-[4]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-client/monasca-log-agent/config/logstash.conf
+[4]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-client/monasca-log-agent/logstash.conf
 [5]:http://www.rubydoc.info/gems/logstash-output-monasca_log_api/0.5.1#Start_logstash_output_plugin
 [6]:http://www.rubydoc.info/gems/logstash-output-monasca_log_api/0.5.1
 [7]:https://docs.openstack.org/admin-guide/compute-manage-logs.html
