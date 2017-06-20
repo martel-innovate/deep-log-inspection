@@ -1,5 +1,5 @@
 ## Syslog server
-The Monasca Log Agent is supposed to run on a remote (virtual) machine: the 'syslog server'. The logs must be sent from a FIWARE Lab Nodes to the syslog server via syslog. Every FIWARE Lab Node should have its own syslog server running an instance of the Monasca Log Agent.
+The Monasca Log Agent is supposed to run on a remote (virtual) machine and acts as a syslog server. The logs must be sent from a FIWARE Lab Nodes to the Monasca Log Agent via syslog. Every FIWARE Lab Node should have its own instance of the Monasca Log Agent.
 
 ## Installing the Monasca Log Agent
 Copy the [log-client/monasca-log-agent][2] directory to the syslog server. Then, `cd` into it and, using [docker][1], build the image and run the container, as explained by the instructions in the [Dockerfile][3]. Logstash's syslog input plugin will be listening for logs on port 1025 and the monasca_log_api output plugin will send them to the [Monasca Log API](monasca-log-api.md). The Logstash pipeline can be found in [config/logstash.conf][4].
@@ -45,9 +45,9 @@ Then rsyslog must be configured on every service node, e.g. for Nova, create on 
     # prevent debug from dnsmasq with the daemon.none parameter
     *.*;auth,authpriv.none,daemon.none,local0.none -/var/log/syslog
     # include all log levels
-    local0.*    @@syslog-server:1025
+    local0.*    @syslog-server:1025
 
-Replace `syslog-server` with a valid address. For more details on the configuration illustrated in this section, refer to the [Openstack's official guide][7].
+Replace `syslog-server` with the address of the machine where the Monasca Log Agent for your node is running. For more details on the configuration illustrated in this section, refer to the [Openstack's official guide][7].
 
 [1]:https://www.docker.com/
 [2]:https://github.com/martel-innovate/deep-log-inspection/tree/master/log-client/monasca-log-agent
