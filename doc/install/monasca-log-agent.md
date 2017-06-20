@@ -2,7 +2,12 @@
 The Monasca Log Agent is supposed to run on a remote (virtual) machine and acts as a syslog server. The logs must be sent from a FIWARE Lab Nodes to the Monasca Log Agent via syslog. Every FIWARE Lab Node should have its own instance of the Monasca Log Agent.
 
 ## Installing the Monasca Log Agent
-Copy the [log-client/monasca-log-agent][2] directory to the syslog server. Then, `cd` into it and, using [docker][1], build the image and run the container, as explained by the instructions in the [Dockerfile][3]. Logstash's syslog input plugin will be listening for logs on port 1025 and the monasca_log_api output plugin will send them to the [Monasca Log API](monasca-log-api.md). The Logstash pipeline can be found in [config/logstash.conf][4].
+Copy the [log-client/monasca-log-agent][2] directory to the syslog server. Then, `cd` into it and, using [docker][1], pull the image from [Docker Hub][9] and run it in a container, as follows:
+
+    docker pull martel/monasca-log-agent
+    docker run -d --name=monasca-log-agent -v /home/ubuntu/monasca-log-agent/config/logstash.conf:/etc/logstash/conf.d/logstash.conf -p 1025:1025/udp martel/monasca-log-agent
+
+Logstash's syslog input plugin will be listening for logs on port 1025 and the monasca_log_api output plugin will send them to the [Monasca Log API](monasca-log-api.md). The Logstash pipeline can be found in [config/logstash.conf][4].
 
 The monasca_log_api output plugin must authenticate to Keystone, so make sure it authenticates to the same instance as the Monasca Log API. Please refer to the Monasca Log API [configuration guide](monasca-log-api.md) for more details.
 
@@ -57,3 +62,4 @@ Replace `syslog-server` with the address of the machine where the Monasca Log Ag
 [6]:http://www.rubydoc.info/gems/logstash-output-monasca_log_api/0.5.1
 [7]:https://docs.openstack.org/admin-guide/compute-manage-logs.html
 [8]:https://en.wikipedia.org/wiki/Syslog
+[9]:https://hub.docker.com/
