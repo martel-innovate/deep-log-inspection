@@ -7,9 +7,9 @@ CMD ["-f", "/etc/logstash/conf.d/"]
 # INSTRUCTIONS
 # pull the image from docker hub
 #
-# docker pull monasca/log-agent
+# docker pull martel/monasca-log-agent
 #
 # then, execute the following command to run the image inside a container:
 #
-# docker run -d --name=monasca-log-agent -v /home/ubuntu/monasca-log-agent/config/logstash.conf:/etc/logstash/conf.d/logstash.conf -p 1025:1025/udp monasca/log-agent
+# docker run -d --name=monasca-log-agent -v /home/ubuntu/monasca-log-agent/config/logstash.conf:/etc/logstash/conf.d/logstash.conf -p 1025:1025/udp martel/monasca-log-agent
 #
