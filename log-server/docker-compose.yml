@@ -34,9 +34,6 @@ services:
         volumes:
             - ./logstash-transformer/config/logstash.yml:/usr/share/logstash/config/logstash.yml
             - ./logstash-transformer/pipeline:/usr/share/logstash/pipeline
-            - ./logstash-transformer/logs:/logs
-        ports:
-            - "5500:5500"
         environment:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         depends_on:
@@ -48,9 +45,6 @@ services:
         volumes:
             - ./logstash-persister/config/logstash.yml:/usr/share/logstash/config/logstash.yml
             - ./logstash-persister/pipeline:/usr/share/logstash/pipeline
-            - ./logstash-persister/logs:/logs
-        ports:
-            - "5555:5555"
         environment:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         depends_on:
