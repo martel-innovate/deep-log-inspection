@@ -6,6 +6,8 @@ cluster.name: "deeplog-prod"
 node.name: "deeplog-1"
 network.host: 0.0.0.0
 
+bootstrap.memory_lock: true
+
 # minimum_master_nodes need to be explicitly set when bound on a public IP
 # set to 1 to allow single node clusters
 # Details: https://github.com/elastic/elasticsearch/pull/17288
