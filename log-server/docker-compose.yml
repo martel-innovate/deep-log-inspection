@@ -54,7 +54,7 @@ services:
     elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
         volumes:
-            - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+            - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
             - esdata1:/usr/share/elasticsearch/data
             - eslogs1:/usr/share/elasticsearch/logs
         ports:
