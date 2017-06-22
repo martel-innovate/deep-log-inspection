@@ -56,6 +56,7 @@ services:
         volumes:
             - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
             - esdata1:/usr/share/elasticsearch/data
+            - eslogs1:/usr/share/elasticsearch/logs
         ports:
           - "9200:9200"
           - "9300:9300"
@@ -75,3 +76,5 @@ volumes:
     esdata1:
         external:
             name: monascadocker_esdata1
+    eslogs1:
+        driver: local
