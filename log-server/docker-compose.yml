@@ -49,19 +49,21 @@ services:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         depends_on:
             - kafka
-            - elasticsearch1
+            - elasticsearch
 
-    elasticsearch1:
-        image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
         environment:
-            ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
         ulimits:
             memlock:
                 soft: -1
                 hard: -1
+            nofile: 1048576
+            nproc: -1
         mem_limit: 1g
         volumes:
-            - ./elasticsearch/elasticsearch1.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+            - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
             - esdata1:/usr/share/elasticsearch/data
             - eslogs1:/usr/share/elasticsearch/logs
         ports:
@@ -69,13 +71,13 @@ services:
           - "9300:9300"
 
     kibana:
-        image: docker.elastic.co/kibana/kibana:5.4.0
+        image: docker.elastic.co/kibana/kibana:5.4.1
         volumes:
           - ./kibana/config/:/usr/share/kibana/config
         ports:
           - "5601:5601"
         depends_on:
-          - elasticsearch1
+          - elasticsearch
 
 volumes:
     esdata1:
