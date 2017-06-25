@@ -18,8 +18,8 @@ curl -H "Content-Type: application/json" \
     --data @os-nova-compute.json && \
 
 curl -H "Content-Type: application/json" \
-    -XPUT localhost:9200/_template/os-neutron-api \
-    --data @os-neutron-api.json && \
+    -XPUT localhost:9200/_template/os-neutron-server \
+    --data @os-neutron-server.json && \
 
 curl -H "Content-Type: application/json" \
     -XPUT localhost:9200/_template/os-cinder-api \
