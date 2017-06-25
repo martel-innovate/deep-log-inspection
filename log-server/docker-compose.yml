@@ -36,23 +36,23 @@ services:
             restart_policy:
                 condition: on-failure
 
-    logstash-transformer:
-        build: logstash-transformer/
-        image: monasca-logstash-transformer
+    log-transformer:
+        build: log-transformer/
+        image: log-transformer
         volumes:
-            - ./logstash-transformer/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-            - ./logstash-transformer/pipeline:/usr/share/logstash/pipeline
+            - ./log-transformer/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+            - ./log-transformer/pipeline:/usr/share/logstash/pipeline
         environment:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         depends_on:
           - kafka
 
-    logstash-persister:
-        build: logstash-persister/
-        image: monasca-logstash-persister
+    log-persister:
+        build: log-persister/
+        image: log-persister
         volumes:
-            - ./logstash-persister/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-            - ./logstash-persister/pipeline:/usr/share/logstash/pipeline
+            - ./log-persister/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+            - ./log-persister/pipeline:/usr/share/logstash/pipeline
         environment:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         depends_on:
@@ -60,7 +60,7 @@ services:
             - elasticsearch
 
     elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:5.4.2
+        image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
         environment:
             - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
         ulimits:
@@ -82,7 +82,7 @@ services:
           - "9300:9300"
 
     kibana:
-        image: docker.elastic.co/kibana/kibana:5.4.2
+        image: docker.elastic.co/kibana/kibana:5.4.0
         volumes:
           - ./kibana/config/:/usr/share/kibana/config
         ports:
