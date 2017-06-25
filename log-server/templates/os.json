@@ -1,5 +1,5 @@
 {
-"template" : "os-*",
+    "template" : "os-*",
     "order" : 0,
     "mappings" : {
         "oslo" : {

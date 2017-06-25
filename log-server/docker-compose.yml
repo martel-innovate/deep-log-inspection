@@ -56,7 +56,7 @@ services:
             - elasticsearch
 
     elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
+        image: docker.elastic.co/elasticsearch/elasticsearch:5.4.2
         environment:
             - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
         ulimits:
@@ -78,7 +78,7 @@ services:
           - "9300:9300"
 
     kibana:
-        image: docker.elastic.co/kibana/kibana:5.4.1
+        image: docker.elastic.co/kibana/kibana:5.4.2
         volumes:
           - ./kibana/config/:/usr/share/kibana/config
         ports:
@@ -88,7 +88,6 @@ services:
 
 volumes:
     esdata1:
-        external:
-            name: monascadocker_esdata1
+        driver: local
     eslogs1:
         driver: local
