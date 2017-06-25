@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
 
     zookeeper:
@@ -15,7 +15,9 @@ services:
                 kafka-health:12:1"
         depends_on:
             - zookeeper
-        restart: on-failure
+        deploy:
+            restart_policy:
+                condition: on-failure
 
     monasca-log-api:
         build: monasca-log-api/
@@ -26,7 +28,9 @@ services:
             - kafka
         ports:
             - "8090:8090"
-        restart: on-failure
+        deploy:
+            restart_policy:
+                condition: on-failure
 
     logstash-transformer:
         build: logstash-transformer/
@@ -61,7 +65,10 @@ services:
                 hard: -1
             nofile: 1048576
             nproc: -1
-        mem_limit: 1g
+        deploy:
+            resources:
+                limits:
+                    memory: 1g
         volumes:
             - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
             - esdata1:/usr/share/elasticsearch/data
