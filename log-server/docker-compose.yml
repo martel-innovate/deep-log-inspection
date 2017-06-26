@@ -15,8 +15,7 @@ services:
                 kafka-health:12:1"
         depends_on:
             - zookeeper
-        restart:
-            on-failure
+        restart: on-failure
         deploy:
             restart_policy:
                 condition: on-failure
@@ -30,8 +29,7 @@ services:
             - kafka
         ports:
             - "8090:8090"
-        restart:
-            on-failure
+        restart: on-failure
         deploy:
             restart_policy:
                 condition: on-failure
