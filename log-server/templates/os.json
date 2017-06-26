@@ -1,5 +1,5 @@
 {
-"template" : "os-*",
+    "template" : "os-*",
     "order" : 0,
     "mappings" : {
         "oslo" : {
@@ -15,6 +15,11 @@
                 "log_module" : { "type" : "keyword" },
                 "msg" : { "type" : "text" }
             }
+        }
+    },
+    "settings" : {
+        "index" : {
+            "number_of_replicas" : "0"
         }
     }
 }

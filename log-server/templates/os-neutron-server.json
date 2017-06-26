@@ -1,5 +1,5 @@
 {
-    "template" : "os-neutron-api-*",
+    "template" : "os-neutron-server-*",
     "order" : 1,
     "mappings" : {
         "oslo" : {

@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
 
     zookeeper:
@@ -16,6 +16,9 @@ services:
         depends_on:
             - zookeeper
         restart: on-failure
+        deploy:
+            restart_policy:
+                condition: on-failure
 
     monasca-log-api:
         build: monasca-log-api/
@@ -27,24 +30,27 @@ services:
         ports:
             - "8090:8090"
         restart: on-failure
+        deploy:
+            restart_policy:
+                condition: on-failure
 
-    logstash-transformer:
-        build: logstash-transformer/
-        image: monasca-logstash-transformer
+    log-transformer:
+        build: log-transformer/
+        image: log-transformer
         volumes:
-            - ./logstash-transformer/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-            - ./logstash-transformer/pipeline:/usr/share/logstash/pipeline
+            - ./log-transformer/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+            - ./log-transformer/pipeline:/usr/share/logstash/pipeline
         environment:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         depends_on:
           - kafka
 
-    logstash-persister:
-        build: logstash-persister/
-        image: monasca-logstash-persister
+    log-persister:
+        build: log-persister/
+        image: log-persister
         volumes:
-            - ./logstash-persister/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-            - ./logstash-persister/pipeline:/usr/share/logstash/pipeline
+            - ./log-persister/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+            - ./log-persister/pipeline:/usr/share/logstash/pipeline
         environment:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         depends_on:
@@ -53,14 +59,25 @@ services:
 
     elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+        environment:
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+            nofile: 1048576
+            nproc: -1
+        deploy:
+            resources:
+                limits:
+                    memory: 1g
         volumes:
             - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
             - esdata1:/usr/share/elasticsearch/data
+            - eslogs1:/usr/share/elasticsearch/logs
         ports:
           - "9200:9200"
           - "9300:9300"
-        environment:
-          ES_JAVA_OPTS: "-Xmx256m -Xms256m"
 
     kibana:
         image: docker.elastic.co/kibana/kibana:5.4.0
@@ -73,5 +90,6 @@ services:
 
 volumes:
     esdata1:
-        external:
-            name: monascadocker_esdata1
+        driver: local
+    eslogs1:
+        driver: local

@@ -1,6 +1,5 @@
 
-cd /Users/Michele/Desktop/monasca/monasca-docker/templates && \
-# curl -XGET --retry 999 --retry-max-time 0 localhost:9200/_template?pretty && \
+cd templates && \
 
 curl -H "Content-Type: application/json" \
     -XPUT localhost:9200/_template/os \
@@ -19,8 +18,8 @@ curl -H "Content-Type: application/json" \
     --data @os-nova-compute.json && \
 
 curl -H "Content-Type: application/json" \
-    -XPUT localhost:9200/_template/os-neutron-api \
-    --data @os-neutron-api.json && \
+    -XPUT localhost:9200/_template/os-neutron-server \
+    --data @os-neutron-server.json && \
 
 curl -H "Content-Type: application/json" \
     -XPUT localhost:9200/_template/os-cinder-api \

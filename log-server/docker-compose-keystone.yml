@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
 
     mysql:
@@ -30,3 +30,6 @@ services:
             - "5000:5000"
             - "35357:35357"
         restart: on-failure
+        deploy:
+            restart_policy:
+                condition: on-failure
