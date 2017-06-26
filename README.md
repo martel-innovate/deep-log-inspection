@@ -3,8 +3,11 @@ Dockerfiles for Deep Log Inspection
 [![Documentation Status](https://readthedocs.org/projects/deep-log-inspection/badge/?version=latest)](http://deep-log-inspection.readthedocs.io/en/latest/?badge=latest)
 
 This repository contains resources for building and deploying the Deep Log Inspection system in Docker.
-
 This project is part of [FIWARE][1]. Credits to [monasca-docker][2] and [docker-elk][3].
+
+It is highly recommended to download the project using git:
+
+    git clone https://github.com/martel-innovate/deep-log-inspection.git
 
 Quick Start
 -----------
