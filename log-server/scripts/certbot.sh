@@ -1,4 +1,8 @@
-cd ~/deep-log-inspection/log-server/certbot
+
+PROJECT_ROOT=$(git rev-parse --show-toplevel) && \
+cd $PROJECT_ROOT/log-server && mkdir -p certbot
+cd certbot
+
 docker run --rm -p 80:80 -p 443:443 \
     -v "$PWD/etc/letsencrypt:/etc/letsencrypt" \
     -v "$PWD/var/lib/letsencrypt:/var/lib/letsencrypt" \

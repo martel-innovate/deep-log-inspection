@@ -1,5 +1,6 @@
 
-cd templates && \
+PROJECT_ROOT=$(git rev-parse --show-toplevel) && \
+cd $PROJECT_ROOT/log-server/templates && \
 
 curl -H "Content-Type: application/json" \
     -XPUT localhost:9200/_template/os \
