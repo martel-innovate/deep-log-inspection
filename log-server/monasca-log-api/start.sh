@@ -1,10 +1,5 @@
 #!/bin/sh
 
-GUNICORN_WORKERS=${GUNICORN_WORKERS:-"9"}
-GUNICORN_WORKER_CLASS=${GUNICORN_WORKER_CLASS:-"gevent"}
-GUNICORN_WORKER_CONNECTIONS=${GUNICORN_WORKER_CONNECTIONS:-"2000"}
-GUNICORN_BACKLOG=${GUNICORN_BACKLOG:-"1000"}
-
 KAFKA_WAIT_RETRIES=${KAFKA_WAIT_RETRIES:-"24"}
 KAFKA_WAIT_DELAY=${KAFKA_WAIT_DELAY:-"5"}
 
@@ -48,12 +43,4 @@ else
   cp /etc/monasca/log-api-logging.conf.j2 /etc/monasca/log-api-logging.conf
 fi
 
-# Needed to allow utf8 use in the Monasca Log API
-export PYTHONIOENCODING=utf-8
-gunicorn --capture-output \
-  -n monasca-api \
-  --worker-class="$GUNICORN_WORKER_CLASS" \
-  --worker-connections="$GUNICORN_WORKER_CONNECTIONS" \
-  --backlog=$GUNICORN_BACKLOG \
-  --paste /etc/monasca/log-api-config.ini \
-  -w "$GUNICORN_WORKERS"
+gunicorn --capture-output --paste /etc/monasca/log-api-config.ini

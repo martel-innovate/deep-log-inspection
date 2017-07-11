@@ -5,6 +5,10 @@ services:
         image: mysql:5.5
         environment:
             MYSQL_ROOT_PASSWORD: secretmysql
+        restart: on-failure
+        deploy:
+            restart_policy:
+                condition: on-failure
 
     mysql-init:
         image: monasca/mysql-init:1.0.0

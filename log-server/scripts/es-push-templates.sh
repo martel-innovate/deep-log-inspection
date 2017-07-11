@@ -1,5 +1,4 @@
-
-cd templates && \
+# run from current directory
 
 curl -H "Content-Type: application/json" \
     -XPUT localhost:9200/_template/os \
