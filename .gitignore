@@ -9,5 +9,5 @@ log-client/logstash-agent-old/
 log-client/monasca-log-agent/Dockerfile
 log-server/monasca-log-api/config/*.ini
 log-server/monasca-log-api/config/*.conf
-log-server/certbot/
 log-server/scripts/fake-errors.sh
+log-server/scripts/upload.sh

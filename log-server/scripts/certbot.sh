@@ -3,9 +3,9 @@
 cd ../certbot
 
 docker run --rm -p 80:80 -p 443:443 --name certbot \
-    -v "$PWD/etc/letsencrypt:/etc/letsencrypt" \
-    -v "$PWD/var/lib/letsencrypt:/var/lib/letsencrypt" \
-    -v "$PWD/var/log/letsencrypt:/var/log/letsencrypt" \
+    -v "/etc/letsencrypt:/etc/letsencrypt" \
+    -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
+    -v "/var/log/letsencrypt:/var/log/letsencrypt" \
     certbot/certbot certonly \
         --standalone \
         --non-interactive \
@@ -13,4 +13,4 @@ docker run --rm -p 80:80 -p 443:443 --name certbot \
         --renew-by-default \
         --email michele.chersich@martel-innovate.com \
         --preferred-challenges http \
-        --domain myDNSname.com
+        --domain deeplogmanager.lab.fiware.org
