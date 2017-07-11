@@ -1,6 +1,3 @@
-# run from current directory
-
-cd ../certbot
 
 docker run --rm -p 80:80 -p 443:443 --name certbot \
     -v "/etc/letsencrypt:/etc/letsencrypt" \

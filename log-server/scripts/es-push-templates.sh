@@ -1,4 +1,6 @@
-# run from current directory
+
+SCRIPTDIR=$(dirname $(find . -name es-push-templates.sh))
+cd $SCRIPTDIR && cd ../templates
 
 curl -H "Content-Type: application/json" \
     -XPUT localhost:9200/_template/os \
@@ -26,4 +28,4 @@ curl -H "Content-Type: application/json" \
 
 curl -H "Content-Type: application/json" \
     -XPUT localhost:9200/_template/os-keystone-api \
-    --data @os-keystone-api.json \
+    --data @os-keystone-api.json
