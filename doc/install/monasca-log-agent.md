@@ -16,8 +16,8 @@ The Monasca Log Agent is responsible for submitting information about the region
 
     output {
         monasca_log_api {
-            monasca_log_api_url => "http://monasca-log-api:8090/v3.0"
-            keystone_api_url => "http://keystone:35357/v3"
+            monasca_log_api_url => "http://deeplogmanager.lab.fiware.org:8090/v3.0"
+            keystone_api_url => "http://deeplogmanager.lab.fiware.org:35357/v3"
             project_name => "mini-mon"
             username => "monasca-agent"
             password => "password"
@@ -27,7 +27,7 @@ The Monasca Log Agent is responsible for submitting information about the region
         }
     }
 
-In the URLs, replace `monasca-log-api` and `keystone` with valid addresses. For more details refer to the [configuration section][5] in the [documentation][6] of the monasca_log_api Logstash output plugin.
+For more configuration details refer to the [configuration section][5] in the [documentation][6] of the monasca_log_api Logstash output plugin.
 
 ## Openstack syslog-rsyslog configuration
 In order to forward the logs from a FIWARE Lab Node to its own syslog server, Openstack Services must send logging information to syslog. This is done by editing the configuration files of the involved services, e.g.:
