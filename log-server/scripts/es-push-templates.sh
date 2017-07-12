@@ -1,6 +1,5 @@
-
-SCRIPTDIR=$(dirname $(find . -name es-push-templates.sh))
-cd $SCRIPTDIR && cd ../templates
+#!/bin/bash
+cd $(dirname $0) && cd ../templates
 
 curl -H "Content-Type: application/json" \
     -XPUT localhost:9200/_template/os \

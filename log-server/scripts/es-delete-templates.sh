@@ -1,4 +1,4 @@
-
+#!/bin/bash
 curl -XDELETE localhost:9200/_template/os
 
 curl -XDELETE localhost:9200/_template/os-nova-api-osapi_compute
