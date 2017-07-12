@@ -85,8 +85,8 @@ services:
                     memory: 1g
         volumes:
             - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-            - esdata1:/usr/share/elasticsearch/data
-            - eslogs1:/usr/share/elasticsearch/logs
+            - esdata:/usr/share/elasticsearch/data
+            - eslogs:/usr/share/elasticsearch/logs
         ports:
           - "9200:9200"
           - "9300:9300"
@@ -109,7 +109,7 @@ services:
                 condition: on-failure
 
 volumes:
-    esdata1:
+    esdata:
         driver: local
-    eslogs1:
+    eslogs:
         driver: local
