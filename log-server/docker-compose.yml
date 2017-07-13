@@ -76,10 +76,6 @@ services:
                 hard: -1
             nofile: 1048576
             nproc: -1
-        deploy:
-            resources:
-                limits:
-                    memory: 1g
         volumes:
             - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
             - esdata:/usr/share/elasticsearch/data
@@ -89,6 +85,9 @@ services:
           - "9300:9300"
         restart: on-failure
         deploy:
+            resources:
+                limits:
+                    memory: 1g
             restart_policy:
                 condition: on-failure
 
