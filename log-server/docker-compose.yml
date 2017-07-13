@@ -25,6 +25,7 @@ services:
                 condition: on-failure
 
     monasca-log-api:
+        build: monasca-log-api/
         image: monasca-log-api
         volumes:
             - ./monasca-log-api/config:/etc/monasca
@@ -38,6 +39,7 @@ services:
                 condition: on-failure
 
     log-transformer:
+        build: log-transformer/
         image: log-transformer
         volumes:
             - ./log-transformer/config/logstash.yml:/usr/share/logstash/config/logstash.yml
@@ -52,6 +54,7 @@ services:
                 condition: on-failure
 
     log-persister:
+        build: log-persister/
         image: log-persister
         volumes:
             - ./log-persister/config/logstash.yml:/usr/share/logstash/config/logstash.yml
