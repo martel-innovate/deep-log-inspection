@@ -18,10 +18,10 @@ max_log_size = 1048576
 
 [security]
 # The roles that are allowed full access to the API.
-default_authorized_roles = user, domainuser, domainadmin, monasca-user
+default_authorized_roles = monasca-log-api, admin
 
 # The roles that are allowed to only POST metrics to the API. This role would be used by the Monasca Log Agent.
-agent_authorized_roles = monasca-agent
+agent_authorized_roles = monasca-log-agent
 
 # The roles that are allowed to only GET metrics from the API.
 read_only_authorized_roles = monasca-read-only-user
@@ -56,5 +56,5 @@ kafka_topics = kafka-health
 
 [roles_middleware]
 path = /v2.0/log,/v3.0/logs
-default_roles = user,domainuser,domainadmin,monasca-user
-agent_roles = monasca-agent
+default_roles = monasca-log-api,admin,monasca-read-only-user
+agent_roles = monasca-log-agent

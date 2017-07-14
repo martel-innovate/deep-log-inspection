@@ -1,44 +1,28 @@
 users:
-  - username: mini-mon
-    password: password
-    project: mini-mon
-    role: monasca-user
+  - username: monasca-log-api
+    password: martel
+    project: deeplog
+    role: monasca-log-api
 
-  - username: monasca-agent
-    password: password
-    project: mini-mon
-    role: monasca-agent
-
-  - username: mini-mon
-    password: password
-    project: mini-mon
-    role: admin
+  - username: monasca-log-agent
+    password: zhaw
+    project: deeplog
+    role: monasca-log-agent
 
   - username: admin
-    password: secretadmin
-    project: admin
-    role: monasca-user
-
-  - username: demo
-    password: secretadmin
-    project: demo
-    role: monasca-user
+    password: deeplog
+    project: deeplog
+    role: admin
 
   - username: monasca-read-only-user
-    password: password
-    project: mini-mon
+    password: deeplog
+    project: deeplog
     role: monasca-read-only-user
 
 endpoints:
-  - name: monasca
-    description: Monasca monitoring service
-    type: monitoring
-    region: RegionOne
-    url: http://monasca:8070/v2.0
-    interfaces: ['public', 'internal', 'admin']
   - name: monasca-log-api
-    description: Monasca log management service
+    description: Monasca Log API for deep log inspection
     type: monitoring
-    region: RegionOne
+    region: Switzerland
     url: http://monasca-log-api:8090/v3.0
     interfaces: ['public', 'internal', 'admin']
