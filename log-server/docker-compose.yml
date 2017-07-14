@@ -5,6 +5,11 @@ services:
         image: zookeeper:3.3
         restart: on-failure
         deploy:
+            mode: replicated
+            replicas: 1
+            placement:
+                constraints:
+                  - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
 
@@ -21,6 +26,11 @@ services:
             - zookeeper
         restart: on-failure
         deploy:
+            mode: replicated
+            replicas: 1
+            placement:
+                constraints:
+                  - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
 
@@ -34,6 +44,11 @@ services:
             - "8090:8090"
         restart: on-failure
         deploy:
+            mode: replicated
+            replicas: 1
+            placement:
+                constraints:
+                  - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
 
@@ -48,6 +63,11 @@ services:
           - kafka
         restart: on-failure
         deploy:
+            mode: replicated
+            replicas: 1
+            placement:
+                constraints:
+                  - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
 
@@ -63,6 +83,11 @@ services:
             - elasticsearch
         restart: on-failure
         deploy:
+            mode: replicated
+            replicas: 1
+            placement:
+                constraints:
+                  - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
 
@@ -85,6 +110,11 @@ services:
           - "9300:9300"
         restart: on-failure
         deploy:
+            mode: replicated
+            replicas: 1
+            placement:
+                constraints:
+                  - node.hostname == deeplogmanager
             resources:
                 limits:
                     memory: 1g
@@ -101,6 +131,11 @@ services:
           - elasticsearch
         restart: on-failure
         deploy:
+            mode: replicated
+            replicas: 1
+            placement:
+                constraints:
+                  - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
 

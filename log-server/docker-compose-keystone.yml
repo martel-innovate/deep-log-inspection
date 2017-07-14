@@ -7,6 +7,11 @@ services:
             MYSQL_ROOT_PASSWORD: secretmysql
         restart: on-failure
         deploy:
+            mode: replicated
+            replicas: 1
+            placement:
+                constraints:
+                  - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
 
@@ -15,6 +20,12 @@ services:
         environment:
             MYSQL_INIT_DISABLE_REMOTE_ROOT: "true"
             MYSQL_INIT_RANDOM_PASSWORD: "true"
+        deploy:
+            mode: replicated
+            replicas: 1
+            placement:
+                constraints:
+                  - node.hostname == deeplogmanager
 
     keystone:
         image: monasca/keystone:1.0.6
@@ -35,5 +46,10 @@ services:
             - "35357:35357"
         restart: on-failure
         deploy:
+            mode: replicated
+            replicas: 1
+            placement:
+                constraints:
+                  - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
