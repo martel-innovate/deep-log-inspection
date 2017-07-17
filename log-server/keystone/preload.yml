@@ -1,23 +1,18 @@
 users:
   - username: monasca-log-api
-    password: martel
+    password: secretlogs
     project: deeplog
     role: monasca-log-api
 
   - username: monasca-log-agent
-    password: zhaw
+    password: logagent
     project: deeplog
     role: monasca-log-agent
 
   - username: admin
-    password: deeplog
-    project: deeplog
+    password: secretadmin
+    project: admin
     role: admin
-
-  - username: monasca-read-only-user
-    password: deeplog
-    project: deeplog
-    role: monasca-read-only-user
 
 endpoints:
   - name: monasca-log-api
