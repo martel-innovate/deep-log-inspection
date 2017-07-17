@@ -52,6 +52,21 @@ services:
             restart_policy:
                 condition: on-failure
 
+    # statsd:
+    #     image: everydayhero/statsd
+    #     ports:
+    #         - "8125:8125/tcp"
+    #         - "8125:8125/udp"
+    #     restart: on-failure
+    #     deploy:
+    #         mode: replicated
+    #         replicas: 1
+    #         placement:
+    #             constraints:
+    #               - node.hostname == deeplogmanager
+    #         restart_policy:
+    #             condition: on-failure
+
     log-transformer:
         image: martel/log-transformer
         volumes:
