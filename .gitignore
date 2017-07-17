@@ -10,5 +10,4 @@ log-client/monasca-log-agent/Dockerfile
 log-client/scripts
 log-server/monasca-log-api/config/*.ini
 log-server/monasca-log-api/config/*.conf
-log-server/scripts/fake-errors.sh
 log-server/scripts/server-upload.sh
