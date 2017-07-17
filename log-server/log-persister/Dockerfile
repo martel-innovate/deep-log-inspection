@@ -1,4 +1,4 @@
 # https://github.com/elastic/logstash-docker
-FROM docker.elastic.co/logstash/logstash:5.4.0
+FROM docker.elastic.co/logstash/logstash:5.5.0
 
 RUN logstash-plugin install --version 4.1.1 logstash-input-kafka

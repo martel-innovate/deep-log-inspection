@@ -107,7 +107,7 @@ services:
                 condition: on-failure
 
     elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:5.4.3
+        image: docker.elastic.co/elasticsearch/elasticsearch:5.5.0
         environment:
             - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
         ulimits:
@@ -137,7 +137,7 @@ services:
                 condition: on-failure
 
     kibana:
-        image: docker.elastic.co/kibana/kibana:5.4.3
+        image: docker.elastic.co/kibana/kibana:5.5.0
         volumes:
           - ./kibana/config/:/usr/share/kibana/config
         ports:
