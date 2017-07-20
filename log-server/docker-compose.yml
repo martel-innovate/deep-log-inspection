@@ -38,10 +38,10 @@ services:
         image: martel/monasca-log-api
         volumes:
             - ./monasca-log-api/config:/etc/monasca
-        depends_on:
-            - kafka
         ports:
             - "8090:8090"
+        depends_on:
+            - kafka
         restart: on-failure
         deploy:
             mode: replicated
@@ -69,11 +69,11 @@ services:
 
     log-transformer:
         image: martel/log-transformer
+        environment:
+            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         volumes:
             - ./log-transformer/config/logstash.yml:/usr/share/logstash/config/logstash.yml
             - ./log-transformer/pipeline:/usr/share/logstash/pipeline
-        environment:
-            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         depends_on:
           - kafka
         restart: on-failure
@@ -88,11 +88,14 @@ services:
 
     log-persister:
         image: martel/log-persister
+        environment:
+            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+        environment:
+            - LOGSTASH_USER
+            - LOGSTASH_PW
         volumes:
             - ./log-persister/config/logstash.yml:/usr/share/logstash/config/logstash.yml
             - ./log-persister/pipeline:/usr/share/logstash/pipeline
-        environment:
-            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         depends_on:
             - kafka
             - elasticsearch
@@ -110,12 +113,6 @@ services:
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.3
         environment:
             - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-        ulimits:
-            memlock:
-                soft: -1
-                hard: -1
-            nofile: 1048576
-            nproc: -1
         volumes:
             - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
             - esdata:/usr/share/elasticsearch/data
@@ -123,6 +120,12 @@ services:
         ports:
           - "9200:9200"
           - "9300:9300"
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+            nofile: 1048576
+            nproc: -1
         restart: on-failure
         deploy:
             mode: replicated
@@ -138,6 +141,8 @@ services:
 
     kibana:
         image: docker.elastic.co/kibana/kibana:5.4.3
+        environment:
+            - ELASTICSEARCH_PASSWORD=${KIBANA_PW}
         volumes:
           - ./kibana/config/:/usr/share/kibana/config
         ports:

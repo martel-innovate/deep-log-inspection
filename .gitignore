@@ -11,3 +11,4 @@ log-client/scripts
 log-server/monasca-log-api/config/*.ini
 log-server/monasca-log-api/config/*.conf
 log-server/scripts/server-upload.sh
+log-server/scripts/elk-credentials
