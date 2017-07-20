@@ -37,7 +37,7 @@ driver = monasca_api.common.messaging.kafka_publisher:KafkaPublisher
 [log_publisher]
 topics = monasca-log
 kafka_url = {{ KAFKA_URI }}
-max_message_size = 1048576
+max_message_size = 1000012
 
 [keystone_authtoken]
 auth_uri = {{ KEYSTONE_AUTH_URI }}
@@ -57,5 +57,6 @@ kafka_topics = kafka-health
 
 [roles_middleware]
 path = /v2.0/log,/v3.0/logs
-default_roles = monasca-log-api, admin
+default_roles = monasca-log-api
 agent_roles = monasca-log-agent
+delegate_roles = admin
