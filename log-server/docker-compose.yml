@@ -40,8 +40,10 @@ services:
         image: martel/monasca-log-api
         volumes:
             - ./monasca-log-api/config:/etc/monasca
+            - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/fullchain.pem:/etc/letsencrypt/fullchain.pem
+            - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/privkey.pem:/etc/letsencrypt/privkey.pem
         ports:
-            - "8090:8090"
+            - "443:8090"
         depends_on:
             - kafka
         restart: on-failure
@@ -148,7 +150,7 @@ services:
         volumes:
           - ./kibana/config/:/usr/share/kibana/config
         ports:
-          - "5601:5601"
+          - "80:5601"
         depends_on:
           - elasticsearch
         restart: on-failure
