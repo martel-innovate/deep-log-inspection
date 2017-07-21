@@ -4,6 +4,9 @@
 #
 server.name: kibana
 server.host: "0"
+server.ssl.key: /etc/letsencrypt/privkey.pem
+server.ssl.cert: /etc/letsencrypt/fullchain.pem
+
 elasticsearch.url: http://elasticsearch:9200
 
 ## Disable X-Pack

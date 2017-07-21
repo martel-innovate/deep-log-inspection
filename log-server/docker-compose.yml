@@ -43,7 +43,7 @@ services:
             - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/fullchain.pem:/etc/letsencrypt/fullchain.pem
             - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/privkey.pem:/etc/letsencrypt/privkey.pem
         ports:
-            - "443:8090"
+            - "80:8090"
         depends_on:
             - kafka
         restart: on-failure
@@ -149,8 +149,10 @@ services:
             - ELASTICSEARCH_PASSWORD=${KIBANA_PW}
         volumes:
           - ./kibana/config/:/usr/share/kibana/config
+          - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/fullchain.pem:/etc/letsencrypt/fullchain.pem
+          - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/privkey.pem:/etc/letsencrypt/privkey.pem
         ports:
-          - "80:5601"
+          - "443:5601"
         depends_on:
           - elasticsearch
         restart: on-failure
