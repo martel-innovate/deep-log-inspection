@@ -18,26 +18,22 @@ machine:
 
  * monasca-log-api on port 8090
  * elasticsearch on ports 9200 and 9300
- * kibana on port 5601
+ * kibana on port 443
 
 If needed, `docker-compose rm` can be used to completely clean the environment between runs.
 
 Repository Layout
 -----------------
 
- * `log-server/elasticsearch/` Dockerfile for Elasticsearch
- * `log-server/kibana/`: Dockerfile for kibana
- * `log-server/logstash-transformer/`: Dockerfile for logstash-transformer
- * `log-server/logstash-persister/`: Dockerfile for logstash-persister
- * `log-server/monasca-log-api/`: Dockerfile for Monasca Log API
+ * `log-server/elasticsearch/` configuration for Elasticsearch
+ * `log-server/keystone/`: users and endpoints for test/development Keystone
+ * `log-server/kibana/`: configuration for Kibana
+ * `log-server/logstash-transformer/`: Dockerfile, configuration and pipeline for logstash-transformer
+ * `log-server/logstash-persister/`: Dockerfile, configuration and pipeline for logstash-persister
+ * `log-server/monasca-log-api/`: Dockerfile, configuration and initialization scripts for Monasca Log API
  * `log-server/scripts/`: useful bash scripts
  * `log-server/templates/`: document templates for Elasticsearch (to be created and deleted using the scripts)
- * `log-client/monasca-log-agent/`: logstash.conf for remote Monasca Log Agent
-
-
-A custom dependency container is also here:
-
- * `log-server/keystone/`: Dockerfile for development keystone
+ * `log-client/monasca-log-agent/`: pipeline for remote Monasca Log Agent
 
 [1]: https://www.fiware.org/
 [2]: https://github.com/monasca/monasca-docker
