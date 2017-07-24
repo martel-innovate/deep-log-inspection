@@ -40,6 +40,8 @@ services:
         image: martel/monasca-log-api
         volumes:
             - ./monasca-log-api/config:/etc/monasca
+            - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/fullchain.pem:/etc/letsencrypt/fullchain.pem
+            - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/privkey.pem:/etc/letsencrypt/privkey.pem
         ports:
             - "8090:8090"
         depends_on:
@@ -75,7 +77,7 @@ services:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         volumes:
             - ./log-transformer/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-            - ./log-transformer/pipeline:/usr/share/logstash/pipeline
+            - ./log-transformer/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
         depends_on:
           - kafka
         restart: on-failure
@@ -97,7 +99,7 @@ services:
             - LOGSTASH_PW
         volumes:
             - ./log-persister/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-            - ./log-persister/pipeline:/usr/share/logstash/pipeline
+            - ./log-persister/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
         depends_on:
             - kafka
             - elasticsearch
@@ -146,9 +148,11 @@ services:
         environment:
             - ELASTICSEARCH_PASSWORD=${KIBANA_PW}
         volumes:
-          - ./kibana/config/:/usr/share/kibana/config
+          - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+          - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/fullchain.pem:/etc/letsencrypt/fullchain.pem
+          - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/privkey.pem:/etc/letsencrypt/privkey.pem
         ports:
-          - "5601:5601"
+          - "443:5601"
         depends_on:
           - elasticsearch
         restart: on-failure
