@@ -114,10 +114,9 @@ services:
                 condition: on-failure
 
     elasticsearch:
-        image: agoryachev/docker-swarm-elasticsearch:5.4.0
+        image: martel/docker-swarm-elasticsearch
         environment:
             - cluster.name=deeplog
-            - network.host=0.0.0.0
             - bootstrap.memory_lock=true
             - discovery.zen.minimum_master_nodes=2
             - discovery.type=zen
@@ -127,6 +126,7 @@ services:
             - xpack.graph.enabled=false
             - xpack.watcher.enabled=false
             - ES_JAVA_OPTS=-Xms512m -Xmx512m
+            - SERVICE_NAME=elasticsearch
         ports:
             - "9200:9200"
             - "9300:9300"
@@ -159,7 +159,7 @@ services:
         image: docker.elastic.co/kibana/kibana:5.4.3
         environment:
             - SERVER_NAME=kibana
-            - SERVER_HOST=0
+            - SERVER_HOST=0.0.0.0
             - SERVER_SSL_KEY=/etc/letsencrypt/privkey.pem
             - SERVER_SSL_CERT=/etc/letsencrypt/fullchain.pem
             - ELASTICSEARCH_URL=http://elasticsearch:9200
