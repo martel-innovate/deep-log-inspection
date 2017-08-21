@@ -38,12 +38,12 @@ services:
 
     monasca-log-api:
         image: martel/monasca-log-api
+        ports:
+            - "8090:8090"
         volumes:
             - ./monasca-log-api/config:/etc/monasca
             - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/fullchain.pem:/etc/letsencrypt/fullchain.pem
             - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/privkey.pem:/etc/letsencrypt/privkey.pem
-        ports:
-            - "8090:8090"
         depends_on:
             - kafka
         restart: on-failure
@@ -109,12 +109,12 @@ services:
             replicas: 1
             placement:
                 constraints:
-                  - node.hostname == deeplogmanager
+                    - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
 
     elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+        image: agoryachev/docker-swarm-elasticsearch:5.4.0
         environment:
             - cluster.name=deeplog
             - network.host=0.0.0.0
@@ -122,17 +122,17 @@ services:
             - discovery.zen.minimum_master_nodes=2
             - discovery.type=zen
             - xpack.security.enabled=true
-            - xpack.monitoring.enabled=false
+            - xpack.monitoring.enabled=true
             - xpack.ml.enabled=false
             - xpack.graph.enabled=false
             - xpack.watcher.enabled=false
             - ES_JAVA_OPTS=-Xms512m -Xmx512m
+        ports:
+            - "9200:9200"
+            - "9300:9300"
         volumes:
             - esdata:/usr/share/elasticsearch/data
             - eslogs:/usr/share/elasticsearch/logs
-        ports:
-          - "9200:9200"
-          - "9300:9300"
         ulimits:
             memlock:
                 soft: -1
@@ -145,7 +145,7 @@ services:
             mode: global
             placement:
                 constraints:
-                  - node.hostname == deeplogmanager
+                    - node.hostname == deeplogmanager
             resources:
                 limits:
                     memory: 1g
@@ -165,24 +165,24 @@ services:
             - ELASTICSEARCH_URL=http://elasticsearch:9200
             - ELASTICSEARCH_PASSWORD=${KIBANA_PW}
             - XPACK_SECURITY_ENABLED=true
-            - XPACK_MONITORING_ENABLED=false
+            - XPACK_MONITORING_ENABLED=true
             - XPACK_ML_ENABLED=false
             - XPACK_GRAPH_ENABLED=false
             - XPACK_REPORTING_ENABLED=false
-        volumes:
-          - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/fullchain.pem:/etc/letsencrypt/fullchain.pem
-          - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/privkey.pem:/etc/letsencrypt/privkey.pem
         ports:
-          - "443:5601"
+            - "443:5601"
+        volumes:
+            - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/fullchain.pem:/etc/letsencrypt/fullchain.pem
+            - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/privkey.pem:/etc/letsencrypt/privkey.pem
         depends_on:
-          - elasticsearch
+            - elasticsearch
         restart: on-failure
         deploy:
             mode: replicated
             replicas: 1
             placement:
                 constraints:
-                  - node.hostname == deeplogmanager
+                    - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
 

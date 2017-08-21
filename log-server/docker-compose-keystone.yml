@@ -37,13 +37,13 @@ services:
             KEYSTONE_MYSQL_USER: keystone
             KEYSTONE_MYSQL_PASSWORD: keystone
             KEYSTONE_MYSQL_DATABASE: keystone
+        ports:
+            - "5000:5000"
+            - "35357:35357"
         volumes:
             - ./keystone/preload.yml:/preload.yml
         depends_on:
             - mysql
-        ports:
-            - "5000:5000"
-            - "35357:35357"
         restart: on-failure
         deploy:
             mode: replicated
