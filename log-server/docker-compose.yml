@@ -114,38 +114,38 @@ services:
                 condition: on-failure
 
     elasticsearch:
-        image: martel/docker-swarm-elasticsearch
+        image: martel/docker-swarm-elasticsearch:5.4.0
         environment:
+            - SERVICE_NAME=deeplog_elasticsearch
             - cluster.name=deeplog
             - bootstrap.memory_lock=true
-            - discovery.zen.minimum_master_nodes=2
+            - discovery.zen.minimum_master_nodes=1
             - discovery.type=zen
-            - xpack.security.enabled=true
+            - xpack.security.enabled=false
             - xpack.monitoring.enabled=true
             - xpack.ml.enabled=false
             - xpack.graph.enabled=false
             - xpack.watcher.enabled=false
             - ES_JAVA_OPTS=-Xms512m -Xmx512m
-            - SERVICE_NAME=elasticsearch
         ports:
             - "9200:9200"
             - "9300:9300"
         volumes:
             - esdata:/usr/share/elasticsearch/data
             - eslogs:/usr/share/elasticsearch/logs
-        ulimits:
-            memlock:
-                soft: -1
-                hard: -1
-            nofile: 1048576
-            nproc: -1
+        # privileged: true
+        # ulimits:
+        #     memlock:
+        #         soft: -1
+        #         hard: -1
+        #     nofile:
+        #         soft: 65536
+        #         hard: 65536
+        #     nproc: -1
         restart: on-failure
         deploy:
             endpoint_mode: vip
             mode: global
-            placement:
-                constraints:
-                    - node.hostname == deeplogmanager
             resources:
                 limits:
                     memory: 1g
@@ -156,7 +156,7 @@ services:
                 delay: 10s
 
     kibana:
-        image: docker.elastic.co/kibana/kibana:5.4.3
+        image: docker.elastic.co/kibana/kibana:5.4.0
         environment:
             - SERVER_NAME=kibana
             - SERVER_HOST=0.0.0.0
@@ -164,7 +164,7 @@ services:
             - SERVER_SSL_CERT=/etc/letsencrypt/fullchain.pem
             - ELASTICSEARCH_URL=http://elasticsearch:9200
             - ELASTICSEARCH_PASSWORD=${KIBANA_PW}
-            - XPACK_SECURITY_ENABLED=true
+            - XPACK_SECURITY_ENABLED=false
             - XPACK_MONITORING_ENABLED=true
             - XPACK_ML_ENABLED=false
             - XPACK_GRAPH_ENABLED=false
