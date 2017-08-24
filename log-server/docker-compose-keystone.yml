@@ -5,6 +5,8 @@ services:
         image: mysql:5.5
         environment:
             MYSQL_ROOT_PASSWORD: secretmysql
+        networks:
+            - backend
         restart: on-failure
         deploy:
             mode: replicated
@@ -20,6 +22,8 @@ services:
         environment:
             MYSQL_INIT_DISABLE_REMOTE_ROOT: "true"
             MYSQL_INIT_RANDOM_PASSWORD: "true"
+        networks:
+            - backend
         deploy:
             mode: replicated
             replicas: 1
@@ -40,6 +44,8 @@ services:
         ports:
             - "5000:5000"
             - "35357:35357"
+        networks:
+            - backend
         volumes:
             - ./keystone/preload.yml:/preload.yml
         depends_on:
@@ -53,3 +59,7 @@ services:
                   - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
+
+networks:
+    backend:
+        external: true
