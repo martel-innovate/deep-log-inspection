@@ -1,10 +1,6 @@
 #!/bin/bash
 # request SSL certificate
-docker run --rm -p 80:80 --name certbot \
-    -v "/etc/letsencrypt:/etc/letsencrypt" \
-    -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
-    -v "/var/log/letsencrypt:/var/log/letsencrypt" \
-    certbot/certbot certonly \
+certbot certonly \
         --standalone \
         --non-interactive \
         --agree-tos \
@@ -15,5 +11,5 @@ docker run --rm -p 80:80 --name certbot \
 
 # automate certificate renewal
 cd $(dirname $0) && \
-cp certbot-renew /etc/cron.weekly/ && \
+cp certbot-renew /etc/cron.daily/ && \
 chmod 755 /etc/cron.weekly/certbot-renew
