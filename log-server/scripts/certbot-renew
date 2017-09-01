@@ -1,0 +1,3 @@
+#!/bin/bash
+# cron job for SSL certificate renewal
+certbot renew --post-hook "docker service update deeplog_monasca-log-api && docker service update deeplog_kibana"

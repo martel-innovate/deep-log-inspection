@@ -3,20 +3,21 @@
 ################################################################
 
 [entryPoints]
+    [entryPoints.elasticsearch]
+    address = ":9200"
     [entryPoints.kibana]
     address = ":80"
     [entryPoints.monasca-log-api]
     address = ":443"
         [entryPoints.monasca-log-api.tls]
-
-[acme]
-email = "michele.chersich@martel-innovate.com"
-storage = "/etc/letsencrypt/acme.json"
-entryPoint = "monasca-log-api"
-acmeLogging = true
-onDemand = true
-[[acme.domains]]
-    main = "deeplogmanager.lab.fiware.org"
+            [acme]
+            email = "michele.chersich@martel-innovate.com"
+            storage = "/etc/letsencrypt/acme.json"
+            entryPoint = "monasca-log-api"
+            acmeLogging = true
+            onDemand = true
+            [[acme.domains]]
+                main = "deeplogmanager.lab.fiware.org"
 
 # Enable access logs
 # By default it will write to stdout and produce logs in the textual
