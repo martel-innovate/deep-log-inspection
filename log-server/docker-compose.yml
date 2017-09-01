@@ -222,11 +222,12 @@ services:
             - backend
         ports:
             - "80:80"
-            - "8090:8090"
+            - "443:443"
             - "8080:8080"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - ./traefik/traefik.toml:/etc/traefik/traefik.toml
+            - /etc/letsencrypt/acme.json:/etc/letsencrypt/acme.json
         deploy:
             labels:
                 - "traefik.enable=false"
