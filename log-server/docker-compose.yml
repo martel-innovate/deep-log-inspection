@@ -7,6 +7,8 @@ services:
             - backend
         restart: on-failure
         deploy:
+            labels:
+                - "traefik.enable=false"
             mode: replicated
             replicas: 1
             placement:
@@ -32,6 +34,8 @@ services:
             - zookeeper
         restart: on-failure
         deploy:
+            labels:
+                - "traefik.enable=false"
             mode: replicated
             replicas: 1
             placement:
@@ -42,18 +46,23 @@ services:
 
     monasca-log-api:
         image: martel/monasca-log-api
-        ports:
-            - "8090:8090"
         networks:
             - backend
         volumes:
             - ./monasca-log-api/config:/etc/monasca
-            - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/fullchain.pem:/etc/letsencrypt/fullchain.pem
-            - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/privkey.pem:/etc/letsencrypt/privkey.pem
         depends_on:
             - kafka
         restart: on-failure
         deploy:
+            labels:
+                - "traefik.backend=monasca-log-api"
+                - "traefik.backend.loadbalancer.swarm=false"
+                - "traefik.docker.network=backend"
+                - "traefik.enable=true"
+                - "traefik.frontend.entryPoints=monasca-log-api"
+                - "traefik.frontend.passHostHeader=false"
+                - "traefik.frontend.rule=Method:POST;PathPrefix:/v3.0"
+                - "traefik.port=8090"
             mode: replicated
             replicas: 1
             placement:
@@ -90,6 +99,8 @@ services:
           - kafka
         restart: on-failure
         deploy:
+            labels:
+                - "traefik.enable=false"
             mode: replicated
             replicas: 1
             placement:
@@ -115,24 +126,8 @@ services:
             - elasticsearch
         restart: on-failure
         deploy:
-            mode: replicated
-            replicas: 1
-            placement:
-                constraints:
-                    - node.hostname == deeplogmanager
-            restart_policy:
-                condition: on-failure
-
-    nginx:
-        image: jwilder/nginx-proxy
-        ports:
-            - "8080:80"
-        networks:
-            - backend
-            - frontend
-        volumes:
-            - /var/run/docker.sock:/tmp/docker.sock:ro
-        deploy:
+            labels:
+                - "traefik.enable=false"
             mode: replicated
             replicas: 1
             placement:
@@ -152,12 +147,10 @@ services:
             - gateway.expected_nodes=3
             - gateway.recover_after_nodes=2
             - xpack.security.enabled=false
-            - xpack.monitoring.enabled=false
+            - xpack.monitoring.enabled=true
             - xpack.ml.enabled=false
             - xpack.graph.enabled=false
             - xpack.watcher.enabled=false
-            - VIRTUAL_HOST=deeplogmanager.lab.fiware.org
-            - VIRTUAL_PORT=9200
             - ES_JAVA_OPTS=-Xms512m -Xmx512m
         volumes:
             - esdata:/usr/share/elasticsearch/data
@@ -167,6 +160,8 @@ services:
         restart: on-failure
         deploy:
             endpoint_mode: dnsrr
+            labels:
+                - "traefik.enable=false"
             mode: global
             resources:
                 limits:
@@ -182,8 +177,6 @@ services:
         environment:
             - SERVER_NAME=kibana
             - SERVER_HOST=0.0.0.0
-            - SERVER_SSL_KEY=/etc/letsencrypt/privkey.pem
-            - SERVER_SSL_CERT=/etc/letsencrypt/fullchain.pem
             - ELASTICSEARCH_URL=http://elasticsearch:9200
             - XPACK_SECURITY_ENABLED=false
             - XPACK_MONITORING_ENABLED=false
@@ -192,21 +185,56 @@ services:
             - XPACK_REPORTING_ENABLED=false
         networks:
             - backend
-            - frontend
-        ports:
-            - "443:5601"
-        volumes:
-            - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/fullchain.pem:/etc/letsencrypt/fullchain.pem
-            - /etc/letsencrypt/live/deeplogmanager.lab.fiware.org/privkey.pem:/etc/letsencrypt/privkey.pem
         depends_on:
             - elasticsearch
         restart: on-failure
         deploy:
+            labels:
+                - "traefik.backend=kibana"
+                - "traefik.backend.loadbalancer.swarm=false"
+                - "traefik.backend.loadbalancer.sticky=true"
+                - "traefik.docker.network=backend"
+                - "traefik.enable=true"
+                - "traefik.frontend.entryPoints=kibana"
+                - "traefik.frontend.passHostHeader=false"
+                - "traefik.frontend.rule=PathPrefix:/"
+                - "traefik.port=5601"
             mode: replicated
             replicas: 1
             placement:
                 constraints:
                     - node.hostname == deeplogmanager
+            restart_policy:
+                condition: on-failure
+
+    traefik:
+        image: traefik
+        command:
+            - --web
+            - --docker
+            - --docker.domain=${DOMAIN:-traefik}
+            - --docker.endpoint=unix:///var/run/docker.sock
+            - --docker.swarmmode
+            - --docker.watch
+            - --debug=true
+            - --logLevel=ERROR
+        networks:
+            - backend
+        ports:
+            - "80:80"
+            - "8090:8090"
+            - "8080:8080"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./traefik/traefik.toml:/etc/traefik/traefik.toml
+        deploy:
+            labels:
+                - "traefik.enable=false"
+            mode: replicated
+            placement:
+                constraints:
+                    - node.hostname == deeplogmanager
+            replicas: 1
             restart_policy:
                 condition: on-failure
 

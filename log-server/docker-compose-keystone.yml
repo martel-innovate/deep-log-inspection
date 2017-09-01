@@ -9,6 +9,8 @@ services:
             - backend
         restart: on-failure
         deploy:
+            labels:
+                - "traefik.enable=false"
             mode: replicated
             replicas: 1
             placement:
@@ -25,6 +27,8 @@ services:
         networks:
             - backend
         deploy:
+            labels:
+                - "traefik.enable=false"
             mode: replicated
             replicas: 1
             placement:
@@ -52,6 +56,8 @@ services:
             - mysql
         restart: on-failure
         deploy:
+            labels:
+                - "traefik.enable=false"
             mode: replicated
             replicas: 1
             placement:
