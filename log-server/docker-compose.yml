@@ -62,7 +62,7 @@ services:
                 - "traefik.enable=true"
                 - "traefik.frontend.entryPoints=monasca-log-api"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Method:POST;PathPrefix:/v3.0/"
+                - "traefik.frontend.rule=Method:POST;PathPrefix:/v3.0"
                 - "traefik.port=8090"
             mode: replicated
             replicas: 1
@@ -170,7 +170,7 @@ services:
                 - "traefik.enable=true"
                 - "traefik.frontend.entryPoints=elasticsearch"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=PathPrefixStrip:/elasticsearch/"
+                - "traefik.frontend.rule=PathPrefixStrip:/elasticsearch"
                 - "traefik.port=9200"
             endpoint_mode: dnsrr
             mode: global
