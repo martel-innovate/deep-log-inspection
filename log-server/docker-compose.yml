@@ -60,9 +60,9 @@ services:
                 - "traefik.backend.loadbalancer.swarm=false"
                 - "traefik.docker.network=backend"
                 - "traefik.enable=true"
-                - "traefik.frontend.entryPoints=monasca-log-api"
+                - "traefik.frontend.entryPoints=http,https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Method:POST;PathPrefix:/v3.0"
+                - "traefik.frontend.rule=Host:${DOMAIN:-localhost},Method:POST;PathPrefix:/v3.0"
                 - "traefik.port=8090"
             mode: replicated
             replicas: 1
@@ -168,9 +168,9 @@ services:
                 - "traefik.backend.loadbalancer.sticky=false"
                 - "traefik.docker.network=backend"
                 - "traefik.enable=true"
-                - "traefik.frontend.entryPoints=elasticsearch"
+                - "traefik.frontend.entryPoints=http,https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=PathPrefixStrip:/elasticsearch"
+                - "traefik.frontend.rule=Host:elastic.${DOMAIN:-localhost}"
                 - "traefik.port=9200"
             endpoint_mode: dnsrr
             mode: global
@@ -207,9 +207,9 @@ services:
                 - "traefik.backend.loadbalancer.sticky=true"
                 - "traefik.docker.network=backend"
                 - "traefik.enable=true"
-                - "traefik.frontend.entryPoints=kibana"
+                - "traefik.frontend.entryPoints=http,https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=PathPrefix:/"
+                - "traefik.frontend.rule=Host:kibana.${DOMAIN:-localhost}"
                 - "traefik.port=5601"
             mode: replicated
             replicas: 1
@@ -224,7 +224,7 @@ services:
         command:
             - --web
             - --docker
-            - --docker.domain=${DOMAIN:-traefik}
+            - --docker.domain=${DOMAIN:-localhost}
             - --docker.endpoint=unix:///var/run/docker.sock
             - --docker.swarmmode
             - --docker.watch

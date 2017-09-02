@@ -2,29 +2,29 @@
 cd $(dirname $0) && cd ../templates
 
 curl -H "Content-Type: application/json" \
-    -XPUT ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os \
+    -XPUT elastic.${DOMAIN:-localhost}/_template/os \
     --data @os.json && \
 
 curl -H "Content-Type: application/json" \
-    -XPUT ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os-nova-api-osapi_compute \
+    -XPUT elastic.${DOMAIN:-localhost}/_template/os-nova-api-osapi_compute \
     --data @os-nova-api-osapi_compute.json && \
 
 curl -H "Content-Type: application/json" \
-    -XPUT ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os-nova-api-metadata \
+    -XPUT elastic.${DOMAIN:-localhost}/_template/os-nova-api-metadata \
     --data @os-nova-api-metadata.json && \
 
 curl -H "Content-Type: application/json" \
-    -XPUT ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os-nova-compute \
+    -XPUT elastic.${DOMAIN:-localhost}/_template/os-nova-compute \
     --data @os-nova-compute.json && \
 
 curl -H "Content-Type: application/json" \
-    -XPUT ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os-neutron-server \
+    -XPUT elastic.${DOMAIN:-localhost}/_template/os-neutron-server \
     --data @os-neutron-server.json && \
 
 curl -H "Content-Type: application/json" \
-    -XPUT ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os-cinder-api \
+    -XPUT elastic.${DOMAIN:-localhost}/_template/os-cinder-api \
     --data @os-cinder-api.json && \
 
 curl -H "Content-Type: application/json" \
-    -XPUT ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os-keystone-api \
+    -XPUT elastic.${DOMAIN:-localhost}/_template/os-keystone-api \
     --data @os-keystone-api.json

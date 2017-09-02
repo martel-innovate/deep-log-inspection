@@ -1,12 +1,12 @@
 #!/bin/bash
-curl -XDELETE ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os
+curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os
 
-curl -XDELETE ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os-nova-api-osapi_compute
-curl -XDELETE ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os-nova-api-metadata
-curl -XDELETE ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os-nova-compute
+curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os-nova-api-osapi_compute
+curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os-nova-api-metadata
+curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os-nova-compute
 
-curl -XDELETE ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os-neutron-server
+curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os-neutron-server
 
-curl -XDELETE ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os-cinder-api
+curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os-cinder-api
 
-curl -XDELETE ${DOMAIN:-127.0.0.1}/elasticsearch/_template/os-keystone-api
+curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os-keystone-api
