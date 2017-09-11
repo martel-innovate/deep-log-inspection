@@ -1,5 +1,5 @@
 #!/bin/bash
-cd $(dirname $0) && cd ../templates
+cd $(dirname $0)/../templates
 
 curl -H "Content-Type: application/json" \
     -XPUT elastic.${DOMAIN:-localhost}/_template/os \
