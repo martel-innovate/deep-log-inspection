@@ -148,7 +148,7 @@ services:
             - gateway.expected_nodes=3
             - gateway.recover_after_nodes=2
             - xpack.security.enabled=false
-            - xpack.monitoring.enabled=true
+            - xpack.monitoring.enabled=false
             - xpack.ml.enabled=false
             - xpack.graph.enabled=false
             - xpack.watcher.enabled=false
