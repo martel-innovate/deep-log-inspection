@@ -109,9 +109,6 @@ services:
         image: martel/log-persister
         environment:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-        environment:
-            - LOGSTASH_USER
-            - LOGSTASH_PW
         networks:
             - backend
         volumes:
