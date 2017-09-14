@@ -9,7 +9,7 @@ The Monasca Log API runs on top of a [gunicorn][1] server. For a minimal configu
 In _docker-compose.yml_, look up the service named 'monasca-log-api'. Here you might want to edit the `port` (setting is `traefik.port`) the service listens to (default is `8090`: change this value carefully, updating it also in the `server:main` section of _log-api-config.ini.j2_ and in the `output` section of _logstash.conf_ on the [Monasca Log Agent](monasca-log-agent.md)). Also, the `restart` policy of the service is set to `on-failure` to guarantee the service stays up. You might want to [edit][2] this value or even remove this setting.
 
 #### Dockerfile & Enviroment Variables
-Note that in the configuration files referenced in the following paragraphs, whenever a field has for value a name in capital letters enclosed in double curly brackets (e.g. `port = {{ API_PORT }}`), this refers to an environment variable. To keep the settings clean and consistent, change the value of environment variables in the [Dockerfile][5] (but also in [docker-compose.yml][4] and [docker-compose-kestone.yml][9]).
+There should be no need to change settings in the Dockerfile, as the Docker image ([martel/monasca-log-api][10]) should provide the required defaults. However, in case you need to edit settings, change values to the environment variables (e.g. `port = {{ API_PORT }}`). To keep the settings clean and consistent, change the value of environment variables in the [Dockerfile][5] (but also in [docker-compose.yml][4] and [docker-compose-keystone.yml][9]).
 
 #### Other configuration files
 In *log-api-config.ini*, the main settings are the `host` IP address and `port` the gunicorn server should listen to, as well as the number of working processes (`workers`) for handling requests, the maximum number of simultaneous clients (`worker-connections`), and the maximum number of pending connections (`backlog`). Please refer to the [settings][3] section in [gunicorn's documentation][1].
@@ -39,3 +39,4 @@ For local authentication, please consult the account information in [keystone/pr
 [7]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/monasca-log-api/log-api-config.conf.j2
 [8]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/keystone/preload.yml
 [9]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose-keystone.yml
+[10]:https://hub.docker.com/r/martel/monasca-log-api/
