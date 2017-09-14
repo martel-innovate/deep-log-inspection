@@ -1,7 +1,7 @@
 Quick Start
 -----------
 
-To get the Deep Log Inspection system running, you can use [Docker Engine][1] in [Swarm mode][2]. Let `deeplog` be the name of the stack where we deploy services to, then:
+To get the Deep Log Inspection system running, you can use [Docker Engine][1] in [Swarm mode][2]. Let `deeplog` be the name of the stack where we deploy all services to, then:
 
     docker stack deploy -c docker-compose.yml deeplog
 

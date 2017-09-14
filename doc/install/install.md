@@ -13,15 +13,15 @@ In development/test environment, you might want to start also keystone:
 
     docker stack deploy -c docker-compose-keystone.yml deeplog
 
-Once the system is up and running, you can apply changes to a service, e.g.:
+Once the system is up and running, you can apply later changes to a service, e.g.:
 
     docker service update deeplog_elasticsearch
 
-or reload all services, redeploying the system, just like the first time:
+or reload all services by redeploying the system, just like the first time:
 
     docker stack deploy -c docker-compose.yml deeplog
 
-To visualize information about the running services, including name, state and ports:
+To visualize information about the running services, including name and ports:
 
     docker service ls
 
