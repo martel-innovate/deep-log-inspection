@@ -7,7 +7,6 @@ services:
             MYSQL_ROOT_PASSWORD: secretmysql
         networks:
             - backend
-        restart: on-failure
         deploy:
             labels:
                 - "traefik.enable=false"
@@ -54,7 +53,6 @@ services:
             - ./keystone/preload.yml:/preload.yml
         depends_on:
             - mysql
-        restart: on-failure
         deploy:
             labels:
                 - "traefik.enable=false"
