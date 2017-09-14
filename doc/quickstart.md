@@ -21,6 +21,9 @@ To bring keystone up along with the other services, deploy it to the same stack:
 
 If needed, `docker stack rm deeplog` can be used to completely clean the environment between runs.
 
+For the full CLI reference, please refer to the [Docker CLI reference guide][4].
+
 [1]:https://docs.docker.com/engine/
 [2]:https://docs.docker.com/engine/swarm/
 [3]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/keystone/preload.yml
+[4]:https://docs.docker.com/engine/reference/commandline/cli/
