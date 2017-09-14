@@ -5,11 +5,12 @@ To get the Deep Log Inspection system running, you can use [Docker Engine][1] in
 
     docker stack deploy -c docker-compose.yml deeplog
 
-The system is meant to be deployed on a multi-node cluster, in which the master node is accessible with a valid domain name. Let `example.com` be that domain name (in this page and throughout the full guide). Then, assuming all goes well, the following services should be exposed on the master node:
+The system is meant to be deployed on a multi-node cluster, in which the master node is accessible with three valid domain names. Let `example.com` be the main domain name and `elastic.example.com` and `kibana.example.com` two alternative domains (in this page and throughout the full guide). Then, assuming all goes well, the following services should be exposed on the master node:
 
 * monasca-log-api at `example.com`
 * elasticsearch at `elastic.example.com`
 * kibana at `kibana.example.com`
+* traefik dashboard at `example.com:8080`
 
 Optionally (for development/test):
 * keystone at `example.com` on ports 5000 and 35357
