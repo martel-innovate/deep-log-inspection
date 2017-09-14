@@ -3,7 +3,7 @@ Kibana allows the user to [visualize][1] the data in the Elasticsearch indices w
 
 To [create a visualization][2], select `Visualize` from the left pane menu, then `+` or `Create a visualization`, and choose the visualization type that better serves your purpose (e.g. line chart).
 
-In general, charts can be used to plot metric aggregations, e.g. count, average, sum, percentiles, etc., of a search, using some field's value, filters, ranges or whatever tool is more appropriate. For all details on charts and metrics, visit [this page][3].
+In general, charts can be used to plot metric aggregations, e.g. count, average, sum, percentiles, etc., of a search, using some field's value, filters, ranges or whatever tool is more appropriate. For all details on charts and metrics, refer to [the docs][3].
 
 Kibana provides a rather large variety of options to visualize data. Since this guide could not be more exaustive than [Kibana User's Guide][4], here it is more appropriate to show the main concepts and features of visualization with an example.
 
