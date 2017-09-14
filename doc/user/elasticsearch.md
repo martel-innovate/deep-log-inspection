@@ -5,17 +5,17 @@ As the Deep Log Inspection system receives logs from outside via Monasca Log API
 
 The [cat APIs][2] are a powerful querying tool, useful for finding relationships in the data and getting useful information from Elasticsearch.
 
-Here follow a few example queries using `curl`. Elasticsearch's REST API should be listening at `localhost:9200`.
+Here follow a few example queries using `curl`. Elasticsearch's REST API should be listening at `elastic.example.com`.
 
 For a newcomer that wants to retrieve documents from Elasticsearch, the first step should be querying the existing indices. This can be done with a `GET` request to the `cat indices` API endpoint:
 
-    curl localhost:9200/_cat/indices
+    curl elastic.example.com/_cat/indices
 
 Once the existing indices are known, documents matching an index can be queried via [search API][3]. Note that indices can be matched exactly, i.e. by name, or multiple indices can be queried using [wildcards][4].
 
 The most simple query matches all documents. If e.g. the index pattern is `os-nova-*` (i.e. all indices that start with `os-nova-`), then:
 
-    curl localhost:9200/os-nova-*/_search -d \
+    curl elastic.example.com/os-nova-*/_search -d \
     '{
         "query": {
             "match_all": {}
@@ -26,7 +26,7 @@ This query will return all documents whose index matches the index pattern.
 
 Querying a particular index is useful to view relevant information about it, like mappings and settings.
 
-    curl localhost:9200/os-nova-*
+    curl elastic.example.com/os-nova-*
 
 More details on querying an index are [here][5].
 
