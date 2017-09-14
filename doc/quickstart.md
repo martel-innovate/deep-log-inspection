@@ -1,26 +1,26 @@
 Quick Start
 -----------
 
-To quickly get the Deep Log Inspection system running, you can use [docker-compose][1]:
+To get the Deep Log Inspection system running, you can use [Docker Engine][1] in [Swarm mode][2]. Let `deeplog` be the name of the stack where we deploy services to, then:
 
-    docker-compose up
+    docker stack deploy -c docker-compose.yml deeplog
 
-Assuming all goes well, the following services should be exposed on your host
-machine:
+The system is meant to be deployed on a multi-node cluster, in which the master node is accessible with a valid domain name. Let `example.com` be that domain name (in this page and throughout the full guide). Then, assuming all goes well, the following services should be exposed on the master node:
 
-* monasca-log-api on port 8090
-* elasticsearch on ports 9200 and 9300
-* kibana on port 5601
+* monasca-log-api at `example.com`
+* elasticsearch at `elastic.example.com`
+* kibana at `kibana.example.com`
 
 Optionally (for development/test):
-* keystone on ports 5000 and 35357
-    + see [`preload.yml`][2] for full account info
+* keystone at `example.com` on ports 5000 and 35357
+    * see [`preload.yml`][3] for full account info
 
-To bring keystone up along with the other services, use both compose files:
+To bring keystone up along with the other services, deploy it to the same stack:
 
-    docker-compose -f docker-compose.yml -f docker-compose-keystone.yml up
+    docker stack deploy -c docker-compose-keystone.yml deeplog
 
-If needed, `docker-compose rm` can be used to completely clean the environment between runs. Again, if keystone is used, include the compose files options in the command.
+If needed, `docker stack rm deeplog` can be used to completely clean the environment between runs.
 
-[1]:https://docs.docker.com/compose/
-[2]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/keystone/preload.yml
+[1]:https://docs.docker.com/engine/
+[2]:https://docs.docker.com/engine/swarm/
+[3]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/keystone/preload.yml
