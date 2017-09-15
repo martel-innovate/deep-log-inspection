@@ -1,5 +1,6 @@
 ## Configuring the Monasca Log API
 The Monasca Log API runs on top of a [gunicorn][1] server. For a minimal configuration, a few settings have to be tuned in the following files:
+
 * [docker-compose.yml][4]
 * [monasca-log-api/Dockerfile][5]
 * [monasca-log-api/log-api-config.ini.j2][6]
