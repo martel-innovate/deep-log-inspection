@@ -1,5 +1,5 @@
 ## Elasticsearch API queries
-Indexing, storing and retrieving the logs in the Deep Log Inspection system is achieved by means of the Elasticsearch backend. The access to indices, mappings and documents is possible via its REST API (for a complete reference visit [the Elasticsearch Reference guide][1]). Indices are patterns under which documents are grouped and made searchable; mappings are used to associate fields with data types; documents are individual storage entries, each corresponding to a log event.
+Indexing, storing and retrieving the logs in the Deep Log Inspection system is achieved by means of the Elasticsearch backend. The access to indices, mappings and documents is possible via its REST API (for a complete reference visit the [Elasticsearch Reference guide][1]). Indices are patterns under which documents are grouped and made searchable; mappings are used to associate fields with data types; documents are individual storage entries, each corresponding to a log event.
 
 As the Deep Log Inspection system receives logs from outside via Monasca Log API, it is not so useful from the user's perspective to explore how to send logs. However, the user should know e.g. how to query Elasticsearch's API for existing indices, for documents matching a certain index, and even for mappings inside documents.
 
