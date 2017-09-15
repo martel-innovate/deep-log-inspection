@@ -9,7 +9,9 @@ This project is part of [FIWARE][1]. Credits to [monasca-docker][2] and [docker-
 Quick Start
 -----------
 
-To get the Deep Log Inspection system running, you can use [Docker Engine][4] in [Swarm mode][5]. Let `deeplog` be the name of the stack where we deploy all services to, then:
+To get the Deep Log Inspection system running, you can use [Docker Engine][4] in [Swarm mode][5]. In order for Elasticsearch to boot correctly, user limits must be set via [Docker configuration](./log-server/config/docker.service).
+
+Let `deeplog` be the name of the stack where we deploy all services to, then:
 
     docker stack deploy -c docker-compose.yml deeplog
 
