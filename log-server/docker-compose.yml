@@ -248,4 +248,4 @@ volumes:
 
 networks:
     backend:
-        external: true
+        driver: overlay
