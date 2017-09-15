@@ -5,8 +5,11 @@ services:
         image: mysql:5.5
         environment:
             MYSQL_ROOT_PASSWORD: secretmysql
-        restart: on-failure
+        networks:
+            - backend
         deploy:
+            labels:
+                - "traefik.enable=false"
             mode: replicated
             replicas: 1
             placement:
@@ -20,7 +23,11 @@ services:
         environment:
             MYSQL_INIT_DISABLE_REMOTE_ROOT: "true"
             MYSQL_INIT_RANDOM_PASSWORD: "true"
+        networks:
+            - backend
         deploy:
+            labels:
+                - "traefik.enable=false"
             mode: replicated
             replicas: 1
             placement:
@@ -37,15 +44,18 @@ services:
             KEYSTONE_MYSQL_USER: keystone
             KEYSTONE_MYSQL_PASSWORD: keystone
             KEYSTONE_MYSQL_DATABASE: keystone
+        ports:
+            - "5000:5000"
+            - "35357:35357"
+        networks:
+            - backend
         volumes:
             - ./keystone/preload.yml:/preload.yml
         depends_on:
             - mysql
-        ports:
-            - "5000:5000"
-            - "35357:35357"
-        restart: on-failure
         deploy:
+            labels:
+                - "traefik.enable=false"
             mode: replicated
             replicas: 1
             placement:
@@ -53,3 +63,7 @@ services:
                   - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
+
+networks:
+    backend:
+        external: true

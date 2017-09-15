@@ -1,8 +1,0 @@
-#!/bin/bash
-# cron job for SSL certificate renewal
-docker run --rm -p 80:80 --name certbot \
-    -v "/etc/letsencrypt:/etc/letsencrypt" \
-    -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
-    -v "/var/log/letsencrypt:/var/log/letsencrypt" \
-    certbot/certbot renew \
-    --post-hook "docker service update deeplog_monasca-log-api deeplog_kibana"
