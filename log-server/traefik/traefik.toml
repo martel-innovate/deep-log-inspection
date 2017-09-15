@@ -5,6 +5,8 @@
 [entryPoints]
     [entryPoints.http]
     address = ":80"
+        [entryPoints.http.redirect]
+        entryPoint = "https"
     [entryPoints.https]
     address = ":443"
         [entryPoints.https.tls]
@@ -15,8 +17,8 @@
             acmeLogging = true
             onDemand = true
             [[acme.domains]]
-                main = "deeplogmanager.lab.fiware.org"
-                sans = ["elastic.deeplogmanager.lab.fiware.org","kibana.deeplogmanager.lab.fiware.org"]
+            main = "deeplogmanager.lab.fiware.org"
+            sans = ["elastic.deeplogmanager.lab.fiware.org","kibana.deeplogmanager.lab.fiware.org"]
 
 # Enable access logs
 # By default it will write to stdout and produce logs in the textual
