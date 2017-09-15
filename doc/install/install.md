@@ -5,7 +5,13 @@ Open your system's command line and `cd` to the folder where the project will be
 
     git clone https://github.com/martel-innovate/deep-log-inspection.git
 
-To install and run the system, also refer to the [Quick Start guide](../quickstart.md). Deploy the system with [Docker Swarm][3]:
+To install and run the system, also refer to the [Quick Start guide](../quickstart.md).
+
+First, create the overlay network where the services will be deployed:
+
+    docker network create -d overlay backend
+
+Deploy the system with [Docker Swarm][3]:
 
     docker stack deploy -c docker-compose.yml deeplog
 
