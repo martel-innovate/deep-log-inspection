@@ -1,5 +1,5 @@
 ## Installing & Deploying
-Installing and running the Deep Log Inspection system requires [git][1] and [docker][2], so make sure they are installed on your system before proceeding. In order for Elasticsearch to boot correctly, user limits must be set via [Docker configuration](../../log-server/config/docker.service).
+Installing and running the Deep Log Inspection system requires [git][1] and [docker][2], so make sure they are installed on your system before proceeding. In order for Elasticsearch to boot correctly, user limits must be set via [Docker configuration][5].
 
 Open your system's command line and `cd` to the folder where the project will be stored. Then, download the project by cloning the git repository:
 
@@ -31,3 +31,4 @@ For the full CLI reference, please refer to the [Docker CLI reference guide][4].
 [2]:https://www.docker.com/
 [3]:https://docs.docker.com/engine/swarm/
 [4]:https://docs.docker.com/engine/reference/commandline/cli/
+[5]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/config/docker.service

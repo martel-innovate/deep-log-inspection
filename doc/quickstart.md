@@ -1,7 +1,7 @@
 Quick Start
 -----------
 
-To get the Deep Log Inspection system running, you can use [Docker Engine][1] in [Swarm mode][2]. In order for Elasticsearch to boot correctly, user limits must be set via [Docker configuration](../log-server/config/docker.service).
+To get the Deep Log Inspection system running, you can use [Docker Engine][1] in [Swarm mode][2]. In order for Elasticsearch to boot correctly, user limits must be set via [Docker configuration][5].
 
 Let `deeplog` be the name of the stack where we deploy all services to, then:
 
@@ -30,3 +30,4 @@ For the full CLI reference, please refer to the [Docker CLI reference guide][4].
 [2]:https://docs.docker.com/engine/swarm/
 [3]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/keystone/preload.yml
 [4]:https://docs.docker.com/engine/reference/commandline/cli/
+[5]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/config/docker.service
