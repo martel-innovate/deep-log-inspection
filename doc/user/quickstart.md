@@ -1,7 +1,7 @@
 ## Quick Start User Guide
 
 #### Searching the logs
-Open Kibana at `localhost:9200`. Select the `Discover` section in the left pane menu.
+Open Kibana at `kibana.example.com`. Select the `Discover` section in the left pane menu.
 
 ![discover logs](../img/discover-logs.png)
 

@@ -6,7 +6,7 @@ Kibana provides a front-end to Elasticsearch. Quoting the [introduction][1] from
 Viewing logs in Kibana is a straightforward two-step process.
 
 #### Step 1: create an index pattern
-Open Kibana at `localhost:9200`. Select the `Management` section in the left pane menu, then `Index Patterns`. Then, depending on Kibana's version, either click `Add` or `+`.
+Open Kibana at `kibana.example.com`. Select the `Management` section in the left pane menu, then `Index Patterns`. Then, depending on Kibana's version, either click `Add` or `+`.
 
 ![index pattern](../img/index-pattern.png)
 
