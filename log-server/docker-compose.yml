@@ -180,7 +180,7 @@ services:
             - SERVER_HOST=0.0.0.0
             - ELASTICSEARCH_URL=http://elasticsearch:9200
             - XPACK_SECURITY_ENABLED=false
-            - XPACK_MONITORING_ENABLED=true
+            - XPACK_MONITORING_ENABLED=false
             - XPACK_ML_ENABLED=false
             - XPACK_GRAPH_ENABLED=false
             - XPACK_REPORTING_ENABLED=false
@@ -191,6 +191,7 @@ services:
         deploy:
             labels:
                 - "traefik.backend=kibana"
+                - "traefik.backend.circuitbreaker.expression=NetworkErrorRatio() > 0.5"
                 - "traefik.backend.loadbalancer.method=wrr"
                 - "traefik.backend.loadbalancer.swarm=false"
                 - "traefik.backend.loadbalancer.sticky=true"
@@ -200,11 +201,7 @@ services:
                 - "traefik.frontend.passHostHeader=false"
                 - "traefik.frontend.rule=Host:kibana.${DOMAIN:-localhost}"
                 - "traefik.port=5601"
-            mode: replicated
-            replicas: 1
-            placement:
-                constraints:
-                    - node.hostname == deeplogmanager
+            mode: global
             restart_policy:
                 condition: on-failure
 
