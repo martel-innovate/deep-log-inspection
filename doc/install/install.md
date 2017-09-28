@@ -7,9 +7,11 @@ Open your system's command line and `cd` to the folder where the project will be
 
 To install and run the system, also refer to the [Quick Start guide](../quickstart.md).
 
-First, create the overlay network where the services will be deployed:
+First, create the overlay network where the services will be deployed, and the storage volumes for Elasticsearch data and logs:
 
     docker network create -d overlay backend
+    docker volume create esdata
+    docker volume create eslogs
 
 Deploy the system with [Docker Swarm][3]:
 

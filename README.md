@@ -11,9 +11,11 @@ Quick Start
 
 To get the Deep Log Inspection system running, you can use [Docker Engine][4] in [Swarm mode][5]. In order for Elasticsearch to boot correctly, user limits must be set via [Docker configuration][7].
 
-First, create the overlay network where the services will be deployed:
+First, create the overlay network where the services will be deployed, and the storage volumes for Elasticsearch data and logs:
 
     docker network create -d overlay backend
+    docker volume create esdata
+    docker volume create eslogs
 
 Let `deeplog` be the name of the stack where we deploy all services to, then:
 
