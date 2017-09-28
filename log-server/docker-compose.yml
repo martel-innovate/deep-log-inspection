@@ -239,9 +239,9 @@ services:
 
 volumes:
     esdata:
-        driver: local
+        external: true
     eslogs:
-        driver: local
+        external: true
 
 networks:
     backend:
