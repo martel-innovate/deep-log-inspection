@@ -22,7 +22,7 @@ The Monasca Log Agent is responsible for submitting information about the region
             keystone_api_insecure => true
             project_name => "deeplog"
             username => "monasca-log-agent"
-            password => "logagent"
+            password => "PASSWORD"
             user_domain_name => "default"
             project_domain_name => "default"
             dimensions => [ "hostname:monasca-log-agent", "region:zurich" ]
