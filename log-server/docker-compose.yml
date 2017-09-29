@@ -59,7 +59,7 @@ services:
                 - "traefik.enable=true"
                 - "traefik.frontend.entryPoints=http,https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Host:${DOMAIN:-localhost},Method:POST;PathPrefix:/v3.0"
+                - "traefik.frontend.rule=Host:${DOMAIN:-localhost};Method:POST;PathPrefix:/v3.0"
                 - "traefik.port=8090"
             mode: replicated
             replicas: 1
