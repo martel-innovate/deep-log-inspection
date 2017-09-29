@@ -1,12 +1,14 @@
 #!/bin/bash
-curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os
+BASE_URL=https://elastic.${DOMAIN:-localhost}/_template
 
-curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os-nova-api-osapi_compute
-curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os-nova-api-metadata
-curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os-nova-compute
+curl -XDELETE $BASE_URL/os
 
-curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os-neutron-server
+curl -XDELETE $BASE_URL/os-nova-api-osapi_compute
+curl -XDELETE $BASE_URL/os-nova-api-metadata
+curl -XDELETE $BASE_URL/os-nova-compute
 
-curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os-cinder-api
+curl -XDELETE $BASE_URL/os-neutron-server
 
-curl -XDELETE elastic.${DOMAIN:-localhost}/_template/os-keystone-api
+curl -XDELETE $BASE_URL/os-cinder-api
+
+curl -XDELETE $BASE_URL/os-keystone-api
