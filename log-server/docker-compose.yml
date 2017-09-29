@@ -131,19 +131,19 @@ services:
     elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
         environment:
-            - cluster.name=deeplog
-            - bootstrap.memory_lock=true
-            - discovery.zen.minimum_master_nodes=2
-            - discovery.zen.ping.unicast.hosts=elasticsearch
-            - discovery.type=zen
-            - gateway.expected_nodes=3
-            - gateway.recover_after_nodes=2
-            - xpack.security.enabled=false
-            - xpack.monitoring.enabled=false
-            - xpack.ml.enabled=false
-            - xpack.graph.enabled=false
-            - xpack.watcher.enabled=false
-            - ES_JAVA_OPTS=-Xms512m -Xmx512m
+            cluster.name: "deeplog"
+            bootstrap.memory_lock: "true"
+            discovery.zen.minimum_master_nodes: 2
+            discovery.zen.ping.unicast.hosts: "elasticsearch"
+            discovery.type: "zen"
+            gateway.expected_nodes: 3
+            gateway.recover_after_nodes: 2
+            xpack.security.enabled: "false"
+            xpack.monitoring.enabled: "false"
+            xpack.ml.enabled: "false"
+            xpack.graph.enabled: "false"
+            xpack.watcher.enabled: "false"
+            ES_JAVA_OPTS: "-Xms512m -Xmx512m"
         volumes:
             - esdata:/usr/share/elasticsearch/data
             - eslogs:/usr/share/elasticsearch/logs
@@ -176,14 +176,14 @@ services:
     kibana:
         image: docker.elastic.co/kibana/kibana:5.4.0
         environment:
-            - SERVER_NAME=kibana
-            - SERVER_HOST=0.0.0.0
-            - ELASTICSEARCH_URL=http://elasticsearch:9200
-            - XPACK_SECURITY_ENABLED=false
-            - XPACK_MONITORING_ENABLED=false
-            - XPACK_ML_ENABLED=false
-            - XPACK_GRAPH_ENABLED=false
-            - XPACK_REPORTING_ENABLED=false
+            SERVER_NAME: "kibana"
+            SERVER_HOST: "0.0.0.0"
+            ELASTICSEARCH_URL: "http://elasticsearch:9200"
+            XPACK_SECURITY_ENABLED: "false"
+            XPACK_MONITORING_ENABLED: "false"
+            XPACK_ML_ENABLED: "false"
+            XPACK_GRAPH_ENABLED: "false"
+            XPACK_REPORTING_ENABLED: "false"
         networks:
             - backend
         depends_on:
