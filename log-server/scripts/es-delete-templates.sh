@@ -1,5 +1,5 @@
 #!/bin/bash
-BASE_URL=https://elastic.${DOMAIN:-localhost}/_template
+BASE_URL=https://elastic.$DOMAIN/_template
 
 curl -XDELETE $BASE_URL/os
 

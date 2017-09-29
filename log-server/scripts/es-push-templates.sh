@@ -1,6 +1,6 @@
 #!/bin/bash
 cd $(dirname $0)/../templates
-BASE_URL=https://elastic.${DOMAIN:-localhost}/_template
+BASE_URL=https://elastic.$DOMAIN/_template
 
 curl -H "Content-Type: application/json" \
     -XPUT $BASE_URL/os \
