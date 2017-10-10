@@ -129,7 +129,7 @@ services:
                 condition: on-failure
 
     elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+        image: martel/elasticsearch
         environment:
             cluster.name: "deeplog"
             bootstrap.memory_lock: "true"
@@ -143,6 +143,11 @@ services:
             xpack.ml.enabled: "false"
             xpack.graph.enabled: "false"
             xpack.watcher.enabled: "false"
+            searchguard.ssl.transport.keystore_filepath: "node-0-keystore.jks"
+            searchguard.ssl.transport.truststore_filepath: "truststore.jks"
+            searchguard.ssl.transport.enforce_hostname_verification: "false"
+            searchguard.authcz.admin_dn:
+                - "CN=kirk,OU=client,O=client,l=tEst,C=De"
             ES_JAVA_OPTS: "-Xms512m -Xmx512m"
         volumes:
             - esdata:/usr/share/elasticsearch/data
