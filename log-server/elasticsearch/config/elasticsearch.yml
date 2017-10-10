@@ -1,0 +1,23 @@
+
+cluster.name: "deeplog"
+
+bootstrap.memory_lock: true
+
+discovery.zen.minimum_master_nodes: 2
+discovery.zen.ping.unicast.hosts: elasticsearch
+discovery.type: zen
+
+gateway.expected_nodes: 3
+gateway.recover_after_nodes: 2
+
+xpack.security.enabled: false
+xpack.monitoring.enabled: false
+xpack.ml.enabled: false
+xpack.graph.enabled: false
+xpack.watcher.enabled: false
+
+searchguard.ssl.transport.keystore_filepath: node-0-keystore.jks
+searchguard.ssl.transport.truststore_filepath: truststore.jks
+searchguard.ssl.transport.enforce_hostname_verification: false
+searchguard.authcz.admin_dn:
+    - "CN=kirk,OU=client,O=client,l=tEst,C=De"
