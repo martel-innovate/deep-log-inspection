@@ -146,8 +146,9 @@ services:
             searchguard.ssl.transport.keystore_filepath: "node-0-keystore.jks"
             searchguard.ssl.transport.truststore_filepath: "truststore.jks"
             searchguard.ssl.transport.enforce_hostname_verification: "false"
-            searchguard.authcz.admin_dn:
-                - "CN=kirk,OU=client,O=client,l=tEst,C=De"
+            # searchguard.ssl.transport.enable_openssl_if_available: "true"
+            # searchguard.ssl.http.enable_openssl_if_available: "false"
+            searchguard.authcz.admin_dn: "CN=kirk,OU=client,O=client,l=test,C=De"
             ES_JAVA_OPTS: "-Xms512m -Xmx512m"
         volumes:
             - esdata:/usr/share/elasticsearch/data
