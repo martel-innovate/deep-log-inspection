@@ -129,8 +129,12 @@ services:
                 condition: on-failure
 
     elasticsearch:
-        image: martel/elasticsearch
+        image: searchguard/elasticsearch
         environment:
+            ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+            CA_PASS: "${CA_PASS}"
+            KS_PASS: "${KS_PASS}"
+            TS_PASS: "${TS_PASS}"
             cluster.name: "deeplog"
             bootstrap.memory_lock: "true"
             discovery.zen.minimum_master_nodes: 2
@@ -143,13 +147,14 @@ services:
             xpack.ml.enabled: "false"
             xpack.graph.enabled: "false"
             xpack.watcher.enabled: "false"
-            searchguard.ssl.transport.keystore_filepath: "node-0-keystore.jks"
-            searchguard.ssl.transport.truststore_filepath: "truststore.jks"
             searchguard.ssl.transport.enforce_hostname_verification: "false"
+            searchguard.ssl.transport.keystore_filepath: "node-keystore.jks"
+            searchguard.ssl.transport.truststore_filepath: "truststore.jks"
+            searchguard.ssl.transport.keystore_password: "${KS_PASS}"
+            searchguard.ssl.transport.truststore_password: "${TS_PASS}"
+            searchguard.authcz.admin_dn: "CN=sgadmin,OU=client,O=client,l=Madrid,C=ES"
             # searchguard.ssl.transport.enable_openssl_if_available: "true"
             # searchguard.ssl.http.enable_openssl_if_available: "false"
-            searchguard.authcz.admin_dn: "CN=kirk,OU=client,O=client,l=test,C=De"
-            ES_JAVA_OPTS: "-Xms512m -Xmx512m"
         volumes:
             - esdata:/usr/share/elasticsearch/data
             - eslogs:/usr/share/elasticsearch/logs
