@@ -49,8 +49,6 @@ services:
             - "35357:35357"
         networks:
             - backend
-        volumes:
-            - ./keystone/preload.yml:/preload.yml
         depends_on:
             - mysql
         deploy:
@@ -63,7 +61,14 @@ services:
                   - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
+        configs:
+            - source: keystone_config
+              target: /preload.yml
 
 networks:
     backend:
         external: true
+
+configs:
+    keystone_config:
+        file: ./keystone/preload.yml
