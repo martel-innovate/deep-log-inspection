@@ -1,0 +1,23 @@
+#### Entrypoints + Let's Encrypt
+## please refer to:
+# https://docs.traefik.io/configuration/entrypoints/
+# https://docs.traefik.io/configuration/acme/
+
+[entryPoints]
+    [entryPoints.http]
+    address = ":80"
+        [entryPoints.http.redirect]
+        entryPoint = "https"
+    [entryPoints.https]
+    address = ":443"
+        [entryPoints.https.tls]
+            [acme]
+            email = "address here"
+            storage = "path to letsencrypt folder"
+            entryPoint = "https"
+            ## OPTIONAL: uncomment to edit defaults
+            # acmeLogging = true
+            # onDemand = true
+            [[acme.domains]]
+            main = "name of manager node"
+            sans = ["alternative name for elasticsearch","alternative name for kibana"]
