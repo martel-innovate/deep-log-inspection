@@ -46,8 +46,6 @@ services:
         image: martel/monasca-log-api
         networks:
             - backend
-        volumes:
-            - ./monasca-log-api/config:/etc/monasca
         depends_on:
             - kafka
         deploy:
@@ -68,6 +66,13 @@ services:
                   - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
+        configs:
+            - source: monasca_log_conf
+              target: /etc/monasca/log-api-config.conf.j2
+            - source: monasca_log_ini
+              target: /etc/monasca/log-api-config.ini.j2
+            - source: monasca_log_logging
+              target: /etc/monasca/log-api-logging.conf.j2
 
     # statsd:
     #     image: everydayhero/statsd
@@ -89,9 +94,6 @@ services:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         networks:
             - backend
-        volumes:
-            - ./log-transformer/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-            - ./log-transformer/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
         depends_on:
           - kafka
         deploy:
@@ -104,6 +106,11 @@ services:
                   - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
+        configs:
+            - source: transformer_config
+              target: /usr/share/logstash/config/logstash.yml
+            - source: transformer_pipeline
+              target: /usr/share/logstash/pipeline/logstash.conf
 
     log-persister:
         image: martel/log-persister
@@ -111,9 +118,6 @@ services:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         networks:
             - backend
-        volumes:
-            - ./log-persister/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-            - ./log-persister/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
         depends_on:
             - kafka
             - elasticsearch
@@ -127,6 +131,11 @@ services:
                     - node.hostname == deeplogmanager
             restart_policy:
                 condition: on-failure
+        configs:
+            - source: persister_config
+              target: /usr/share/logstash/config/logstash.yml
+            - source: persister_pipeline
+              target: /usr/share/logstash/pipeline/logstash.conf
 
     elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
@@ -224,7 +233,6 @@ services:
             - "8080:8080"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - ./traefik/traefik.toml:/etc/traefik/traefik.toml
             - /etc/letsencrypt:/etc/letsencrypt
         deploy:
             labels:
@@ -236,6 +244,10 @@ services:
             replicas: 1
             restart_policy:
                 condition: on-failure
+        configs:
+            - source: traefik_config
+              target: /etc/traefik/traefik.toml
+
 
 volumes:
     esdata:
@@ -246,3 +258,21 @@ volumes:
 networks:
     backend:
         external: true
+
+configs:
+    monasca_log_conf:
+        file: ./monasca-log-api/config/log-api-config.conf.j2
+    monasca_log_ini:
+        file: ./monasca-log-api/config/log-api-config.ini.j2
+    monasca_log_logging:
+        file: ./monasca-log-api/config/log-api-logging.conf.j2
+    transformer_config:
+        file: ./log-transformer/config/logstash.yml
+    transformer_pipeline:
+        file: ./log-transformer/pipeline/logstash.conf
+    persister_config:
+        file: ./log-persister/config/logstash.yml
+    persister_pipeline:
+        file: ./log-persister/pipeline/logstash.conf
+    traefik_config:
+        file: ./traefik/traefik.toml
