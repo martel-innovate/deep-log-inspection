@@ -74,20 +74,6 @@ services:
             - source: monasca_log_logging
               target: /etc/monasca/log-api-logging.conf.j2
 
-    # statsd:
-    #     image: everydayhero/statsd
-    #     ports:
-    #         - "8125:8125/tcp"
-    #         - "8125:8125/udp"
-    #     deploy:
-    #         mode: replicated
-    #         replicas: 1
-    #         placement:
-    #             constraints:
-    #               - node.hostname == deeplogmanager
-    #         restart_policy:
-    #             condition: on-failure
-
     log-transformer:
         image: martel/log-transformer
         environment:
