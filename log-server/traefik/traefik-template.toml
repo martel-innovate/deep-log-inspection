@@ -6,18 +6,17 @@
 [entryPoints]
     [entryPoints.http]
     address = ":80"
-        [entryPoints.http.redirect]
-        entryPoint = "https"
+        ## uncomment to redirect http to https
+        # [entryPoints.http.redirect]
+        # entryPoint = "https"
     [entryPoints.https]
     address = ":443"
-        [entryPoints.https.tls]
-            [acme]
-            email = "address here"
-            storage = "path to letsencrypt folder"
-            entryPoint = "https"
-            ## OPTIONAL: uncomment to edit defaults
-            # acmeLogging = true
-            # onDemand = true
-            [[acme.domains]]
-            main = "name of manager node"
-            sans = ["alternative name for elasticsearch","alternative name for kibana"]
+        ## uncomment to set TLS certificate
+        # [entryPoints.https.tls]
+        #     [acme]
+        #     email = "address here"
+        #     storage = "path to letsencrypt folder"
+        #     entryPoint = "https"
+        #     [[acme.domains]]
+        #     main = "name of manager node"
+        #     sans = ["alternative name for elasticsearch","alternative name for kibana"]
