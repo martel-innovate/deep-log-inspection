@@ -44,6 +44,18 @@ services:
 
     monasca-log-api:
         image: martel/monasca-log-api
+        environment:
+            CONFIG_TEMPLATE: "true"
+            LOG_LEVEL_ROOT: "WARN"
+            LOG_LEVEL_CONSOLE: "CRITICAL"
+            API_PORT: 8090
+            KAFKA_URI: "kafka:9092"
+            KAFKA_WAIT_FOR_TOPICS: "monasca-log,logstash-log"
+            KEYSTONE_IDENTITY_URI: "http://keystone:35357"
+            KEYSTONE_AUTH_URI: "http://keystone:5000"
+            KEYSTONE_ADMIN_USER: "admin"
+            KEYSTONE_ADMIN_PASSWORD: "secretadmin"
+            KEYSTONE_ADMIN_TENANT: "admin"
         networks:
             - backend
         depends_on:
