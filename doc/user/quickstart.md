@@ -11,6 +11,7 @@ Just below the search bar, there is a grey button displaying a pattern that star
 
 In order to get started it is sufficient to know that index patterns are used to select logs from a specific Openstack component. Click the grey button to view the list of available index patterns.
 Here follows the list of all generic index patterns:
+
 + `os-*`: match all Openstack logs
 + `os-nova-*`: match Nova logs
 + `os-neutron-*`: match Neutron logs
@@ -18,6 +19,7 @@ Here follows the list of all generic index patterns:
 + `os-keystone-*`: match Keystone logs
 
 Index patterns can also be more specific, allowing to narrow down the search to services and modules. Here follows the list of more specific index patterns, grouped by Openstack component:
+
 + Nova
     - `os-nova-api-*`: match Nova API logs
     - `os-nova-api-osapi_compute-*`: match logs of the `osapi_compute` module in the Nova API
@@ -43,6 +45,7 @@ Note the search flexibility allowed by the use of wildcards (`*`), which are use
 In order to extract useful information from the logs (e.g. usage of resources, correlation between errors, API response times, etc.), Kibana provides [visualizations][2].
 
 A set of predefined visualizations is available:
+
 + `openstack error correlation`: a line chart to plot the occurrences of errors, possibly suggesting correlation between errors of different Openstack components
 + `nova-api response time average`: a line chart to plot the average Nova API's response time against time
 + `nova-api response time range`: a pie chart to identify ranges in the Nova API's response time
