@@ -1,7 +1,7 @@
 ## Quick Start User Guide
 
 #### Searching the logs
-Open Kibana at `kibana.example.com`. Select the `Discover` section in the left pane menu.
+Open Kibana at `kibana.example.com`. Select the [Discover](https://www.elastic.co/guide/en/kibana/5.6/discover.html) section in the left pane menu.
 
 ![discover logs](../img/discover-logs.png)
 
