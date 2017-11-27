@@ -18,6 +18,7 @@ pages:
     - Installation & Administration Manual:
         - 'Deep Log Inspection':
             - 'Introduction': 'install/introduction.md'
+            - 'Requirements': 'install/requirements.md'
             - 'Installing & Deploying': 'install/install.md'
             - 'Configuring the Monasca Log API': 'install/monasca-log-api.md'
             - 'Configuring Kafka': 'install/kafka.md'
