@@ -9,7 +9,7 @@ This project is part of [FIWARE][1]. Credits to [monasca-docker][2] and [docker-
 Quick Start
 -----------
 
-To get the Deep Log Inspection system running, you can use [Docker Engine][4] in [Swarm mode][5]. In order for Elasticsearch to boot correctly, user limits must be set via [Docker configuration][7].
+To get the Deep Log Inspection system running, you can use [Docker Engine][4] in [Swarm mode][5]. In order for Elasticsearch to boot correctly, user limits must be set via [Docker configuration][7]. For more details, refer to the [Docker configuration section](doc/install/docker.md).
 
 First, create the overlay network where the services will be deployed, and the storage volumes for Elasticsearch data and logs:
 
