@@ -20,7 +20,10 @@ pages:
             - 'Introduction': 'install/introduction.md'
             - 'Requirements': 'install/requirements.md'
             - 'Installing & Deploying': 'install/install.md'
+            - 'Configuring Docker': 'install/docker.md'
+            - 'Configuring Traefik': 'install/traefik.md'
             - 'Configuring the Monasca Log API': 'install/monasca-log-api.md'
             - 'Configuring Kafka': 'install/kafka.md'
+            - 'Configuring the ELK stack': 'install/elk.md'
         - 'Monasca Log Agent':
             - 'Installing & Deploying': 'install/monasca-log-agent.md'

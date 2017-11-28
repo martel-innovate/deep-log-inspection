@@ -18,7 +18,10 @@ Welcome to the documentation for Deep Log Inspection
         1. [Introduction](install/introduction.md)
         2. [Requirements](install/requirements.md)
         3. [Installing & Deploying](install/install.md)
-        4. [Configuring the Monasca Log API](install/monasca-log-api.md)
-        5. [Configuring Kafka](install/kafka.md)
+        4. [Configuring Docker](install/docker.md)
+        5. [Configuring Traefik](install/traefik.md)
+        6. [Configuring the Monasca Log API](install/monasca-log-api.md)
+        7. [Configuring Kafka](install/kafka.md)
+        8. [Configuring the ELK stack](install/elk.md)
     * Monasca Log Agent
         * [Installing & Deploying](install/monasca-log-agent.md)
