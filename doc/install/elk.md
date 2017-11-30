@@ -1,7 +1,7 @@
 ## Configuring Elasticsearch
-Configuration of Elasticsearch can be tuned in the [compose file](../../log-server/docker-compose.yml), via environment variables ([reference guide](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/important-settings.html)):
+Elasticsearch can be configured in the [compose file](../../log-server/docker-compose.yml), via environment variables ([reference guide](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/important-settings.html)):
 
-| Environment Variable | Purpose | Default value |
+| Environment Variable | Purpose | Value |
 | --- | --- | --- |
 | `cluster.name` | A node can only join a cluster when it shares its cluster.name with all the other nodes in the cluster | "deeplog" |
 | `bootstrap.memory_lock` | It is vitally important to the health of a node that none of the JVM is ever swapped out to disk |"true" (swapping is disabled) |
@@ -11,14 +11,14 @@ Configuration of Elasticsearch can be tuned in the [compose file](../../log-serv
 
 Local Gateway ([reference guide](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/modules-gateway.html)):
 
-| Environment Variable | Purpose | Default value |
+| Environment Variable | Purpose | Value |
 | --- | --- | --- |
 | `gateway.expected_nodes` | The number of (data or master) nodes that are expected to be in the cluster | 3 |
 | `gateway.recover_after_nodes` | Recover as long as this many data or master nodes have joined the cluster | 2 |
 
 X-Pack ([reference guide](https://www.elastic.co/guide/en/x-pack/5.4/index.html)):
 
-| Environment Variable | Purpose | Default value |
+| Environment Variable | Purpose | Value |
 | --- | --- | --- |
 | `xpack.security.enabled` | Enable X-Pack security | "false" |
 | `xpack.monitoring.enabled` | Enable X-Pack monitoring | "false" |
@@ -29,9 +29,9 @@ X-Pack ([reference guide](https://www.elastic.co/guide/en/x-pack/5.4/index.html)
 N.B.: X-Pack can be used only by purchasing a license. By default, all its components are disabled.
 
 ## Configuring Kibana
-Configuration of Kibana can be tuned in the [compose file](../../log-server/docker-compose.yml), via environment variables (see [Kibana settings](https://www.elastic.co/guide/en/kibana/5.4/settings.html) and [Docker environment variables](https://www.elastic.co/guide/en/kibana/5.4/_configuring_kibana_on_docker.html)):
+Kibana can be configured in the [compose file](../../log-server/docker-compose.yml), via environment variables (see [Kibana settings](https://www.elastic.co/guide/en/kibana/5.4/settings.html) and [Docker environment variables](https://www.elastic.co/guide/en/kibana/5.4/_configuring_kibana_on_docker.html)):
 
-| Environment Variable | Purpose | Default value |
+| Environment Variable | Purpose | Value |
 | --- | --- | --- |
 | `SERVER_NAME` | A human-readable display name that identifies this Kibana instance | "kibana" |
 | `SERVER_HOST` | This setting specifies the host of the back end server | "0.0.0.0" |
