@@ -17,7 +17,6 @@ For convenience, most of the global configuration is managed in the [compose fil
 | `debug` | Enable debug mode | true |
 | `logLevel` | Log level | ERROR |
 
-
 The configuration of entry points is handled separately, in a [.toml file](../../log-server/traefik/traefik.toml). By default, two entry points are provided: `http` on port 80 and `https` on port 443. Links to guides on [entry points](https://docs.traefik.io/configuration/entrypoints/) and [TLS certificate setup](https://docs.traefik.io/configuration/acme/) are provided inside the file.
 
 #### Service configuration
