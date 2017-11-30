@@ -15,7 +15,7 @@ Installing and running the Deep Log Inspection system requires [git](https://git
 
         git clone https://github.com/martel-innovate/deep-log-inspection.git
 
-3. Set user limits in Docker [configuration file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/config/docker.service). For more details, refer to the [Docker configuration section](install/docker.md)
+3. Set user limits in Docker [configuration file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/config/docker.service). For more details, refer to the [Docker configuration section](doc/install/docker.md)
 4. Create the overlay network where the services will be deployed, and the storage volumes for Elasticsearch data and logs:
 
         docker network create -d overlay backend
