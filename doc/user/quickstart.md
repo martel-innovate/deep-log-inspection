@@ -1,7 +1,7 @@
 ## Quick Start User Guide
 
 #### Searching the logs
-Open Kibana at `kibana.example.com`. Select the [Discover](https://www.elastic.co/guide/en/kibana/5.6/discover.html) section in the left pane menu.
+Open Kibana at `kibana.example.com`. Select the [Discover](https://www.elastic.co/guide/en/kibana/5.4/discover.html) section in the left pane menu.
 
 ![discover logs](../img/discover-logs.png)
 
@@ -40,9 +40,9 @@ Knowing how indices are structured is useful to customize the search according t
 
     os-nova-api-*node-10-*
 
-Note the search flexibility allowed by the use of wildcards (`*`), which are used in patterns to represents zero or more characters, thus allowing to match [multiple indices][1].
+Note the search flexibility allowed by the use of wildcards (`*`), which are used in patterns to represents zero or more characters, thus allowing to match [multiple indices](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/multi-index.html).
 #### Visualizations
-In order to extract useful information from the logs (e.g. usage of resources, correlation between errors, API response times, etc.), Kibana provides [visualizations][2].
+In order to extract useful information from the logs (e.g. usage of resources, correlation between errors, API response times, etc.), Kibana provides [visualizations](https://www.elastic.co/guide/en/kibana/5.4/visualize.html).
 
 A set of predefined visualizations is available:
 
@@ -55,6 +55,3 @@ A set of predefined visualizations is available:
 + `openstack tenant activity top 5`: a vertical bar chart with a top 5 ranking of Openstack tenants' activity, i.e. production of logs
 
 Keep reading the guide to learn how to create [custom visualizations](kibana-visual.md).
-
-[1]:https://www.elastic.co/guide/en/elasticsearch/reference/5.x/multi-index.html
-[2]:https://www.elastic.co/guide/en/kibana/5.x/visualize.html
