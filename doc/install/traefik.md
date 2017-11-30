@@ -8,12 +8,12 @@ For convenience, most of the global configuration is managed in the [compose fil
 
 | Setting | Purpose | Value |
 | - | - | - |
-| `docker` | Enable Docker configuration backend | |
+| `docker` | Enable Docker configuration backend | N.A. |
 | `docker.swarmmode` | Enable swarm mode on Træfik | true |
 | `docker.endpoint` | Docker server endpoint: can be a tcp or a unix socket endpoint | unix:///var/run/docker.sock |
 | `docker.domain` | Default domain used | ${DOMAIN} |
 | `docker.watch` | Enable watch docker changes | true |
-| `web` | Activate the webUI on port 8080 | |
+| `web` | Activate the webUI on port 8080 | N.A. |
 | `debug` | Enable debug mode | true |
 | `logLevel` | Log level | ERROR |
 
@@ -32,7 +32,9 @@ All service-specific configurations are also managed in the [compose file](../..
 | `traefik.backend.circuitbreaker.expression` | Create a circuit breaker to be used against the backend, preventing high loads on failing servers | unset | NetworkErrorRatio() > 0.5 | NetworkErrorRatio() > 0.5 |
 | `traefik.port` | Register this port: useful when the container exposes multiples ports | 8090 | 9200 | 5601 |
 | `traefik.enable` | Enable this container in Traefik | true | true | true |
-| `traefik.frontend.rule` | Override the default frontend rule | Host:${DOMAIN};Method:POST;PathPrefix:/v3.0 | Host:elastic.${DOMAIN} | Host:kibana.${DOMAIN} |
+| `traefik.frontend.rule` | Override the default frontend rule | Host:${DOMAIN}; | Host:elastic.${DOMAIN} | Host:kibana.${DOMAIN} |
+||| Method:POST; |||
+||| PathPrefix:/v3.0 |||
 | `traefik.frontend.passHostHeader` | Forward client Host header to the backend | false | false | false |
 | `traefik.frontend.entryPoints` | Assign this frontend to entry points | http,https | http,https | http,https |
 | `traefik.docker.network` | Set the docker network to use for connections to this container | backend | backend | backend |
