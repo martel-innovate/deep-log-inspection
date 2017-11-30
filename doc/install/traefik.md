@@ -44,9 +44,9 @@ Here follows the list of labels with values for services that are enabled in Tra
 | --- | --- | --- | --- |
 | `traefik.backend` | monasca-log-api | elasticsearch | kibana |
 | `traefik.backend.loadbalancer.method` | wrr | wrr | wrr |
-| `traefik.backend.loadbalancer.sticky` | unset (default: false) | false | true |
+| `traefik.backend.loadbalancer.sticky` | N.A. (default: false) | false | true |
 | `traefik.backend.loadbalancer.swarm` | false | false | false |
-| `traefik.backend.circuitbreaker.expression` | unset | NetworkErrorRatio() > 0.5 | NetworkErrorRatio() > 0.5 |
+| `traefik.backend.circuitbreaker.expression` | N.A. | NetworkErrorRatio() > 0.5 | NetworkErrorRatio() > 0.5 |
 | `traefik.port` | 8090 | 9200 | 5601 |
 | `traefik.enable` | true | true | true |
 | `traefik.frontend.rule` | Host:${DOMAIN}; | Host:elastic.${DOMAIN} | Host:kibana.${DOMAIN} |
