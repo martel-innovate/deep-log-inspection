@@ -1,10 +1,10 @@
 ## Traefik
 [Traefik](https://docs.traefik.io/) is a modern HTTP reverse proxy and load balancer made to deploy microservices with ease. It supports several backends, including [Docker](https://docs.docker.com/).
 
-Traefik [global configuration](http://docs.traefik.io/configuration/backends/docker/) is managed in a [.toml file](../../log-server/traefik/traefik.toml), located at /etc/traefik/traefik.toml in the container (also see this [sample file](https://github.com/containous/traefik/blob/master/traefik.sample.toml)). However, it is possible to override default behaviour [on containers](http://docs.traefik.io/configuration/backends/docker/#on-containers), or even [on services](http://docs.traefik.io/configuration/backends/docker/#on-service).
+Traefik [global configuration](http://docs.traefik.io/configuration/backends/docker/) is managed in a [.toml file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/traefik/traefik.toml), located at /etc/traefik/traefik.toml in the container (also see this [sample file](https://github.com/containous/traefik/blob/master/traefik.sample.toml)). However, it is possible to override default behaviour [on containers](http://docs.traefik.io/configuration/backends/docker/#on-containers), or even [on services](http://docs.traefik.io/configuration/backends/docker/#on-service).
 
 #### Global configuration
-For convenience, most of the global configuration is managed in the [compose file](../../log-server/docker-compose.yml), in the `command` section of `traefik`:
+For convenience, most of the global configuration is managed in the [compose file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose.yml), in the `command` section of `traefik`:
 
 | Setting | Purpose | Value |
 | --- | --- | --- |
@@ -17,10 +17,10 @@ For convenience, most of the global configuration is managed in the [compose fil
 | `debug` | Enable debug mode | true |
 | `logLevel` | Log level | ERROR |
 
-The configuration of entry points is handled separately, in a [.toml file](../../log-server/traefik/traefik.toml). By default, two entry points are provided: `http` on port 80 and `https` on port 443. Links to guides on [entry points](https://docs.traefik.io/configuration/entrypoints/) and [TLS certificate setup](https://docs.traefik.io/configuration/acme/) are provided inside the file.
+The configuration of entry points is handled separately, in a [.toml file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/traefik/traefik.toml). By default, two entry points are provided: `http` on port 80 and `https` on port 443. Links to guides on [entry points](https://docs.traefik.io/configuration/entrypoints/) and [TLS certificate setup](https://docs.traefik.io/configuration/acme/) are provided inside the file.
 
 #### Service configuration
-All service-specific configurations are also managed in the [compose file](../../log-server/docker-compose.yml), using container *labels* in the `deploy` section of every service. The last three columns contain values for services that are enabled in Traefik:
+All service-specific configurations are also managed in the [compose file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose.yml), using container *labels* in the `deploy` section of every service. The last three columns contain values for services that are enabled in Traefik:
 
 | Setting | Purpose | Value for: Monasca Log API - Elasticsearch - Kibana |
 | --- | --- | --- |

@@ -1,5 +1,5 @@
 ## Configuring Elasticsearch
-Elasticsearch can be configured in the [compose file](../../log-server/docker-compose.yml), via environment variables ([reference guide](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/important-settings.html)):
+Elasticsearch can be configured in the [compose file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose.yml), via environment variables ([reference guide](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/important-settings.html)):
 
 | Environment Variable | Purpose | Value |
 | --- | --- | --- |
@@ -29,7 +29,7 @@ X-Pack ([reference guide](https://www.elastic.co/guide/en/x-pack/5.4/index.html)
 N.B.: X-Pack can be used only by purchasing a license. By default, all its components are disabled.
 
 ## Configuring Kibana
-Kibana can be configured in the [compose file](../../log-server/docker-compose.yml), via environment variables (see [Kibana settings](https://www.elastic.co/guide/en/kibana/5.4/settings.html) and [Docker environment variables](https://www.elastic.co/guide/en/kibana/5.4/_configuring_kibana_on_docker.html)):
+Kibana can be configured in the [compose file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose.yml), via environment variables (see [Kibana settings](https://www.elastic.co/guide/en/kibana/5.4/settings.html) and [Docker environment variables](https://www.elastic.co/guide/en/kibana/5.4/_configuring_kibana_on_docker.html)):
 
 | Environment Variable | Purpose | Value |
 | --- | --- | --- |

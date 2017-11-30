@@ -7,7 +7,7 @@ On Ubuntu, take the following steps:
 
         vm.max_map_count=262144
 
-* set user limits in /lib/systemd/system/docker.service (also see [sample configuration file](../../log-server/config/docker.service)):
+* set user limits in /lib/systemd/system/docker.service (also see [sample configuration file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/config/docker.service)):
 
         LimitNOFILE=1048576
         LimitNPROC=infinity
