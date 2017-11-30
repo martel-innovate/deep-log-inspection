@@ -39,8 +39,8 @@ Saving visualizations allows to reopen them later. Any changes in the dataset wi
 #### Dashboards
 Saved visualizations can also be grouped and viewed together in a [dashboard][5]. Elements in a dashboard can be resized and rearranged at will. Like visualizations, dashboards can be saved for later use.
 
-[1]:https://www.elastic.co/guide/en/kibana/5.x/visualize.html
-[2]:https://www.elastic.co/guide/en/kibana/5.x/createvis.html
-[3]:https://www.elastic.co/guide/en/kibana/5.x/xy-chart.html
-[4]:https://www.elastic.co/guide/en/kibana/5.x/index.html
-[5]:https://www.elastic.co/guide/en/kibana/5.x/dashboard.html
+[1]:https://www.elastic.co/guide/en/kibana/5.4/visualize.html
+[2]:https://www.elastic.co/guide/en/kibana/5.4/createvis.html
+[3]:https://www.elastic.co/guide/en/kibana/5.4/xy-chart.html
+[4]:https://www.elastic.co/guide/en/kibana/5.4/index.html
+[5]:https://www.elastic.co/guide/en/kibana/5.4/dashboard.html
