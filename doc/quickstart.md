@@ -22,7 +22,7 @@ The compose file can be found [here](https://github.com/martel-innovate/deep-log
 
 If needed, the environment can be completely cleaned:
 
-    `docker stack rm deeplog`
+    docker stack rm deeplog
 
 For the full CLI reference, please refer to the [Docker CLI reference guide](https://docs.docker.com/engine/reference/commandline/cli/).
 
