@@ -11,7 +11,7 @@ For convenience, most of the global configuration is managed in the [compose fil
 | `docker` | Enable Docker configuration backend | N.A. |
 | `docker.swarmmode` | Enable swarm mode on Træfik | true |
 | `docker.endpoint` | Docker server endpoint: can be a tcp or a unix socket endpoint | unix:///var/run/docker.sock |
-| `docker.domain` | Default domain used | ${DOMAIN} |
+| `docker.domain` | Default domain used | ${DOMAIN:-example.com} |
 | `docker.watch` | Enable watch docker changes | true |
 | `web` | Activate the webUI on port 8080 | N.A. |
 | `debug` | Enable debug mode | true |
@@ -49,7 +49,7 @@ Here follows the list of labels with values for services that are enabled in Tra
 | `traefik.backend.circuitbreaker.expression` | N.A. | NetworkErrorRatio() > 0.5 | NetworkErrorRatio() > 0.5 |
 | `traefik.port` | 8090 | 9200 | 5601 |
 | `traefik.enable` | true | true | true |
-| `traefik.frontend.rule` | Host:${DOMAIN}; | Host:elastic.${DOMAIN} | Host:kibana.${DOMAIN} |
+| `traefik.frontend.rule` | Host:${DOMAIN:-example.com}; | Host:elastic.${DOMAIN:-example.com} | Host:kibana.${DOMAIN:-example.com} |
 || Method:POST; |||
 || PathPrefix:/v3.0 |||
 | `traefik.frontend.passHostHeader` | false | false | false |

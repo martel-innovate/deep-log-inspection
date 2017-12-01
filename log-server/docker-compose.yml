@@ -69,7 +69,7 @@ services:
                 - "traefik.enable=true"
                 - "traefik.frontend.entryPoints=http,https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Host:${DOMAIN};Method:POST;PathPrefix:/v3.0"
+                - "traefik.frontend.rule=Host:${DOMAIN:-example.com};Method:POST;PathPrefix:/v3.0"
                 - "traefik.port=8090"
             mode: replicated
             replicas: 1
@@ -167,7 +167,7 @@ services:
                 - "traefik.enable=true"
                 - "traefik.frontend.entryPoints=http,https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Host:elastic.${DOMAIN}"
+                - "traefik.frontend.rule=Host:elastic.${DOMAIN:-example.com}"
                 - "traefik.port=9200"
             endpoint_mode: dnsrr
             mode: global
@@ -206,7 +206,7 @@ services:
                 - "traefik.enable=true"
                 - "traefik.frontend.entryPoints=http,https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Host:kibana.${DOMAIN}"
+                - "traefik.frontend.rule=Host:kibana.${DOMAIN:-example.com}"
                 - "traefik.port=5601"
             mode: global
             restart_policy:
@@ -217,7 +217,7 @@ services:
         command:
             - --web
             - --docker
-            - --docker.domain=${DOMAIN}
+            - --docker.domain=${DOMAIN:-example.com}
             - --docker.endpoint=unix:///var/run/docker.sock
             - --docker.swarmmode
             - --docker.watch
