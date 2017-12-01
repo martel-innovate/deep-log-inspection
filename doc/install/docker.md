@@ -14,7 +14,7 @@ On Ubuntu, take the following steps:
         LimitCORE=infinity
         LimitMEMLOCK=infinity
 
-    N.B.: this way the limits are set for the Docker daemon. To reduce memory overhead, they should be set per container (refer to the [guide][1]), but Docker Swarm might disallow this setting.
+    N.B.: this way the limits are set for the Docker daemon. To reduce memory overhead, they should be set per container (refer to the [guide][1]), but this requires running the container in privileged mode, which is a known [issue](https://github.com/moby/moby/issues/24862) when deploying services to a Swarm.
 
 * restart the Docker daemon:
 
