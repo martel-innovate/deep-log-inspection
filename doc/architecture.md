@@ -3,7 +3,7 @@ The architecture of the system can be depicted as follows:
 
 ![system architecture](img/monasca_log_api.png)
 
-The logs are sent using syslog from [FIWARE Lab][1] Nodes to the Monasca Log Agent, installed on a remote machine.
+The logs are sent using syslog from [FIWARE Lab](https://www.fiware.org/lab/) Nodes to the Monasca Log Agent, installed on a remote machine.
 
 The Monasca Log Agent sends the logs to Traefik, a HTTP reverse proxy and load balancer. Traefik then forwards the logs to the Monasca Log API. Both the Agent and the API must be authenticated to the FIWARE Lab Keystone to function properly.
 
@@ -17,5 +17,3 @@ All services in the system are scalable. By default, Elasticsearch and Kibana ar
 ![HA architecture](img/ha.png)
 
 Depending on whether the traffic comes from inside the system (e.g. Log Persister) or from outside (e.g. user HTTP requests), load balancing is either managed by Docker Swarm (DNSRR for Elasticsearch, default: VIP) or by Traefik (WRR).
-
-[1]:https://www.fiware.org/lab/
