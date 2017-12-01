@@ -53,5 +53,5 @@ Here follows the list of labels with values for services that are enabled in Tra
 || Method:POST; |||
 || PathPrefix:/v3.0 |||
 | `traefik.frontend.passHostHeader` | false | false | false |
-| `traefik.frontend.entryPoints` | http,https | http,https | http,https |
+| `traefik.frontend.entryPoints` | https | https | https |
 | `traefik.docker.network` | backend | backend | backend |
