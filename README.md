@@ -35,7 +35,7 @@ If needed, the environment can be completely cleaned:
 For the full CLI reference, please refer to the [Docker CLI reference guide](https://docs.docker.com/engine/reference/commandline/cli/).
 
 ## Services and DNS
-The system is meant to be deployed on a multi-node cluster, in which the master node is accessible with three valid domain names. Let `example.com` be the main domain name and `elastic.example.com` and `kibana.example.com` two alternative domains (in this page and throughout the full guide). Then, the following services should be exposed on the master node:
+The system is meant to be deployed on a multi-node cluster, in which the master node is accessible with three valid names. Let `example.com` be the main name and `elastic.example.com` and `kibana.example.com` two alternative names (in this page and throughout the full guide). Then, the following services should be exposed on the master node:
 
 * monasca-log-api at `example.com`
 * elasticsearch at `elastic.example.com`
@@ -53,8 +53,7 @@ To bring keystone up along with the other services, deploy it to the same stack:
 
 The compose file for keystone can be found [here](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose-keystone.yml).
 
-Repository Layout
------------------
+## Repository Layout
 
  * `log-server/keystone/`: users and endpoints for test/development Keystone
  * `log-server/kibana/`: configuration for Kibana

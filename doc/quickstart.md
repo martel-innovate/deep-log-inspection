@@ -27,7 +27,7 @@ If needed, the environment can be completely cleaned:
 For the full CLI reference, please refer to the [Docker CLI reference guide](https://docs.docker.com/engine/reference/commandline/cli/).
 
 ## Services and DNS
-The system is meant to be deployed on a multi-node cluster, in which the master node is accessible with three valid domain names. Let `example.com` be the main domain name and `elastic.example.com` and `kibana.example.com` two alternative domains (in this page and throughout the full guide). Then, the following services should be exposed on the master node:
+The system is meant to be deployed on a multi-node cluster, in which the master node is accessible with three valid names. Let `example.com` be the main name and `elastic.example.com` and `kibana.example.com` two alternative names (in this page and throughout the full guide). Then, the following services should be exposed on the master node:
 
 * monasca-log-api at `example.com`
 * elasticsearch at `elastic.example.com`
