@@ -2,12 +2,12 @@
 Installing and running the Deep Log Inspection system requires [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Docker Engine](https://www.docker.com/) in [Swarm mode](https://docs.docker.com/engine/swarm/):
 
 1. Set up the [Docker Swarm cluster](https://docs.docker.com/get-started/part4/#create-a-cluster) where services will be deployed
-2. Download the project by cloning the git repository:
+2. On the cluster's manager node, download the project by cloning the git repository:
 
         git clone https://github.com/martel-innovate/deep-log-inspection.git
 
-3. Set user limits in Docker [configuration file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/config/docker.service). For more details, refer to the [Docker configuration section](docker.md)
-4. Create the overlay network where the services will be deployed, and the storage volumes for Elasticsearch data and logs:
+3. On all nodes in the cluster, set user limits in Docker [configuration file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/config/docker.service). For more details, refer to the [Docker configuration section](docker.md)
+4. On the manager node, create the overlay network where the services will be deployed, and the storage volumes for Elasticsearch data and logs:
 
         docker network create -d overlay backend
         docker volume create esdata
