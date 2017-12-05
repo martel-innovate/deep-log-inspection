@@ -44,6 +44,18 @@ services:
 
     monasca-log-api:
         image: martel/monasca-log-api
+        environment:
+            CONFIG_TEMPLATE: "true"
+            LOG_LEVEL_ROOT: "WARN"
+            LOG_LEVEL_CONSOLE: "CRITICAL"
+            API_PORT: 8090
+            KAFKA_URI: "kafka:9092"
+            KAFKA_WAIT_FOR_TOPICS: "monasca-log,logstash-log"
+            KEYSTONE_IDENTITY_URI: "http://keystone:35357"
+            KEYSTONE_AUTH_URI: "http://keystone:5000"
+            KEYSTONE_ADMIN_USER: "admin"
+            KEYSTONE_ADMIN_PASSWORD: "secretadmin"
+            KEYSTONE_ADMIN_TENANT: "admin"
         networks:
             - backend
         depends_on:
@@ -55,9 +67,9 @@ services:
                 - "traefik.backend.loadbalancer.swarm=false"
                 - "traefik.docker.network=backend"
                 - "traefik.enable=true"
-                - "traefik.frontend.entryPoints=http,https"
+                - "traefik.frontend.entryPoints=https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Host:${DOMAIN};Method:POST;PathPrefix:/v3.0"
+                - "traefik.frontend.rule=Host:${DOMAIN:-example.com};Method:POST;PathPrefix:/v3.0"
                 - "traefik.port=8090"
             mode: replicated
             replicas: 1
@@ -153,9 +165,9 @@ services:
                 - "traefik.backend.loadbalancer.sticky=false"
                 - "traefik.docker.network=backend"
                 - "traefik.enable=true"
-                - "traefik.frontend.entryPoints=http,https"
+                - "traefik.frontend.entryPoints=https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Host:elastic.${DOMAIN}"
+                - "traefik.frontend.rule=Host:elastic.${DOMAIN:-example.com}"
                 - "traefik.port=9200"
             endpoint_mode: dnsrr
             mode: global
@@ -192,9 +204,9 @@ services:
                 - "traefik.backend.loadbalancer.sticky=true"
                 - "traefik.docker.network=backend"
                 - "traefik.enable=true"
-                - "traefik.frontend.entryPoints=http,https"
+                - "traefik.frontend.entryPoints=https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Host:kibana.${DOMAIN}"
+                - "traefik.frontend.rule=Host:kibana.${DOMAIN:-example.com}"
                 - "traefik.port=5601"
             mode: global
             restart_policy:
@@ -205,7 +217,7 @@ services:
         command:
             - --web
             - --docker
-            - --docker.domain=${DOMAIN}
+            - --docker.domain=${DOMAIN:-example.com}
             - --docker.endpoint=unix:///var/run/docker.sock
             - --docker.swarmmode
             - --docker.watch

@@ -6,9 +6,9 @@
 [entryPoints]
     [entryPoints.http]
     address = ":80"
-        ## uncomment to redirect http to https
-        # [entryPoints.http.redirect]
-        # entryPoint = "https"
+        ## redirect http to https
+        [entryPoints.http.redirect]
+        entryPoint = "https"
     [entryPoints.https]
     address = ":443"
         ## uncomment to set TLS certificate
