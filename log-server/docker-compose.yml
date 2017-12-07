@@ -66,6 +66,7 @@ services:
             GUNICORN_BACKLOG: 1000
             GUNICORN_TIMEOUT: 1000
             MAX_MESSAGE_SIZE: 1048576
+            LOG_PUBLISHER_TOPIC: "monasca-log"
         networks:
             - backend
         depends_on:
