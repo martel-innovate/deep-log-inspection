@@ -24,7 +24,10 @@ services:
             KAFKA_ADVERTISED_HOST_NAME: "kafka"
             KAFKA_AUTO_CREATE_TOPICS: "false"
             KAFKA_DELETE_TOPIC_ENABLE: "true"
-            KAFKA_CREATE_TOPICS: "monasca-log:64:1,logstash-log:64:1,log:64:1"
+            KAFKA_CREATE_TOPICS: "\
+                monasca-log:64:1,\
+                logstash-log:64:1,\
+                kafka-health:64:1"
             SERVER_LOG_LEVEL: "DEBUG"
         networks:
             - backend
@@ -67,6 +70,7 @@ services:
             GUNICORN_TIMEOUT: 1000
             MAX_MESSAGE_SIZE: 1048576
             LOG_PUBLISHER_TOPIC: "monasca-log"
+            KAFKA_HEALTH_TOPIC: "kafka-health"
         networks:
             - backend
         depends_on:

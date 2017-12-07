@@ -22,7 +22,7 @@ max_message_size = {{ MAX_MESSAGE_SIZE | default(1048576) }}
 
 [kafka_healthcheck]
 kafka_url = {{ KAFKA_URI | default('kafka:9092') }}
-kafka_topics = log
+kafka_topics = {{ KAFKA_HEALTH_TOPIC | default('log') }}
 
 [keystone_authtoken]
 auth_type = password
