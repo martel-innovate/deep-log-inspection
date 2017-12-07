@@ -79,7 +79,7 @@ services:
                 - "traefik.enable=true"
                 - "traefik.frontend.entryPoints=https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Host:${DOMAIN:-example.com};Method:POST;PathPrefix:/v3.0"
+                - "traefik.frontend.rule=Host:${DOMAIN:-example.com};Method:POST,GET;PathPrefix:/v3.0,/healthcheck"
                 - "traefik.port=8090"
             mode: replicated
             replicas: 1
@@ -270,4 +270,4 @@ configs:
     persister_pipeline:
         file: ./log-persister/pipeline/logstash.conf
     traefik_config:
-        file: ./traefik/traefik-config.toml
+        file: ./traefik/traefik.toml
