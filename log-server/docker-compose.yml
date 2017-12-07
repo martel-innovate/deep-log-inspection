@@ -24,9 +24,8 @@ services:
             KAFKA_ADVERTISED_HOST_NAME: "kafka"
             KAFKA_AUTO_CREATE_TOPICS: "false"
             KAFKA_DELETE_TOPIC_ENABLE: "true"
-            KAFKA_CREATE_TOPICS: "\
-                monasca-log:64:1,logstash-log:64:1,\
-                kafka-health:16:1"
+            KAFKA_CREATE_TOPICS: "monasca-log:64:1,logstash-log:64:1,log:64:1"
+            SERVER_LOG_LEVEL: "DEBUG"
         networks:
             - backend
         depends_on:
@@ -43,12 +42,12 @@ services:
                 condition: on-failure
 
     monasca-log-api:
-        image: monasca/log-api
+        image: monasca/log-api-local
         environment:
             CONFIG_TEMPLATE: "true"
-            LOG_LEVEL_ROOT: "DEBUG"
+            LOG_LEVEL_ROOT: "INFO"
             LOG_LEVEL_CONSOLE: "INFO"
-            MONASCA_CONTAINER_LOG_API_PORT: 5607
+            MONASCA_CONTAINER_LOG_API_PORT: 8090
             KAFKA_URI: "kafka:9092"
             KAFKA_WAIT_FOR_TOPICS: "monasca-log,logstash-log"
             KAFKA_WAIT_RETRIES: 24
@@ -66,6 +65,7 @@ services:
             GUNICORN_WORKER_CONNECTIONS: 2000
             GUNICORN_BACKLOG: 1000
             GUNICORN_TIMEOUT: 1000
+            MAX_MESSAGE_SIZE: 1000012
         networks:
             - backend
         depends_on:
@@ -80,7 +80,7 @@ services:
                 - "traefik.frontend.entryPoints=https"
                 - "traefik.frontend.passHostHeader=false"
                 - "traefik.frontend.rule=Host:${DOMAIN:-example.com};Method:POST;PathPrefix:/v3.0"
-                - "traefik.port=5607"
+                - "traefik.port=8090"
             mode: replicated
             replicas: 1
             placement:
@@ -270,4 +270,4 @@ configs:
     persister_pipeline:
         file: ./log-persister/pipeline/logstash.conf
     traefik_config:
-        file: ./traefik/traefik.toml
+        file: ./traefik/traefik-config.toml
