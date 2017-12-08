@@ -68,7 +68,7 @@ services:
             GUNICORN_WORKER_CONNECTIONS: 2000
             GUNICORN_BACKLOG: 1000
             GUNICORN_TIMEOUT: 1000
-            MAX_MESSAGE_SIZE: 1048576
+            MAX_MESSAGE_SIZE: 1000012
             LOG_PUBLISHER_TOPIC: "monasca-log"
             KAFKA_HEALTH_TOPIC: "kafka-health"
             REGION: "switzerland"
