@@ -1,5 +1,5 @@
 ## Configuring the Monasca Log API
-The Monasca Log API (docker image [here](https://hub.docker.com/r/martel/monasca-log-api/)) runs on top of a [gunicorn](http://docs.gunicorn.org/en/latest/) server. Settings can be tuned via environment variables and deployment options in the [compose file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose.yml) (look up the service named 'monasca-log-api').
+The Monasca Log API (docker image [here](https://hub.docker.com/r/monasca/log-api/)) runs on top of a [gunicorn](http://docs.gunicorn.org/en/latest/) server. Settings can be tuned via environment variables and deployment options in the [compose file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose.yml) (look up the service named 'monasca-log-api').
 
 #### Enviroment variables
 | Setting | Description | Value |
