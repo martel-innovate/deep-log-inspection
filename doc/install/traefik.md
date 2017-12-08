@@ -50,8 +50,8 @@ Here follows the list of labels with values for services that are enabled in Tra
 | `traefik.port` | 8090 | 9200 | 5601 |
 | `traefik.enable` | true | true | true |
 | `traefik.frontend.rule` | Host:${DOMAIN:-example.com}; | Host:elastic.${DOMAIN:-example.com} | Host:kibana.${DOMAIN:-example.com} |
-|| Method:POST; |||
-|| PathPrefix:/v3.0 |||
+|| Method:POST,HEAD,GET; |||
+|| PathPrefix:/v3.0,/healthcheck |||
 | `traefik.frontend.passHostHeader` | false | false | false |
 | `traefik.frontend.entryPoints` | https | https | https |
 | `traefik.docker.network` | backend | backend | backend |
