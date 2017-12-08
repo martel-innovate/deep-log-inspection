@@ -45,7 +45,7 @@ services:
                 condition: on-failure
 
     monasca-log-api:
-        image: martel/monasca-log-api
+        image: monasca/log-api
         environment:
             CONFIG_TEMPLATE: "true"
             LOG_LEVEL_ROOT: "INFO"
