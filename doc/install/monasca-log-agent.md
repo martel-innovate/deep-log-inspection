@@ -18,9 +18,9 @@ The Monasca Log Agent is responsible for submitting information about the region
 
     output {
         monasca_log_api {
-            monasca_log_api_url => "https://deeplogmanager.lab.fiware.org/v3.0"
+            monasca_log_api_url => "https://example.com/v3.0"
             monasca_log_api_insecure => false
-            keystone_api_url => "http://deeplogmanager.lab.fiware.org:35357/v3"
+            keystone_api_url => "http://example.com:35357/v3"
             keystone_api_insecure => true
             project_name => "deeplog"
             username => "monasca-log-agent"
