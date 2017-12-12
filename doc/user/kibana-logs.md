@@ -33,9 +33,9 @@ to respectively filter for value, filter out value, toggle column view in the ta
 
 However, the search bar is the best place for querying and filtering the logs, using the Lucene [query syntax][4] or the full JSON-based [Elasticsearch Query DSL][5]. More details on searching data, managing searches, etc. are [here][6].
 
-[1]:https://www.elastic.co/guide/en/kibana/5.x/introduction.html
-[2]:https://www.elastic.co/guide/en/kibana/5.x/index.html
-[3]:https://www.elastic.co/guide/en/kibana/5.x/tutorial-define-index.html
+[1]:https://www.elastic.co/guide/en/kibana/5.4/introduction.html
+[2]:https://www.elastic.co/guide/en/kibana/5.4/index.html
+[3]:https://www.elastic.co/guide/en/kibana/5.4/tutorial-define-index.html
 [4]:https://lucene.apache.org/core/2_9_4/queryparsersyntax.html
-[5]:https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html
-[6]:https://www.elastic.co/guide/en/kibana/5.x/search.html
+[5]:https://www.elastic.co/guide/en/elasticsearch/reference/5.4/query-dsl.html
+[6]:https://www.elastic.co/guide/en/kibana/5.4/search.html

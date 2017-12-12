@@ -30,8 +30,8 @@ Querying a particular index is useful to view relevant information about it, lik
 
 More details on querying an index are [here][5].
 
-[1]:https://www.elastic.co/guide/en/elasticsearch/reference/5.x/index.html
-[2]:https://www.elastic.co/guide/en/elasticsearch/reference/5.x/cat.html
-[3]:https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-query.html
-[4]:https://www.elastic.co/guide/en/elasticsearch/reference/5.x/multi-index.html
-[5]:https://www.elastic.co/guide/en/elasticsearch/reference/5.x/indices-get-index.html
+[1]:https://www.elastic.co/guide/en/elasticsearch/reference/5.4/index.html
+[2]:https://www.elastic.co/guide/en/elasticsearch/reference/5.4/cat.html
+[3]:https://www.elastic.co/guide/en/elasticsearch/reference/5.4/search-request-query.html
+[4]:https://www.elastic.co/guide/en/elasticsearch/reference/5.4/multi-index.html
+[5]:https://www.elastic.co/guide/en/elasticsearch/reference/5.4/indices-get-index.html

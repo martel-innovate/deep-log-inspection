@@ -1,54 +1,22 @@
-################################################################
-# Global configuration
-################################################################
+#### Entrypoints + Let's Encrypt
+## please refer to:
+# https://docs.traefik.io/configuration/entrypoints/
+# https://docs.traefik.io/configuration/acme/
 
 [entryPoints]
     [entryPoints.http]
     address = ":80"
+        ## redirect http to https
         [entryPoints.http.redirect]
         entryPoint = "https"
     [entryPoints.https]
     address = ":443"
-        [entryPoints.https.tls]
-            [acme]
-            email = "michele.chersich@martel-innovate.com"
-            storage = "/etc/letsencrypt/acme.json"
-            entryPoint = "https"
-            acmeLogging = true
-            onDemand = true
-            [[acme.domains]]
-            main = "deeplogmanager.lab.fiware.org"
-            sans = ["elastic.deeplogmanager.lab.fiware.org","kibana.deeplogmanager.lab.fiware.org"]
-
-# Enable access logs
-# By default it will write to stdout and produce logs in the textual
-# Common Log Format (CLF), extended with additional fields.
-#
-# Optional
-#
-# [accessLog]
-
-# Sets the file path for the access log. If not specified, stdout will be used.
-# Intermediate directories are created if necessary.
-#
-# Optional
-# Default: os.Stdout
-#
-# filePath = "/path/to/log/log.txt"
-
-# Format is either "json" or "common".
-#
-# Optional
-# Default: "common"
-#
-# format = "common"
-
-# Enable docker TLS connection
-#
-# Optional
-#
-#  [docker.tls]
-#  ca = "/etc/ssl/ca.crt"
-#  cert = "/etc/ssl/docker.crt"
-#  key = "/etc/ssl/docker.key"
-#  insecureskipverify = true
+        ## uncomment to set TLS certificate
+        # [entryPoints.https.tls]
+        #     [acme]
+        #     email = "address here"
+        #     storage = "path to letsencrypt folder"
+        #     entryPoint = "https"
+        #     [[acme.domains]]
+        #     main = "name of manager node"
+        #     sans = ["alternative name for elasticsearch","alternative name for kibana"]

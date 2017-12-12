@@ -12,7 +12,7 @@ services:
             replicas: 1
             placement:
                 constraints:
-                  - node.hostname == deeplogmanager
+                  - node.role == manager
             restart_policy:
                 condition: on-failure
 
@@ -38,16 +38,26 @@ services:
             replicas: 1
             placement:
                 constraints:
-                  - node.hostname == deeplogmanager
+                  - node.role == manager
             restart_policy:
                 condition: on-failure
 
     monasca-log-api:
         image: martel/monasca-log-api
+        environment:
+            CONFIG_TEMPLATE: "true"
+            LOG_LEVEL_ROOT: "WARN"
+            LOG_LEVEL_CONSOLE: "CRITICAL"
+            API_PORT: 8090
+            KAFKA_URI: "kafka:9092"
+            KAFKA_WAIT_FOR_TOPICS: "monasca-log,logstash-log"
+            KEYSTONE_IDENTITY_URI: "http://keystone:35357"
+            KEYSTONE_AUTH_URI: "http://keystone:5000"
+            KEYSTONE_ADMIN_USER: "admin"
+            KEYSTONE_ADMIN_PASSWORD: "secretadmin"
+            KEYSTONE_ADMIN_TENANT: "admin"
         networks:
             - backend
-        volumes:
-            - ./monasca-log-api/config:/etc/monasca
         depends_on:
             - kafka
         deploy:
@@ -57,31 +67,24 @@ services:
                 - "traefik.backend.loadbalancer.swarm=false"
                 - "traefik.docker.network=backend"
                 - "traefik.enable=true"
-                - "traefik.frontend.entryPoints=http,https"
+                - "traefik.frontend.entryPoints=https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Host:${DOMAIN};Method:POST;PathPrefix:/v3.0"
+                - "traefik.frontend.rule=Host:${DOMAIN:-example.com};Method:POST;PathPrefix:/v3.0"
                 - "traefik.port=8090"
             mode: replicated
             replicas: 1
             placement:
                 constraints:
-                  - node.hostname == deeplogmanager
+                  - node.role == manager
             restart_policy:
                 condition: on-failure
-
-    # statsd:
-    #     image: everydayhero/statsd
-    #     ports:
-    #         - "8125:8125/tcp"
-    #         - "8125:8125/udp"
-    #     deploy:
-    #         mode: replicated
-    #         replicas: 1
-    #         placement:
-    #             constraints:
-    #               - node.hostname == deeplogmanager
-    #         restart_policy:
-    #             condition: on-failure
+        configs:
+            - source: monasca_log_conf
+              target: /etc/monasca/log-api-config.conf.j2
+            - source: monasca_log_ini
+              target: /etc/monasca/log-api-config.ini.j2
+            - source: monasca_log_logging
+              target: /etc/monasca/log-api-logging.conf.j2
 
     log-transformer:
         image: martel/log-transformer
@@ -89,9 +92,6 @@ services:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         networks:
             - backend
-        volumes:
-            - ./log-transformer/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-            - ./log-transformer/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
         depends_on:
           - kafka
         deploy:
@@ -101,9 +101,14 @@ services:
             replicas: 1
             placement:
                 constraints:
-                  - node.hostname == deeplogmanager
+                  - node.role == manager
             restart_policy:
                 condition: on-failure
+        configs:
+            - source: transformer_config
+              target: /usr/share/logstash/config/logstash.yml
+            - source: transformer_pipeline
+              target: /usr/share/logstash/pipeline/logstash.conf
 
     log-persister:
         image: martel/log-persister
@@ -111,9 +116,6 @@ services:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         networks:
             - backend
-        volumes:
-            - ./log-persister/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-            - ./log-persister/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
         depends_on:
             - kafka
             - elasticsearch
@@ -124,9 +126,14 @@ services:
             replicas: 1
             placement:
                 constraints:
-                    - node.hostname == deeplogmanager
+                    - node.role == manager
             restart_policy:
                 condition: on-failure
+        configs:
+            - source: persister_config
+              target: /usr/share/logstash/config/logstash.yml
+            - source: persister_pipeline
+              target: /usr/share/logstash/pipeline/logstash.conf
 
     elasticsearch:
         image: searchguard/elasticsearch
@@ -169,9 +176,9 @@ services:
                 - "traefik.backend.loadbalancer.sticky=false"
                 - "traefik.docker.network=backend"
                 - "traefik.enable=true"
-                - "traefik.frontend.entryPoints=http,https"
+                - "traefik.frontend.entryPoints=https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Host:elastic.${DOMAIN}"
+                - "traefik.frontend.rule=Host:elastic.${DOMAIN:-example.com}"
                 - "traefik.port=9200"
             endpoint_mode: dnsrr
             mode: global
@@ -208,9 +215,9 @@ services:
                 - "traefik.backend.loadbalancer.sticky=true"
                 - "traefik.docker.network=backend"
                 - "traefik.enable=true"
-                - "traefik.frontend.entryPoints=http,https"
+                - "traefik.frontend.entryPoints=https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Host:kibana.${DOMAIN}"
+                - "traefik.frontend.rule=Host:kibana.${DOMAIN:-example.com}"
                 - "traefik.port=5601"
             mode: global
             restart_policy:
@@ -221,7 +228,7 @@ services:
         command:
             - --web
             - --docker
-            - --docker.domain=${DOMAIN}
+            - --docker.domain=${DOMAIN:-example.com}
             - --docker.endpoint=unix:///var/run/docker.sock
             - --docker.swarmmode
             - --docker.watch
@@ -235,7 +242,6 @@ services:
             - "8080:8080"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - ./traefik/traefik.toml:/etc/traefik/traefik.toml
             - /etc/letsencrypt:/etc/letsencrypt
         deploy:
             labels:
@@ -243,10 +249,14 @@ services:
             mode: replicated
             placement:
                 constraints:
-                    - node.hostname == deeplogmanager
+                    - node.role == manager
             replicas: 1
             restart_policy:
                 condition: on-failure
+        configs:
+            - source: traefik_config
+              target: /etc/traefik/traefik.toml
+
 
 volumes:
     esdata:
@@ -257,3 +267,21 @@ volumes:
 networks:
     backend:
         external: true
+
+configs:
+    monasca_log_conf:
+        file: ./monasca-log-api/config/log-api-config.conf.j2
+    monasca_log_ini:
+        file: ./monasca-log-api/config/log-api-config.ini.j2
+    monasca_log_logging:
+        file: ./monasca-log-api/config/log-api-logging.conf.j2
+    transformer_config:
+        file: ./log-transformer/config/logstash.yml
+    transformer_pipeline:
+        file: ./log-transformer/pipeline/logstash.conf
+    persister_config:
+        file: ./log-persister/config/logstash.yml
+    persister_pipeline:
+        file: ./log-persister/pipeline/logstash.conf
+    traefik_config:
+        file: ./traefik/traefik.toml
