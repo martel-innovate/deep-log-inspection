@@ -45,7 +45,7 @@ services:
                 condition: on-failure
 
     monasca-log-api:
-        image: monasca/log-api
+        image: martel/monasca-log-api
         environment:
             CONFIG_TEMPLATE: "true"
             LOG_LEVEL_ROOT: "INFO"
@@ -55,14 +55,15 @@ services:
             KAFKA_WAIT_FOR_TOPICS: "monasca-log,logstash-log"
             KAFKA_WAIT_RETRIES: 24
             KAFKA_WAIT_DELAY: 5
-            KEYSTONE_IDENTITY_URI: "http://keystone:35357"
-            KEYSTONE_AUTH_URI: "http://keystone:5000"
-            KEYSTONE_ADMIN_USER: "admin"
-            KEYSTONE_ADMIN_PASSWORD: "secretadmin"
-            KEYSTONE_ADMIN_TENANT: "admin"
-            KEYSTONE_ADMIN_DOMAIN: "default"
-            AUTHORIZED_ROLES: "monasca-log-api"
-            AGENT_AUTHORIZED_ROLES: "monasca-log-agent"
+            KEYSTONE_IDENTITY_URI: "http://cloud.lab.fiware.org:4730"
+            KEYSTONE_AUTH_URI: "http://cloud.lab.fiware.org:4730"
+            KEYSTONE_USER: "monasca"
+            KEYSTONE_PASSWORD: "${KEYSTONE_ADMIN_PASSWORD}"
+            KEYSTONE_USER_DOMAIN: "default"
+            KEYSTONE_TENANT: "service"
+            KEYSTONE_TENANT_DOMAIN: "default"
+            AUTHORIZED_ROLES: "admin,domainuser,domainadmin,monasca-user"
+            AGENT_AUTHORIZED_ROLES: "monasca-agent"
             GUNICORN_WORKERS: 9
             GUNICORN_WORKER_CLASS: "gevent"
             GUNICORN_WORKER_CONNECTIONS: 2000
