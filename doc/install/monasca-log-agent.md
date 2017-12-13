@@ -1,13 +1,15 @@
 ## Syslog server
-The Monasca Log Agent is supposed to run on a remote (virtual) machine and acts as a syslog server. The logs must be sent from a FIWARE Lab Nodes to the Monasca Log Agent via syslog. Every FIWARE Lab Node should have its own instance of the Monasca Log Agent.
+The Monasca Log Agent is supposed to run on a remote (virtual) machine and acts as a syslog server. The logs must be sent from FIWARE Lab Nodes to the Monasca Log Agent via syslog. Every FIWARE Lab Node should run its own instance of the Monasca Log Agent.
 
 ## Installing the Monasca Log Agent
-Copy the [log-client/monasca-log-agent][2] directory to the syslog server's home folder. Then, using [docker][1], pull the [image][9] and run it in a container, as follows:
+Copy the [log-client/monasca-log-agent](https://github.com/martel-innovate/deep-log-inspection/tree/master/log-client/monasca-log-agent) directory to the syslog server's home folder. Then, using [docker](https://www.docker.com/), pull the [image](https://hub.docker.com/r/martel/monasca-log-agent/) and run it in a container, as follows:
 
     docker pull martel/monasca-log-agent
-    docker run -d --name=monasca-log-agent --restart on-failure -v ./monasca-log-agent/logstash.conf:/etc/logstash/conf.d/logstash.conf -p 1025:1025/udp martel/monasca-log-agent
+    docker run -d --name=monasca-log-agent --restart on-failure \
+     -v ./monasca-log-agent/logstash.conf:/etc/logstash/conf.d/logstash.conf \
+     -p 1025:1025/udp martel/monasca-log-agent
 
-Logstash's syslog input plugin will be listening for logs on port 1025 and the monasca_log_api output plugin will send them to the Monasca Log API. The pipeline can be found in [logstash.conf][4].
+Logstash's syslog input plugin will be listening for logs on port 1025 and the monasca_log_api output plugin will send them to the Monasca Log API. The pipeline can be found in [logstash.conf](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-client/monasca-log-agent/logstash.conf).
 
 The monasca_log_api output plugin must authenticate to Keystone, so make sure it authenticates to the same instance as the Monasca Log API. Please refer to Monasca Log API's [configuration guide](monasca-log-api.md) for more details.
 
@@ -16,9 +18,9 @@ The Monasca Log Agent is responsible for submitting information about the region
 
     output {
         monasca_log_api {
-            monasca_log_api_url => "https://deeplogmanager.lab.fiware.org/v3.0"
+            monasca_log_api_url => "https://example.com/v3.0"
             monasca_log_api_insecure => false
-            keystone_api_url => "http://deeplogmanager.lab.fiware.org:35357/v3"
+            keystone_api_url => "http://example.com:35357/v3"
             keystone_api_insecure => true
             project_name => "deeplog"
             username => "monasca-log-agent"
@@ -33,7 +35,7 @@ The Monasca Log Agent is responsible for submitting information about the region
         }
     }
 
-For more configuration details refer to the [documentation][5] of the monasca_log_api output plugin.
+For more configuration details refer to the [documentation](http://www.rubydoc.info/gems/logstash-output-monasca_log_api/0.5.1#Start_logstash_output_plugin) of the monasca_log_api output plugin.
 
 ## Openstack syslog-rsyslog configuration
 In order to forward the logs from a FIWARE Lab Node to its own syslog server, Openstack Services must send logging information to syslog. This is done by editing the configuration files of the involved services, e.g.:
@@ -49,7 +51,7 @@ In each file, add these lines:
     use_syslog = True
     syslog_log_facility = LOG_LOCAL0
 
-You might want to configure a separate local facility (up to eight: `LOCAL0, LOCAL1, ..., LOCAL7`) for each service, as this provides better isolation and more flexibility. For more information, see the [syslog documentation][8].
+You might want to configure a separate local facility (up to eight: `LOCAL0, LOCAL1, ..., LOCAL7`) for each service, as this provides better isolation and more flexibility. For more information, see the [syslog documentation](https://en.wikipedia.org/wiki/Syslog).
 
 Then, rsyslog must be configured on every service node, e.g. for Nova, create on every compute node a file named `/etc/rsyslog.d/60-nova.conf` with the following content:
 
@@ -58,13 +60,4 @@ Then, rsyslog must be configured on every service node, e.g. for Nova, create on
     # include all log levels
     local0.*    @syslog-server:1025
 
-Replace `syslog-server` with the address of the machine where the Monasca Log Agent is running. For more details on the configuration illustrated in this section, refer to [Openstack's official guide][7].
-
-[1]:https://www.docker.com/
-[2]:https://github.com/martel-innovate/deep-log-inspection/tree/master/log-client/monasca-log-agent
-[3]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-client/monasca-log-agent/Dockerfile
-[4]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-client/monasca-log-agent/logstash.conf
-[5]:http://www.rubydoc.info/gems/logstash-output-monasca_log_api/0.5.1#Start_logstash_output_plugin
-[7]:https://docs.openstack.org/nova/pike/admin/manage-logs.html
-[8]:https://en.wikipedia.org/wiki/Syslog
-[9]:https://hub.docker.com/r/martel/monasca-log-agent/
+Replace `syslog-server` with the address of the machine where the Monasca Log Agent is running. For more details on the configuration illustrated in this section, refer to [Openstack's official guide](https://docs.openstack.org/nova/pike/admin/manage-logs.html).

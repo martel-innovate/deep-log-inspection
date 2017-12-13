@@ -25,8 +25,10 @@ services:
             KAFKA_AUTO_CREATE_TOPICS: "false"
             KAFKA_DELETE_TOPIC_ENABLE: "true"
             KAFKA_CREATE_TOPICS: "\
-                monasca-log:64:1,logstash-log:64:1,\
-                kafka-health:16:1"
+                monasca-log:64:1,\
+                logstash-log:64:1,\
+                kafka-health:64:1"
+            SERVER_LOG_LEVEL: "DEBUG"
         networks:
             - backend
         depends_on:
@@ -43,19 +45,33 @@ services:
                 condition: on-failure
 
     monasca-log-api:
-        image: martel/monasca-log-api
+        image: monasca/log-api
         environment:
             CONFIG_TEMPLATE: "true"
-            LOG_LEVEL_ROOT: "WARN"
-            LOG_LEVEL_CONSOLE: "CRITICAL"
-            API_PORT: 8090
+            LOG_LEVEL_ROOT: "INFO"
+            LOG_LEVEL_CONSOLE: "INFO"
+            MONASCA_CONTAINER_LOG_API_PORT: 8090
             KAFKA_URI: "kafka:9092"
             KAFKA_WAIT_FOR_TOPICS: "monasca-log,logstash-log"
+            KAFKA_WAIT_RETRIES: 24
+            KAFKA_WAIT_DELAY: 5
             KEYSTONE_IDENTITY_URI: "http://keystone:35357"
             KEYSTONE_AUTH_URI: "http://keystone:5000"
             KEYSTONE_ADMIN_USER: "admin"
             KEYSTONE_ADMIN_PASSWORD: "secretadmin"
             KEYSTONE_ADMIN_TENANT: "admin"
+            KEYSTONE_ADMIN_DOMAIN: "default"
+            AUTHORIZED_ROLES: "monasca-log-api"
+            AGENT_AUTHORIZED_ROLES: "monasca-log-agent"
+            GUNICORN_WORKERS: 9
+            GUNICORN_WORKER_CLASS: "gevent"
+            GUNICORN_WORKER_CONNECTIONS: 2000
+            GUNICORN_BACKLOG: 1000
+            GUNICORN_TIMEOUT: 1000
+            MAX_MESSAGE_SIZE: 1000012
+            LOG_PUBLISHER_TOPIC: "monasca-log"
+            KAFKA_HEALTH_TOPIC: "kafka-health"
+            REGION: "switzerland"
         networks:
             - backend
         depends_on:
@@ -69,7 +85,7 @@ services:
                 - "traefik.enable=true"
                 - "traefik.frontend.entryPoints=https"
                 - "traefik.frontend.passHostHeader=false"
-                - "traefik.frontend.rule=Host:${DOMAIN:-example.com};Method:POST;PathPrefix:/v3.0"
+                - "traefik.frontend.rule=Host:${DOMAIN:-example.com};Method:POST,HEAD,GET;PathPrefix:/v3.0,/healthcheck"
                 - "traefik.port=8090"
             mode: replicated
             replicas: 1
@@ -78,13 +94,6 @@ services:
                   - node.role == manager
             restart_policy:
                 condition: on-failure
-        configs:
-            - source: monasca_log_conf
-              target: /etc/monasca/log-api-config.conf.j2
-            - source: monasca_log_ini
-              target: /etc/monasca/log-api-config.ini.j2
-            - source: monasca_log_logging
-              target: /etc/monasca/log-api-logging.conf.j2
 
     log-transformer:
         image: martel/log-transformer
@@ -258,12 +267,6 @@ networks:
         external: true
 
 configs:
-    monasca_log_conf:
-        file: ./monasca-log-api/config/log-api-config.conf.j2
-    monasca_log_ini:
-        file: ./monasca-log-api/config/log-api-config.ini.j2
-    monasca_log_logging:
-        file: ./monasca-log-api/config/log-api-logging.conf.j2
     transformer_config:
         file: ./log-transformer/config/logstash.yml
     transformer_pipeline:

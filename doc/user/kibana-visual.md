@@ -32,7 +32,7 @@ Now that the required parameters are set, click the `Apply changes` button on th
 
 ![plot visualization](../img/visual-plot.png)
 
-Now that the visualization has been created, it can be saved. Click `save` on the top right of the page, give the visualization a name and click `Save` again.
+Now that the visualization has been created, it can be saved. Click `Save` on the top right of the page, give the visualization a name and click `Save` again.
 
 Saving visualizations allows to reopen them later. Any changes in the dataset will be reflected automatically in the chart as it is reopened or rendered again using the `Apply changes` button.
 
