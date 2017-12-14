@@ -45,7 +45,7 @@ services:
                 condition: on-failure
 
     monasca-log-api:
-        image: martel/monasca-log-api
+        image: monasca/log-api
         environment:
             CONFIG_TEMPLATE: "true"
             LOG_LEVEL_ROOT: "INFO"
@@ -56,12 +56,11 @@ services:
             KAFKA_WAIT_RETRIES: 24
             KAFKA_WAIT_DELAY: 5
             KEYSTONE_IDENTITY_URI: "http://cloud.lab.fiware.org:4730"
-            KEYSTONE_AUTH_URI: "http://cloud.lab.fiware.org:4730"
-            KEYSTONE_USER: "monasca"
-            KEYSTONE_PASSWORD: "${KEYSTONE_ADMIN_PASSWORD}"
-            KEYSTONE_USER_DOMAIN: "default"
-            KEYSTONE_TENANT: "service"
-            KEYSTONE_TENANT_DOMAIN: "default"
+            KEYSTONE_AUTH_URI: "http://cloud.lab.fiware.org:4730/v3"
+            KEYSTONE_ADMIN_USER: "monasca"
+            KEYSTONE_ADMIN_PASSWORD: "${KEYSTONE_ADMIN_PASSWORD}"
+            KEYSTONE_ADMIN_TENANT: "service"
+            KEYSTONE_ADMIN_DOMAIN: "default"
             AUTHORIZED_ROLES: "admin,domainuser,domainadmin,monasca-user"
             AGENT_AUTHORIZED_ROLES: "monasca-agent"
             GUNICORN_WORKERS: 9
