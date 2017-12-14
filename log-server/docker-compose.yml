@@ -199,6 +199,20 @@ services:
             update_config:
                 parallelism: 1
                 delay: 1m30s
+        configs:
+            - source: init_sg
+              target: bin/init_sg.sh
+              mode: 0550
+            - source: sg_action_groups
+              target: config/sg_action_groups.yml
+            - source: sg_config
+              target: config/sg_config.yml
+            - source: sg_internal_users
+              target: config/sg_internal_users.yml
+            - source: sg_roles_mapping
+              target: config/sg_roles_mapping.yml
+            - source: sg_roles
+              target: config/sg_roles.yml
 
     kibana:
         image: docker.elastic.co/kibana/kibana:5.4.0
@@ -288,3 +302,15 @@ configs:
         file: ./log-persister/pipeline/logstash.conf
     traefik_config:
         file: ./traefik/traefik.toml
+    init_sg:
+        file: ./elasticsearch/bin/init_sg.sh
+    sg_action_groups:
+        file: ./elasticsearch/config/sg_action_groups.yml
+    sg_config:
+        file: ./elasticsearch/config/sg_config.yml
+    sg_internal_users:
+        file: ./elasticsearch/config/sg_internal_users.yml
+    sg_roles_mapping:
+        file: ./elasticsearch/config/sg_roles_mapping.yml
+    sg_roles:
+        file: ./elasticsearch/config/sg_roles.yml
