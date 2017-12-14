@@ -1,45 +1,47 @@
 ## Configuring the Monasca Log API
-The Monasca Log API runs on top of a [gunicorn][1] server. For a minimal configuration, a few settings have to be tuned in the following files:
+The Monasca Log API (docker image [here](https://hub.docker.com/r/monasca/log-api/)) runs on top of a [gunicorn](http://docs.gunicorn.org/en/latest/) server. Settings can be tuned via environment variables and deployment options in the [compose file](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose.yml) (look up the service named 'monasca-log-api').
 
-* [docker-compose.yml][4]
-* [monasca-log-api/Dockerfile][5]
-* [monasca-log-api/log-api-config.ini.j2][6]
-* [monasca-log-api/log-api-config.conf.j2][7]
+#### Enviroment variables
+| Setting | Description | Value |
+| --- | --- | --- |
+| `CONFIG_TEMPLATE` | use Jinja2 configuration template \* | `true` |
+| `LOG_LEVEL_ROOT` | the level of the root logger | `INFO` |
+| `LOG_LEVEL_CONSOLE` | minimum level for console output | `INFO` |
+| `MONASCA_CONTAINER_LOG_API_PORT` | the Log API's HTTP port | `8090` |
+| `KAFKA_URI` | the host and port for kafka | `kafka:9092` |
+| `KAFKA_WAIT_FOR_TOPICS` | topics to wait on at startup | `monasca-log,logstash-log` |
+| `KAFKA_WAIT_RETRIES` | number of kafka wait attempts | `24` |
+| `KAFKA_WAIT_DELAY` | seconds to wait between attempts | `5` |
+| `KEYSTONE_IDENTITY_URI` | keystone identity address | `http://keystone:35357` |
+| `KEYSTONE_AUTH_URI` | keystone auth address | `http://keystone:5000` |
+| `KEYSTONE_ADMIN_USER` | keystone admin account user | `admin` |
+| `KEYSTONE_ADMIN_PASSWORD` | keystone admin account password | `secretadmin` |
+| `KEYSTONE_ADMIN_TENANT` | keystone admin account tenant | `admin` |
+| `KEYSTONE_ADMIN_DOMAIN` | keystone admin domain | `default` |
+| `AUTHORIZED_ROLES` | roles for admin users | `monasca-log-api` |
+| `AGENT_AUTHORIZED_ROLES` | roles for metric write only users | `monasca-log-agent` |
+| `GUNICORN_WORKERS` | number of API worker processes | `9` |
+| `GUNICORN_WORKER_CLASS` | async worker class | `gevent` |
+| `GUNICORN_WORKER_CONNECTIONS` | number of connections for async worker | `2000` |
+| `GUNICORN_BACKLOG` | gunicorn backlog size | `1000` |
+| `GUNICORN_TIMEOUT` | gunicorn timeout | `1000` |
+| `MAX_MESSAGE_SIZE` | maximum size of log message in bytes | `1000012` |
+| `LOG_PUBLISHER_TOPIC` | kafka topic to which logs are published | `monasca-log` |
+| `KAFKA_HEALTH_TOPIC` | kafka healthcheck topic | `kafka-health` |
+| `REGION` | region of the service | `switzerland` |
 
-#### Compose file
-In _docker-compose.yml_, look up the service named 'monasca-log-api'. Here you might want to edit the `port` (setting is `traefik.port`) the service listens to (default is `8090`: change this value carefully, updating it also in the `server:main` section of _log-api-config.ini.j2_ and in the `output` section of _logstash.conf_ on the [Monasca Log Agent](monasca-log-agent.md)). Also, the `restart` policy of the service is set to `on-failure` to guarantee the service stays up. You might want to [edit][2] this value or even remove this setting.
+\* If jinja2 formatting is not desired, the environment variable CONFIG_TEMPLATE
+can be set to false. Note that the jinja2 template should still be overwritten
+(rather than the target file without the .j2 suffix) as it will be copied at
+runtime (see [start.sh](https://github.com/monasca/monasca-docker/blob/master/monasca-log-api/start.sh)).
 
-#### Dockerfile & Enviroment Variables
-There should be no need to change default settings, as the Docker image ([martel/monasca-log-api][10]) provides good defaults.
-
-However, settings can be overridden by changing values of [environment variables](https://docs.docker.com/compose/compose-file/#environment) in the compose file (see the `environment` section of services in [docker-compose.yml][4] and [docker-compose-keystone.yml][9]).
-
-#### Other configuration files
-In *log-api-config.ini*, the main settings are the `host` IP address and `port` the gunicorn server should listen to, as well as the number of working processes (`workers`) for handling requests, the maximum number of simultaneous clients (`worker-connections`), and the maximum number of pending connections (`backlog`). Please refer to the [settings][3] section in [gunicorn's documentation][1].
-
-In *log-api-config.conf*, the relevant settings are: the `region` (in the `service` section), that will be added to the logs as metadata; in the `log_publisher` section, the Kafka `topics` to which the logs are published and the address of the Kafka broker (`kafka_url`).
+#### Deployment options
+| Setting | Description | Value |
+| --- | --- | --- |
+| `labels: traefik.port` | The port the service listens to. Must match `MONASCA_CONTAINER_LOG_API_PORT` | `8090` |
+| `restart_policy: condition` | The restart policy in case of service failure | `on-failure` |
 
 #### Authenticating to Keystone
-In *log-api-config.conf*, the `keystone_authtoken` section allows to set the address of the Keystone and the credentials for authentication. It might also be necessary to set the roles (`default_roles`, `agent_roles`) in the `roles_middleware` section.
-
 Authentication can be done to either the local (development/test) or the central Keystone (recommended).
-Here follow the environment settings to be inserted in the [Dockerfile][5] for authenticating to the local Keystone:
 
-    ENV KEYSTONE_IDENTITY_URI=http://keystone:35357 \
-	    KEYSTONE_AUTH_URI=http://keystone:5000 \
-	    KEYSTONE_ADMIN_USER=admin \
-	    KEYSTONE_ADMIN_PASSWORD=secretadmin \
-	    KEYSTONE_ADMIN_TENANT=admin
-
-For local authentication, please consult the account information in [keystone/preload.yml][8]. For authentication to the central Keystone, please contact the FIWARE Lab administrators.
-
-[1]:http://docs.gunicorn.org/en/stable/
-[2]:https://docs.docker.com/compose/compose-file/compose-file-v2/#restart
-[3]:http://docs.gunicorn.org/en/latest/settings.html
-[4]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose.yml
-[5]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/monasca-log-api/Dockerfile
-[6]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/monasca-log-api/config/log-api-config.ini.j2
-[7]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/monasca-log-api/log-api-config.conf.j2
-[8]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/keystone/preload.yml
-[9]:https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/docker-compose-keystone.yml
-[10]:https://hub.docker.com/r/martel/monasca-log-api/
+For local authentication, refer to the above table and to [keystone/preload.yml](https://github.com/martel-innovate/deep-log-inspection/blob/master/log-server/keystone/preload.yml). For authentication to the central Keystone, please contact the FIWARE Lab administrators.
