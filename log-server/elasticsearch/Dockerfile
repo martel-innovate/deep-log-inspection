@@ -1,5 +1,9 @@
+# execute config/gen_common_certs.sh before building the image
 # https://github.com/elastic/elasticsearch-docker
 FROM docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+
+COPY bin/ bin/
+COPY config/ config/
 
 # Search Guard plugin
 # https://github.com/floragunncom/search-guard/wiki
@@ -8,7 +12,11 @@ RUN elasticsearch-plugin install --batch com.floragunn:search-guard-5:5.4.0-15 \
 		plugins/search-guard-5/tools/hash.sh \
 		plugins/search-guard-5/tools/sgadmin.sh
 
-#RUN yum -y update && \
-#	yum -y install apr openssl && \
+USER root
+RUN yum -y update && \
+	yum -y install apr openssl
 #	wget -P plugins/search-guard-5/ \
 #	https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.0.Final-fedora-linux-x86_64.jar
+
+RUN chown -R elasticsearch:elasticsearch config/
+USER elasticsearch
